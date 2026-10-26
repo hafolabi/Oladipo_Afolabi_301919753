@@ -1,0 +1,49 @@
+erDiagram
+    CUSTOMERS o|--o{ ACCOUNTS : "owns customer accounts"
+    ACCOUNTS ||--o{ TRANSACTION_ENTRIES : "has money entries"
+    TRANSACTIONS ||--o{ TRANSACTION_ENTRIES : "has entries"
+    TRANSACTIONS o|--o{ AUDIT_EVENTS : "is linked to"
+    TRANSACTIONS o|--o{ TRANSACTIONS : "is the original for a reversal attempt"
+
+    CUSTOMERS {
+        bigint customer_id PK
+        text first_name
+        text last_name
+        text email UK
+        text phone
+        text verification_status
+        timestamptz created_at
+    }
+    ACCOUNTS {
+        bigint account_id PK
+        text account_number UK
+        bigint customer_id FK "not set for system clearing"
+        text account_kind
+        text currency_code
+        text status
+        timestamptz opened_at
+    }
+    TRANSACTIONS {
+        bigint transaction_id PK
+        text transaction_reference UK
+        text idempotency_key UK
+        text transaction_type
+        text status
+        bigint reversal_of_transaction_id FK "original payment if this is a reversal"
+        timestamptz requested_at
+        timestamptz posted_at "set when posted"
+        text failure_reason "set if the payment fails"
+    }
+    TRANSACTION_ENTRIES {
+        bigint transaction_id PK,FK
+        bigint account_id PK,FK
+        bigint amount_minor
+    }
+    AUDIT_EVENTS {
+        bigint event_id PK
+        bigint transaction_id FK "set if the event concerns a payment"
+        text actor_reference
+        text action
+        timestamptz occurred_at
+        text details
+    }
