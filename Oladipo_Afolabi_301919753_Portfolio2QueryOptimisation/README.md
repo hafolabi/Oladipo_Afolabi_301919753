@@ -2,28 +2,26 @@
 
 **Marks:** 7  
 **Database:** PostgreSQL  
-**Progress:** The queries are planned. They have not been run or timed yet.
+**Progress:** Queries planned; runs and timings still to complete.
 
-This activity looks at the questions staff might ask about AfolabiPay's data, then checks how efficiently the database can answer them. An account history is a useful starting point: it should return the right payments without having to read every payment in the system.
+Here I’ll write queries for everyday questions about accounts and payments, then look at how efficiently PostgreSQL answers them. Section 4 asks for SQL queries, results, execution plans, optimisation evidence, and a brief performance analysis. The plan is a small set of queries and one focused optimisation comparison.
 
 ## Queries to write
 
 - List a customer's accounts and balances, including accounts that have no entries yet.
 - Show an account's payment history for a chosen date range by joining accounts, entries, and transactions.
 - Count completed transfers and add up their value for each day. Each transfer should count once, even though it has two account entries.
-- Group failed payments by type and failure reason.
-- Match original payments with their completed reversals.
 - Find payments with missing entries, incorrect account combinations, or amounts that do not balance.
 
-These queries are the current plan. The pages supplied do not set a minimum number of queries.
+These four queries are a project choice. The brief does not specify a minimum number.
 
 ## Comparing performance
 
-The main comparison will use an account-history query that returns a small part of the full dataset. The sample data needs to be large enough for a change in how PostgreSQL finds the rows to be noticeable. The notes will include the total row counts, date range, number of matching rows, PostgreSQL version, and machine details. A seed script will make it possible to recreate the same data.
+I’ll use the account-history query for one before-and-after comparison. A small seed script will provide enough rows to make the execution plan worth discussing. I’ll record the row counts, query parameters, PostgreSQL version, and timing conditions. A large dataset or load-testing framework is not required.
 
-First, run the query and save its result together with an `EXPLAIN (ANALYZE, BUFFERS)` plan. Then add an index that fits the query's filters and joins, refresh statistics where needed, and run the same query again. Keeping the data and parameters the same makes the comparison useful. Repeating the runs will help show whether a timing difference is consistent or just normal variation.
+First, I’ll save the query output and its `EXPLAIN (ANALYZE, BUFFERS)` plan. Then I’ll add an index suited to the filters and joins, refresh statistics where needed, and rerun the same query. The data and parameters will stay the same. Repeated runs should help distinguish a consistent timing change from normal variation.
 
-The analysis will compare estimated and actual row counts, scans, joins, sorting, buffers, planning time, and execution time. It will also explain whether PostgreSQL used the new index. If the index makes little difference, or slows the query down, that result belongs in the discussion too.
+The short analysis will focus on how rows were found, whether the index was used, and what changed in execution time. Row estimates, actual rows, and buffer figures can help explain the result. Any improvement needs to be supported by the measurements.
 
 ## Files and results to keep
 
@@ -33,7 +31,11 @@ The analysis will compare estimated and actual row counts, scans, joins, sorting
 - [ ] The index or rewritten query, with a reason for the change.
 - [ ] The plan and timings afterwards, plus a check that the query returns the same results.
 - [ ] A short explanation of what changed and what the measurements show.
-- [ ] README instructions giving the setup, software versions, and commands for repeating the comparison.
-- [ ] Notes explaining how the results were checked and any corrections or limits found.
+- [ ] Setup, software versions, and commands for repeating the comparison.
+- [ ] Notes on how the results were checked, including any fixes or limits.
 
-PostgreSQL's guide to [`EXPLAIN`](https://www.postgresql.org/docs/current/using-explain.html) will support the plan analysis. The practical notes will record the commands and database version used for the comparison.
+I’ll refer to PostgreSQL’s guide to [`EXPLAIN`](https://www.postgresql.org/docs/current/using-explain.html) when interpreting the plans, alongside the commands and results saved from the experiment.
+
+## Optional extensions
+
+Failed-payment summaries and reversal lookups can be added if useful. Tuning every query, building a benchmark suite, and running large-scale load tests are outside the core plan.

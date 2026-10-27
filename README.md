@@ -5,13 +5,15 @@
 **Selected case study:** Bank / Fintech Platform  
 **Simulated organisation:** AfolabiPay
 
-AfolabiPay is a fictional fintech platform where customers can open accounts, deposit money, make withdrawals, and transfer funds to one another. The database also needs to keep a clear payment history so staff can trace problems, reverse eligible transactions, and check account balances.
+My case study is AfolabiPay, a fictional fintech platform for deposits, withdrawals, and transfers between customers. Alongside moving money, the system needs to keep a payment history that staff can follow when checking balances or investigating a problem.
 
-This is the case study for all five activities in the portfolio. The plan is to use **PostgreSQL for Portfolios 1–3** and **MongoDB for Portfolio 4**, then discuss how the system could run across multiple servers in Portfolio 5. The assignment includes both SQL and NoSQL work. If the lecturer names a required database product, the software choice can be updated.
+I’ll use the same case study throughout the five activities: **PostgreSQL for Portfolios 1–3**, **MongoDB for Portfolio 4**, and a discussion of distributed and cloud databases in Portfolio 5. This covers the SQL and NoSQL work in the brief. The software choice can change if the lecturer specifies a particular product.
 
-## Portfolio folders
+The aim is a small database portfolio with clear practical evidence. The work will focus on the deliverables in Section 4 of the brief: a sound design, SQL queries and an optimisation example, transaction and concurrency examples, one NoSQL model, and a distributed/cloud discussion. The [scope notes](assignment_requirements.md) identify optional extensions so they do not become extra requirements.
 
-Every project folder follows `Surname_Firstname_StudentID_DocumentType`.
+## Finding the work
+
+The folders follow `Surname_Firstname_StudentID_DocumentType`.
 
 | Component | Folder | Marks |
 | --- | --- | ---: |
@@ -25,23 +27,23 @@ Every project folder follows `Surname_Firstname_StudentID_DocumentType`.
 
 ## Where the project stands
 
-The folders are in place, and there is a first draft of the case study, database design, and plan for each activity. The database scripts and practical experiments still need to be completed. For now, the amounts and outcomes in the notes are worked examples; measured results and screenshots will be added as the work is carried out.
+The case study, table design, and activity plans are drafted. Implementation and testing have not started yet. The examples show expected outcomes; I’ll add measured results and screenshots when the experiments are run.
 
-The [assignment checklist](assignment_requirements.md) covers the deliverables, marking rubric, verification process, and submission checks. The [case study description](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/case_study.md) explains how AfolabiPay works and what the database needs to do.
+The [assignment checklist](assignment_requirements.md) keeps the requirements and marking rubric in one place. The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/case_study.md) explains the organisation, its users, and the database requirements.
 
-## Plan for the work
+## What comes next
 
-1. Review the design, create the PostgreSQL tables, and add fictional customer and payment data.
-2. Write the SQL queries, save their results, and compare execution plans before and after optimisation.
-3. Test commits, rollbacks, and what happens when two database sessions try to use the same account at once.
-4. Build a MongoDB document model using the same customers, accounts, and payment scenarios.
-5. Discuss replication, consistency, availability, and a possible cloud setup. Save deployment evidence if a setup is carried out.
-6. Bring the findings together in the final 2–3 page summary.
+1. Review the design, build the PostgreSQL tables, and load fictional sample data.
+2. Write and run the SQL queries, then compare execution plans before and after optimisation.
+3. Test commits, rollbacks, and simultaneous requests against the same account.
+4. Represent the same customers and payments as MongoDB documents.
+5. Write the distributed/cloud discussion around replication, availability, and consistency, with a short assessment of sharding. A deployment is optional.
+6. Write the final 2–3 page summary, covering all five activities, AfolabiPay, the GitHub link, and the required evidence. Prepare editable Word and Markdown versions for the LMS submission.
 
-The assignment requires a private GitHub repository with regular commits as the work develops. This folder has not been initialised as a Git repository or connected to GitHub yet. Each practical activity will also need a record of the software version, commands, and results so the work can be followed and repeated.
+Git is initialised with an `origin` remote. Before submission, I’ll check that the GitHub repository is private and the assessor has access. As the work develops, I’ll commit useful milestones and keep the commands, software versions, and results with each activity so the experiments can be repeated.
 
-## Explaining and reviewing the work
+## Notes for the final submission
 
-This is an individual assessment. Each activity's README will need to explain how the work was implemented and tested, with links to its outputs. The final report will include a short personal reflection on the design decisions, challenges, and lessons learned. The brief does not require a viva or presentation for everyone, but the lecturer may ask selected students to explain their work.
+Each activity’s README will explain how it was built and tested. I’ll use the [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/reflection_notes.md) to record design decisions, challenges, and lessons for the final report. This is an individual assessment, and the lecturer may ask selected students to explain their work; a viva is not compulsory for everyone.
 
-AI has helped prepare the initial drafts, so the project includes a [working AI-use declaration](Oladipo_Afolabi_301919753_FinalDocumentation/ai_use_declaration.md). The student's review and testing details still need to be added. The [reference list](Oladipo_Afolabi_301919753_FinalDocumentation/references.md) and [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/reflection_notes.md) will be updated as the practical work develops. Submission also requires uploading the required files through the LMS and checking that the assessor can open the private GitHub repository.
+The [AI-use declaration](Oladipo_Afolabi_301919753_FinalDocumentation/ai_use_declaration.md) records Codex’s contribution and my documentation review so far. I’ll update it as the practical work is completed and keep the [reference list](Oladipo_Afolabi_301919753_FinalDocumentation/references.md) up to date. Before uploading the required files to the LMS, I need to check that the assessor can open the private GitHub repository.

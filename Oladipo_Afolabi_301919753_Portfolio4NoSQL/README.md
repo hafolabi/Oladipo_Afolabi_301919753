@@ -3,37 +3,39 @@
 **Marks:** 7  
 **Chosen model:** MongoDB document database  
 **Case study:** AfolabiPay, the same simulated fintech used in the SQL activities  
-**Progress:** The collections are outlined. The MongoDB scripts have not been built or run yet.
+**Progress:** Collections outlined; scripts and database runs still to complete.
 
-This activity represents part of AfolabiPay's data as documents. Customer profiles and payment events provide a useful comparison with the SQL design: some details are easier to read together in one document, while others need to remain separate as the payment history grows.
+In this activity I’ll represent AfolabiPay’s customer profiles and payment events as MongoDB documents. It gives me a way to compare the relational design with a model where related details can sit together inside one document.
+
+Section 4 asks for one NoSQL model, implementation evidence, and an explanation of its suitability. A document model meets that choice; the brief does not require separate document, key-value, column, and graph implementations.
 
 ## Planned collections
 
 | Collection | What it stores | How related data is handled |
 | --- | --- | --- |
 | `customer_profiles` | Customer ID, name, contact details, and verification details | Keep the small contact and verification subdocuments inside the profile because they are often read together |
-| `account_snapshots` | Account ID, customer ID where applicable, kind, status, and the time the snapshot was taken | Link to the customer and make the snapshot time clear; the snapshot does not supply a live account balance |
 | `transaction_events` | Transaction ID, reference, type, status, timestamps, original transaction ID for a reversal, and two entries for a posted payment | Keep the two entries inside the event and link them to their accounts, so an account document does not need to hold its entire payment history |
 
-The sample documents will use fictional customers and payments from the same scenario as the SQL activities. A script will recreate the sample data, and the notes will explain how the SQL and MongoDB IDs match. The two exercises will be loaded separately; automatic synchronisation has not been implemented.
+I’ll use fictional customers and payments from the SQL scenario and explain how their IDs match across the two models. A script will recreate the documents. Each database will be loaded separately; there is no automatic synchronisation between them.
 
 ## Work to complete
 
-- [ ] Write a `mongosh` script to create the collections and validation rules.
-- [ ] Add fictional profiles, account snapshots, deposits, withdrawals, transfers, and a reversal.
+- [ ] Write a `mongosh` script to create the planned collections and insert sample documents.
+- [ ] Use fictional customers and at least one payment example from the SQL case study. The sample count is a project choice.
 - [ ] Store money as exact whole kobo using a suitable BSON integer type, such as `NumberLong`.
-- [ ] Add unique indexes for IDs and indexes that support the planned history queries.
-- [ ] Find an account's events by date, status, and event type.
-- [ ] Use an aggregation pipeline to calculate daily completed transfer totals, counting each transfer once.
-- [ ] Try an invalid document to show the validation rule working, and save the query outputs.
-- [ ] Explain the choices about embedding, references, validation, and which queries the design suits.
-- [ ] Add setup instructions, software versions, and the commands for loading and querying the documents to this README.
-- [ ] Explain how the results were checked, with links to outputs and any corrections or limits found.
+- [ ] Query the documents, including a lookup of payments affecting an account, and save the outputs.
+- [ ] Explain embedding, references, and why this model suits the chosen queries.
+- [ ] Record the software versions and commands for setting up, loading, and querying the data.
+- [ ] Explain the checks, link to their outputs, and note any fixes or limits.
 
-## Why use this document model?
+## Reasons for the document structure
 
-The main use is looking up customer profiles and inspecting payment events. An event contains a fixed pair of entries, so keeping those entries together makes it easy to read the complete movement of money. Account history can keep growing, so it is stored as separate events linked to the account.
+A customer profile keeps contact and verification details together for lookup. A posted payment has a fixed pair of entries, which can be read together inside its event document. Account history keeps growing, so the model links separate events to the account instead of keeping the whole history in one array.
 
-An atomic write to one event keeps that document's changes together. Updating two separate account documents safely, or preventing an overdraft across concurrent payments, would need additional transaction and concurrency controls if MongoDB were used as the main financial record.
+An atomic write keeps changes to one event together. If MongoDB were used as the main financial record, updating two separate accounts safely and preventing concurrent overdrafts would need additional transaction and concurrency controls.
 
-MongoDB's [data modelling guidance](https://www.mongodb.com/docs/manual/data-modeling/best-practices/) explains how query patterns influence embedding and references, as well as what single-document atomicity covers. The implementation will check how well the planned structure supports the example queries.
+MongoDB’s [data modelling guidance](https://www.mongodb.com/docs/manual/data-modeling/best-practices/) explains embedding, references, and single-document atomicity. I’ll compare that guidance with how the example queries work on this model.
+
+## Optional extensions
+
+An `account_snapshots` collection, a validation rule, or a simple aggregation can be added if it helps the explanation. Advanced validation, additional indexes, a second optimisation exercise, other NoSQL model types, and live SQL-to-MongoDB synchronisation are outside the core plan.

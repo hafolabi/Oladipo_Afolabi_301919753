@@ -26,7 +26,6 @@ erDiagram
     TRANSACTIONS {
         bigint transaction_id PK
         text transaction_reference UK
-        text idempotency_key UK
         text transaction_type
         text status
         bigint reversal_of_transaction_id FK "original payment if this is a reversal"

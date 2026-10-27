@@ -2,11 +2,11 @@
 
 ## About the organisation
 
-AfolabiPay is a fictional fintech platform that lets individual customers open digital accounts and make payments. A customer can deposit money, withdraw funds, transfer money to another customer, and check their account history. Staff need to manage accounts, investigate payment problems, reverse eligible transactions, and check that the records agree with account balances.
+AfolabiPay is a fictional fintech platform for individual customers. It offers digital accounts, deposits, withdrawals, and transfers between its customers. Customers need to see their balances and payment history. Staff need enough detail to trace a payment, resolve a problem, or reverse a transaction when the rules allow it.
 
-The database stores customer details, accounts, transaction records, the entries that move money between accounts, and audit events. Customers, operations staff, support staff, auditors, and database administrators need different levels of access. The business rules below are assumptions for this course project.
+The database will hold customer details, accounts, transactions, account postings, and audit events. A posting records the amount added to or taken from an account. Audit events record actions such as requesting a reversal or changing an account’s status. The users below need different access to that information.
 
-## Who uses the database?
+## Database users
 
 | User | Required operations |
 | --- | --- |
@@ -16,19 +16,19 @@ The database stores customer details, accounts, transaction records, the entries
 | Auditor | Trace transactions, review reversals, and check that balances agree with the ledger |
 | Database administrator | Maintain the schema, manage access, and look after backups |
 
-These roles describe the access the system would need. Login handling and any database permissions included in the project still need to be built.
+These roles explain who would use the database. Implementing logins, a user interface, or a full permissions system is outside this portfolio’s core scope.
 
-## What needs to be stored?
+## Data to store
 
 | Data | Examples |
 | --- | --- |
 | Customers | Customer ID, name, unique email, phone number, verification status, and registration time |
 | Accounts | Account ID, unique account number, owner, account kind, currency, and status |
-| Transactions | Payment reference, a key for recognising retries, type, status, request and posting times, and the original payment reference for a reversal |
+| Transactions | Payment reference, type, status, request and posting times, and the original transaction for a reversal |
 | Account postings | The transaction, affected account, and amount added or taken away |
 | Audit events | When an action happened, who performed it, the related transaction where relevant, and an explanation |
 
-## What the database needs to do
+## Main operations
 
 1. Register a customer and record their verification status using fictional data.
 2. Open an account for a verified customer.
@@ -40,19 +40,22 @@ These roles describe the access the system would need. Login handling and any da
 8. Show account history and calculate balances from completed postings.
 9. Check that the amount leaving an account matches the amount entering the other account in each successful transaction.
 
-A payment that fails before its entries are committed should leave balances unchanged. If a failure is reported after the entries have committed, an authorised reversal adds a new record that offsets the original payment. A payment that has already rolled back needs no further money movement.
+The point at which a payment fails matters. Before commit, a rollback should leave balances unchanged. After commit, correcting the payment needs an authorised reversal with new, opposite entries. Keeping the original and reversal makes the history easier to trace.
 
-## Assumptions and limits
+## Scope of the project
 
-- All money is in NGN. Amounts are stored as whole kobo, so NGN 1,250.00 is stored as 125000.
-- Each customer account has one owner, and a customer may own several accounts. Joint accounts are outside the project.
-- A system clearing account provides the other side of deposits and withdrawals. It has no customer owner and may have a negative balance in this simplified wallet model.
-- New customer accounts start at zero. Opening funds are added through deposits so their source appears in the history.
-- Customer balances must stay at zero or above. This also applies to reversals; debt recovery is outside the project.
-- A completed transaction can be fully reversed once. Partial reversals and reversing a reversal are outside the project.
-- The project covers payments within AfolabiPay. It leaves out transfers to other banks, foreign exchange, loans, interest, fees, card networks, and a customer-facing application.
-- PostgreSQL is planned as the main financial record. The MongoDB activity will represent part of the same scenario using fictional profile and event data. Automatic synchronisation between the databases is outside the initial scope.
+These are the working assumptions for this course project:
+
+- All amounts use NGN and are stored as whole kobo. For example, NGN 1,250.00 is stored as 125000.
+- A customer can own several accounts, but each customer account has only one owner. Joint accounts are outside the scope.
+- A system clearing account supplies the other side of deposits and withdrawals. It has no customer owner and may go below zero in this simplified wallet model.
+- Customer accounts start at zero. Opening funds come through recorded deposits.
+- Customer balances must stay at zero or above, including after a reversal. Debt recovery is outside the scope.
+- A completed transaction can be fully reversed once. Partial reversals and reversals of reversals are outside the scope.
+- Payments stay within AfolabiPay. Transfers to other banks, foreign exchange, loans, interest, fees, card networks, and a customer-facing application are outside the scope.
+- PostgreSQL will hold the main financial record. The MongoDB exercise will use fictional profiles and events from the same scenario. Automatic synchronisation between the two databases is outside the initial scope.
+- Verification status is a sample-data attribute. There is no external identity-checking service. Request-retry handling and a production payment API are also outside the core scope.
 
 ## How the design will be checked
 
-The practical work will check that a transfer moves the correct amount once, a failed payment leaves balances unchanged, and retrying a request does not create a second payment. It will also check that two simultaneous withdrawals cannot overdraw an account and that a reversal keeps the original transaction visible. These checks still need to be run.
+I’ll use focused examples to check that a transfer moves the right amount and a rollback leaves balances unchanged. A two-session locking example will show how access to the same account is controlled. A short reversal example can reuse the same entries and preserve the original payment. These checks are still to run; the listed business operations describe the scenario rather than requiring a complete application for every operation.

@@ -1,20 +1,20 @@
-# Relational schema — first draft
+# Relational schema
 
-The design uses five tables to keep customer details, accounts, payments, account entries, and audit events separate. The types below are planned for PostgreSQL; the SQL script still needs to be written. Together, the payment entries form a simplified wallet ledger where each completed payment has a matching outgoing and incoming amount.
+The model has five tables. Customer and account details stay separate from payments, and each completed payment has two entries showing the money leaving one account and entering another. This is a simplified wallet ledger for the case study. The PostgreSQL types are set out below; the SQL script is still to write.
 
 ## Tables and keys
 
-A primary key (PK) identifies a row, and a foreign key (FK) points to a related row. A candidate key is another field, or combination of fields, that could uniquely identify the row.
+A primary key (PK) identifies a row. A foreign key (FK) links it to a related row. Candidate keys are the fields, or combinations of fields, that could uniquely identify each row.
 
 | Relation | Proposed columns | Keys and relationships |
 | --- | --- | --- |
 | `customers` | `customer_id` bigint, `first_name` text, `last_name` text, `email` text, `phone` text, `verification_status` text, `created_at` timestamptz | PK `customer_id`; candidate key `email` |
 | `accounts` | `account_id` bigint, `account_number` text, `customer_id` bigint nullable, `account_kind` text, `currency_code` text, `status` text, `opened_at` timestamptz | PK `account_id`; candidate key `account_number`; FK `customer_id → customers` |
-| `transactions` | `transaction_id` bigint, `transaction_reference` text, `idempotency_key` text, `transaction_type` text, `status` text, `reversal_of_transaction_id` bigint nullable, `requested_at` timestamptz, `posted_at` timestamptz nullable, `failure_reason` text nullable | PK `transaction_id`; candidate keys `transaction_reference`, `idempotency_key`; nullable self-FK `reversal_of_transaction_id → transactions` |
+| `transactions` | `transaction_id` bigint, `transaction_reference` text, `transaction_type` text, `status` text, `reversal_of_transaction_id` bigint nullable, `requested_at` timestamptz, `posted_at` timestamptz nullable, `failure_reason` text nullable | PK `transaction_id`; candidate key `transaction_reference`; nullable self-FK `reversal_of_transaction_id → transactions` |
 | `transaction_entries` | `transaction_id` bigint, `account_id` bigint, `amount_minor` bigint | Composite PK `(transaction_id, account_id)`; FKs to `transactions` and `accounts` |
 | `audit_events` | `event_id` bigint, `transaction_id` bigint nullable, `actor_reference` text, `action` text, `occurred_at` timestamptz, `details` text | PK `event_id`; nullable FK `transaction_id → transactions` |
 
-All fields are required unless marked nullable. `actor_reference` records the database or application user responsible for an action; login handling still needs its own implementation. Email addresses will be trimmed and stored in lower case before checking uniqueness, so differences in spacing or capital letters do not create duplicate addresses.
+Fields are required unless marked nullable. `actor_reference` is a descriptive label for the person or process performing an action; a login system is outside the core scope. I’ll trim email addresses and store them in lower case before checking uniqueness, so spacing and capital letters do not allow duplicate addresses.
 
 ## Relationships
 
@@ -24,7 +24,7 @@ All fields are required unless marked nullable. `actor_reference` records the da
 - A transaction can have several audit events. An audit event can also describe an action unrelated to a payment, such as an account status change.
 - Each reversal points to one original transaction. Failed reversal attempts may be recorded, but only one reversal of the original can be posted successfully.
 
-## Checks within a row
+## Constraints to build into the tables
 
 | Rule | Intended implementation |
 | --- | --- |
@@ -43,15 +43,16 @@ All fields are required unless marked nullable. `actor_reference` records the da
 
 ## Rules that involve more than one row
 
-Checking each row on its own is not enough to make a payment safe. For example, a valid withdrawal amount could still leave an account overdrawn. Posting and reversal routines will need to check related rows, use locks, and control who can write financial entries. Some checks may also need deferred constraint triggers so they can inspect the complete transaction before it commits.
+A withdrawal can have valid fields and still leave an account overdrawn. The example SQL transactions will therefore need to check related rows and use locking in the concurrency demonstration. The write-up will distinguish rules enforced by table constraints from checks performed by the example scripts. A database-wide permission system and deferred constraint triggers are optional extensions.
 
-1. Every posted transaction must have two entries on different accounts. Their amounts must be equal with opposite signs. Pending and failed transactions must leave no committed money entries.
-2. A transfer moves money between customer accounts. A deposit moves money from clearing to a customer, and a withdrawal moves it from a customer to clearing.
-3. A reversal must use the same accounts as the original payment and reverse the signs of its entries. The original must be posted and cannot itself be a reversal. A planned partial unique index on `reversal_of_transaction_id`, covering posted reversals, will prevent a second successful reversal of the same payment.
-4. A customer balance must stay at zero or above. Before calculating balances and adding entries, every routine that posts money must lock the affected account rows in the same order. The implementation and experiments will record the isolation level used.
-5. A customer must be verified before an account is opened. Accounts must be active for ordinary payments. Administrative exceptions are outside the initial scope.
-6. The normal application role must not edit or delete posted transactions or their entries. Corrections add a reversal and an audit record, keeping the original history intact.
-7. An idempotency key lets the system recognise a request that has been sent again. The retry must have the same type, accounts, and amount. Reusing the key for different payment details must be rejected. A unique key alone cannot make this comparison, so a separate record of request details may be needed for pending or failed payments during implementation.
+1. A posted transaction must have two entries on different accounts, with equal amounts and opposite signs. Pending and failed transactions must have no committed money entries.
+2. Transfers connect customer accounts. Deposits move money from clearing to a customer; withdrawals move it back to clearing.
+3. A reversal example must use the original payment’s accounts and negate its entries. It will check that the original is posted, is not itself a reversal, and has not already been reversed. A partial unique index preventing duplicate posted reversals could be added as an extension.
+4. Customer balances must stay at zero or above in the payment examples. The controlled concurrency script will lock affected account rows in a consistent order and check the balance after acquiring the locks. The test notes will record the isolation level used.
+5. A customer must be verified before opening an account, and accounts must be active for ordinary payments. Administrative exceptions are outside the initial scope.
+6. The example scripts will preserve posted history. A correction adds opposite entries and an audit record, keeping the original transaction visible.
+
+These rules guide the classroom demonstrations. The core plan does not claim that every possible direct SQL write is blocked by a production security or trigger layer. Request-retry handling, including idempotency keys and stored request payloads, has been left out of the core model.
 
 ## Calculating a balance
 
@@ -59,9 +60,9 @@ An account's balance is the sum of its entries from posted transactions:
 
 `balance_minor(account) = SUM(amount_minor)`
 
-An account with no entries has a zero balance. Positive amounts add money and negative amounts take money away. In this first design, the balance is calculated from the entries rather than saved in a separate editable column.
+With no entries, the balance is zero. Positive amounts add money; negative amounts take it away. I’m keeping the entries as the record from which the balance is calculated, with no separate editable balance column in this model.
 
-For example, suppose Customer A deposits NGN 10,000.00 and then sends NGN 2,000.00 to Customer B. The expected entries are shown below. This example has not been run in the database yet.
+Suppose Customer A deposits NGN 10,000.00 and sends NGN 2,000.00 to Customer B. The expected entries are below. This is a worked example, still to test in the database.
 
 | Operation | Account | Amount in kobo |
 | --- | --- | ---: |
@@ -70,4 +71,4 @@ For example, suppose Customer A deposits NGN 10,000.00 and then sends NGN 2,000.
 | Transfer NGN 2,000.00 | Customer A | -200000 |
 | Same transfer | Customer B | +200000 |
 
-After those two payments, A should have NGN 8,000.00 and B should have NGN 2,000.00. Clearing should have NGN -10,000.00 because it supplied the opening deposit in this model. Each transaction's entries add up to zero. The clearing account is a simplified way of tracking deposits and withdrawals for this project.
+A should finish with NGN 8,000.00 and B with NGN 2,000.00. Clearing should show NGN -10,000.00, offsetting the opening deposit. Each transaction’s entries add up to zero. This clearing account is a simple way to track deposits and withdrawals within the teaching model.

@@ -1,27 +1,27 @@
-# Technical reflection — working notes
+# Notes for my technical reflection
 
-These notes will help prepare the short individual reflection in the final report. Fill them in while building and checking the project. They are prompts for recording experience; the reflection itself has not been written yet.
+I’ll use these notes to record decisions and lessons while working on the project, then choose a few examples for the final report. The prompts are still to fill in; the reflection has not been written yet.
 
-## A design choice worth explaining
+## A design decision
 
-- **The choice:** [Describe a decision made or accepted after reviewing the design.]
-- **The alternatives:** [Explain what else could have been used.]
-- **The reason:** [Explain why the chosen approach fits AfolabiPay and what tradeoff it introduces.]
-- **The evidence:** [Link to the design, script, query result, or experiment that supports the explanation.]
+- **What I chose:** [Describe a decision made or accepted after reviewing the design.]
+- **Other options:** [What else could have worked?]
+- **Why it fits:** [Explain the reason for the choice and its tradeoff for AfolabiPay.]
+- **What supports it:** [Link to the relevant design, script, query result, or experiment.]
 
-Possible starting points include calculating balances from entries, representing a reversal as a new transaction, or deciding which MongoDB details to embed. Choose a decision that can be explained and defended after reviewing the implementation.
+Possible examples include calculating balances from entries, recording a reversal as a new transaction, or deciding what to embed in MongoDB. The chosen example should be something I can explain after reviewing the implementation.
 
-## A challenge encountered during the work
+## A problem I worked through
 
-- **What happened:** [Describe a problem that actually came up.]
-- **What was expected:** [State the intended behaviour.]
-- **What was tried:** [Record the investigation or changes made.]
-- **What the result showed:** [Explain whether the change helped and link to the relevant output.]
-- **What was learned:** [Describe what would be done differently next time.]
+- **What happened:** [Describe a problem encountered during the work.]
+- **What I expected:** [Describe how it should have behaved.]
+- **What I tried:** [Record the investigation and any changes.]
+- **What changed:** [Explain the result and link to the output.]
+- **What I learned:** [Describe what would help next time.]
 
-This section can stay unfinished until there is a real example to discuss.
+This can stay blank until there is an experience to write about.
 
-## Questions to revisit after each activity
+## Points to revisit after each activity
 
 | Activity | Points to explain from the completed work |
 | --- | --- |
@@ -31,6 +31,6 @@ This section can stay unfinished until there is a real example to discuss.
 | Portfolio 4 | Why were some details embedded and others referenced? Which queries benefit, and what consistency rules still need additional handling? |
 | Portfolio 5 | What happens when a server fails? Which parts of the architecture were discussed, simulated, or actually deployed? |
 
-## Bringing the reflection into the final report
+## Choosing what goes in the report
 
-Choose a few specific examples from these notes: a decision, a challenge, and a lesson supported by a result. Explain them in the student's own words and connect them to the relevant files. Keep the reflection concise enough to fit within the overall 2–3 page summary.
+A decision, a challenge, and a lesson supported by a result should give the reflection a clear focus. I’ll explain those examples in my own words, link to the relevant files, and keep the reflection short enough to fit within the overall 2–3 page summary.

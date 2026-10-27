@@ -2,47 +2,62 @@
 
 **Marks:** 6  
 **Required length:** 2–3 pages for the final summary  
-**Progress:** The report is planned. The final summary and personal reflection will be written after the practical work.
+**Progress:** Report planned; summary and reflection to write after the practical work.
 
-The final report will bring the portfolio together: what was designed, what was built, what the experiments showed, and what could be improved. It should give the reader enough context to understand the project and find the supporting files in the repository.
+The report will bring the five activities together and explain the design, implementation, results, and remaining limits. I’ll use a few clear examples to show what the work demonstrates and point to the full files in the repository.
 
 ## Plan for the report
 
-1. **Introduce the project.** Include the student name and ID, explain AfolabiPay and the project scope, and provide the private GitHub link. Confirm how the lecturer will access the repository.
-2. **Explain the design.** Use the ER diagram to introduce the tables, then explain the main key, constraint, and normalisation choices. Link to the SQL scripts.
-3. **Discuss the findings.** Select useful SQL results, compare the query measurements, and explain the transaction and concurrency experiments. Cover the MongoDB implementation and distributed/cloud discussion or setup as well.
-4. **Reflect on the work.** Describe the decisions made, difficulties encountered, changes that helped, remaining limits, and possible improvements. This part needs to come from the student's own experience of doing and reviewing the work.
-5. **Credit the sources and assistance used.** Reference documentation, code, datasets, libraries, and other external resources used. Because AI has helped with this project, include a brief declaration naming the tool, what it helped with, and how the student reviewed, corrected, tested, or verified its output.
+1. **Introduce AfolabiPay.** Include my name and student ID, describe the case study and scope, and give the private GitHub link. Confirm the lecturer can access it.
+2. **Explain the database design.** Use the ER diagram to show the tables, then explain the keys, constraints, and normalisation choices. Link to the SQL scripts.
+3. **Discuss the practical results.** Summarise the SQL queries and focused optimisation comparison, explain the commit/rollback, isolation, and locking examples, and show what the MongoDB document model demonstrates. Include the distributed/cloud discussion; deployment evidence is only needed if a setup is carried out.
+4. **Reflect on the work.** Choose specific decisions, challenges, and lessons from doing and reviewing the project. Explain what could be improved.
+5. **Credit the sources and tools.** Reference external documentation, code, datasets, libraries, and other resources. Include the AI tool used, its contribution, and how I reviewed, corrected, tested, or verified its output.
 
-A few clear figures or short output excerpts should be enough for the summary, with links to the full evidence in the repository. Check the page count after exporting the report so it stays within 2–3 pages.
+Short output excerpts and readable figures should help keep the summary within 2–3 pages. The full evidence can stay in the repository. I’ll check the page count in the exported report.
+
+The report will follow the core activity plans. Optional extensions only need to appear if they are carried out and add something useful to the findings.
+
+Section 6 requires the LMS document to cover all five activities, name the case study, and include the GitHub link. The assessor needs repository access before submission. Screenshots or other evidence must be included in the LMS submission where required.
+
+## Final files and formatting
+
+Once the practical work is finished, I’ll keep two versions in this folder:
+
+- `Oladipo_Afolabi_301919753_FinalReport.docx`: an editable document that opens directly in Microsoft Word.
+- `Oladipo_Afolabi_301919753_FinalReport.md`: a Markdown copy for keeping and editing the report text.
+
+The Word document will have consistent headings, spacing, tables, figures, captions, and links. I’ll proofread the text and check that the explanations agree with the saved results.
+
+The final files have not been generated yet. They will use the completed work, including my reflection and review details. The 2–3 page limit needs another check after any edits in Word.
 
 ## Working documents
 
-- [Reflection notes](reflection_notes.md): prompts for recording design choices, challenges, and lessons as the work develops.
-- [AI-use declaration](ai_use_declaration.md): assistance recorded so far, with the student's review and verification details still to complete.
-- [Sources and resources](references.md): documentation already consulted and space to record other resources used later.
+- [Reflection notes](reflection_notes.md): a place to record decisions, challenges, and lessons along the way.
+- [AI-use declaration](ai_use_declaration.md): the tool and support used, including my documentation review so far.
+- [Sources and resources](references.md): the references used so far, to be updated as needed.
 
-These documents support the final report. The personal reflection and review notes will need to be completed from the student's own experience of checking and running the work.
+These notes will feed into the final report as the work is completed and checked.
 
 ## Submission checklist
 
 - [ ] Name and describe the organisation at the beginning.
 - [ ] Use the same AfolabiPay case study throughout all five activities, unless the lecturer approves a change.
-- [ ] Add the private GitHub link and confirm lecturer access.
+- [ ] Add the private GitHub link and check assessor access before the LMS submission.
 - [ ] Check that the repository is organised and shows progressive development through its commits.
 - [ ] Link the findings to the relevant scripts, files, and results.
 - [ ] Make sure each activity's README explains how it was implemented and tested.
 - [ ] Add selected screenshots or outputs with captions explaining what they show.
-- [ ] Write the reflection from the student's own experience, covering design choices, challenges, and lessons learned.
+- [ ] Write the reflection from my own experience, covering design choices, challenges, and lessons learned.
 - [ ] Reference all external sources, code, datasets, libraries, and other resources used.
-- [ ] Complete the AI-use declaration with the tool, its uses, and the student's review or verification.
+- [ ] Update the AI-use declaration for the final report with the tool, its contribution, and my review or verification.
 - [ ] Check the exported summary is 2–3 pages.
+- [ ] Prepare matching Word and Markdown versions, proofread them, and check their formatting and links.
 - [ ] Confirm that all five activities and the final documentation are included.
+- [ ] Include supporting screenshots or evidence in the LMS submission where required.
 - [ ] Submit the required files through the LMS.
 - [ ] Be ready to explain the solution if selected for technical verification.
 
-## Record of AI assistance
+## Keeping the declaration up to date
 
-The [working declaration](ai_use_declaration.md) is the main record of AI assistance. Section 11 of the brief requires it when AI has been used. It records the drafting help so far and leaves the student's own review and testing details unfinished until those checks have been carried out.
-
-The brief does not require a viva or presentation for everyone. The lecturer may select a small sample for clarification or invite a student to discuss an unclear, copied, inaccessible, or suspicious submission. Clear evidence and explanations should make the reasoning behind the work easy to follow.
+The [declaration](ai_use_declaration.md) names Codex, describes its contribution, and records my review of the documentation. Section 11 also asks how the output was reviewed or verified, so I’ll add details of practical checks when those have been carried out.

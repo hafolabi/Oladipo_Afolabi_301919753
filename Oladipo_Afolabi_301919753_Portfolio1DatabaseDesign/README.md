@@ -2,18 +2,20 @@
 
 **Marks:** 7  
 **Case study:** AfolabiPay — simulated Bank / Fintech Platform  
-**Progress:** First design draft. The database has not been built yet.
+**Progress:** Design drafted; database still to build.
 
-This section sets out what AfolabiPay needs to store and how the tables fit together. The main concern is keeping the payment history clear: money leaving one account should have a matching entry showing where it went.
+This part of the portfolio explains the data AfolabiPay needs and how the tables connect. I’m using a pair of entries for each completed payment so there is a clear record of where the money came from and where it went.
 
-## Design documents
+Section 4 asks for the case study, ER diagram, relational schema, keys, constraints, and normalisation explanation. The PostgreSQL tables and sample data will also support the SQL and transaction activities, so they will be built once and reused.
 
-- [Case study](case_study.md): what AfolabiPay does, who uses it, and which operations the database supports.
-- [Relational schema](relational_schema.md): the proposed tables, keys, relationships, and rules.
-- [ER diagram](er_diagram.mmd): Mermaid source showing how the tables connect.
-- [Normalisation](normalisation.md): why the data is split into these tables and how the design works towards third normal form.
+## The design
 
-## Work completed and still to do
+- [Case study](case_study.md): the organisation, users, and day-to-day operations.
+- [Relational schema](relational_schema.md): tables, keys, relationships, and payment rules.
+- [ER diagram](er_diagram.mmd): the table relationships, written in Mermaid.
+- [Normalisation](normalisation.md): the reasons for separating the data and how the design meets the intended normal forms.
+
+## Progress checklist
 
 - [x] Describe the organisation and decide what the project will cover.
 - [x] Draft the tables and ER diagram.
@@ -21,9 +23,13 @@ This section sets out what AfolabiPay needs to store and how the tables fit toge
 - [ ] Build the tables in PostgreSQL and check them against the design.
 - [ ] Save the schema as an SQL script that can be run again.
 - [ ] Add fictional sample data, including deposits that fund the opening balances.
-- [ ] Save table definitions and examples of accepted and rejected inserts.
+- [ ] Save table definitions and a small example of an accepted and rejected insert.
 - [ ] Export a readable ER diagram for the final report.
-- [ ] Add setup instructions, software versions, and the exact commands for building and checking the tables to this README.
-- [ ] Explain the checks performed, link to their results, and note any corrections or limits.
+- [ ] Add the software versions and commands needed to build and check the tables.
+- [ ] Explain what the checks showed, link to the outputs, and note any fixes or limits.
 
-Some rules involve several rows, such as checking that a transfer's two entries balance. Those rules still need to be built and tested alongside the table constraints.
+A transfer’s entries must add up to zero, and a withdrawal must leave enough money in the account. These checks involve more than one row, so they will need payment routines and testing alongside the table constraints.
+
+## Optional extensions
+
+A full login system, database-wide permission design, real customer-verification process, and elaborate trigger framework are outside the core plan. The user roles and verification field describe the case study; implementing those wider services is not needed for this activity.
