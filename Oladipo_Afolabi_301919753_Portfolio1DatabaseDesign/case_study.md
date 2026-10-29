@@ -34,9 +34,9 @@ These roles explain who would use the database. Implementing logins, a user inte
 2. Open an account for a verified customer.
 3. Record a deposit from a system clearing account into a customer account.
 4. Record a withdrawal from a customer account into the clearing account.
-5. Transfer value between two different active customer accounts.
+5. Send money between two different active customer accounts.
 6. Reject requests with invalid details or insufficient funds.
-7. Reverse an eligible completed transaction by adding opposite entries linked to the original.
+7. Undo an allowed completed payment by adding opposite entries linked to the original.
 8. Show account history and calculate balances from completed postings.
 9. Check that the amount leaving an account matches the amount entering the other account in each successful transaction.
 
@@ -58,4 +58,6 @@ These are the working assumptions for this course project:
 
 ## How the design will be checked
 
-I’ll use focused examples to check that a transfer moves the right amount and a rollback leaves balances unchanged. A two-session locking example will show how access to the same account is controlled. A short reversal example can reuse the same entries and preserve the original payment. These checks are still to run; the listed business operations describe the scenario rather than requiring a complete application for every operation.
+Portfolio 1 includes made-up deposits, a transfer, a withdrawal, its reversal, and pending or failed requests. The [saved output](evidence/schema_validation.txt) shows the closing balances and the checks of payment entries and table rules. The reversal is part of the sample inserts. A function for users to request reversals has not been built yet, and simultaneous requests still need testing.
+
+Portfolio 3 will use focused examples to show that a transfer moves the right amount and a rollback leaves balances unchanged. A two-session locking example will show how access to the same account is controlled. Those transaction experiments are still to run; the listed business operations describe the scenario rather than requiring a complete application for every operation.

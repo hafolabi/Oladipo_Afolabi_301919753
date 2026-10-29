@@ -27,13 +27,15 @@ The folders follow `Surname_Firstname_StudentID_DocumentType`.
 
 ## Where the project stands
 
-The case study, table design, and activity plans are drafted. Implementation and testing have not started yet. The examples show expected outcomes; I’ll add measured results and screenshots when the experiments are run.
+Portfolio 1 now has the case study, ER diagram, relational schema, normalisation explanation, executable SQL tables, and fictional sample data. The schema and data checks passed in embedded PostgreSQL (PGlite); [the activity README](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/README.md) links to the actual output and records the engine and remaining limits. A standalone PostgreSQL server has not yet been installed or tested. Portfolios 2–5 remain at the planning stage.
 
 The [assignment checklist](assignment_requirements.md) keeps the requirements and marking rubric in one place. The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/case_study.md) explains the organisation, its users, and the database requirements.
 
+For a first look at the SQL, use the [Portfolio 1 reading guide](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/start_here.md). It explains the keys using JavaScript objects and walks through the sample transfer.
+
 ## What comes next
 
-1. Review the design, build the PostgreSQL tables, and load fictional sample data.
+1. Review Portfolio 1's five-table design and saved results, then set up a standalone PostgreSQL database for the query and concurrency work.
 2. Write and run the SQL queries, then compare execution plans before and after optimisation.
 3. Test commits, rollbacks, and simultaneous requests against the same account.
 4. Represent the same customers and payments as MongoDB documents.

@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="1120" viewBox="0 0 1720 1120" role="img" aria-labelledby="title description">
+<title id="title">AfolabiPay entity relationship diagram</title>
+<desc id="description">Five tables with primary, unique and foreign keys. A customer has zero or more accounts. A customer account requires one owner; clearing has none. Accounts and transactions each have zero or more entries. Audit events optionally reference a transaction. Reversals optionally reference an original payment. Posted payments require exactly two balanced entries as an additional business rule.</desc>
+<style>
+text { font-family: Arial, Helvetica, sans-serif; fill: #182f40; }
+.title { font-size: 30px; font-weight: 700; }
+.subtitle { font-size: 18px; fill: #456174; }
+.heading { font-size: 19px; font-weight: 700; fill: white; }
+.field { font-family: Menlo, Consolas, monospace; font-size: 14px; }
+.key { font-family: Menlo, Consolas, monospace; font-size: 13px; font-weight: 700; fill: #17675d; }
+.type { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #526777; }
+.label { font-size: 17px; }
+.cardinality { font-size: 16px; font-weight: 700; fill: #17675d; }
+.note { font-size: 17px; }
+.edge { fill: none; stroke: #658493; stroke-width: 2.5; }
+</style>
+<rect width="1720" height="1120" fill="#fff"/>
+<text x="45" y="51" class="title">AfolabiPay — relational database design</text>
+<text x="45" y="83" class="subtitle">PK: primary key · UK: unique candidate key · FK: foreign key · ?: nullable · Amounts: whole NGN kobo</text>
+<path class="edge" d="M267 429 V625"/>
+<text x="281" y="453" class="cardinality">0..1</text>
+<text x="281" y="612" class="cardinality">0..*</text>
+<text x="281" y="530" class="label">owns</text>
+<path class="edge" d="M490 690 H620"/>
+<text x="500" y="681" class="cardinality">1</text>
+<text x="574" y="681" class="cardinality">0..*</text>
+<text x="510" y="720" class="label">entries</text>
+<path class="edge" d="M1270 458 V560 H847 V625"/>
+<text x="1282" y="482" class="cardinality">1</text>
+<text x="860" y="614" class="cardinality">0..*</text>
+<text x="945" y="547" class="label">has entries</text>
+<path class="edge" d="M1510 458 V755"/>
+<text x="1524" y="484" class="cardinality">0..1</text>
+<text x="1524" y="742" class="cardinality">0..*</text>
+<text x="1524" y="604" class="label">audit events</text>
+<path class="edge" d="M1510 170 V130 H1680 V315 H1645"/>
+<text x="1455" y="158" class="cardinality">0..1</text>
+<text x="1651" y="303" class="cardinality">0..*</text>
+<text x="1375" y="118" class="label">original / reversal attempts</text>
+
+<rect x="45" y="170" width="445" height="259" rx="8" fill="#f7fafc" stroke="#b5c7d0"/>
+<path d="M53 170 H482 Q490 170 490 178 V214 H45 V178 Q45 170 53 170" fill="#234c62"/>
+<text x="61" y="199" class="heading">customers</text>
+<text x="59" y="237" class="key">PK</text>
+<text x="133" y="237" class="field">customer_id</text>
+<text x="385" y="237" class="type">bigint</text>
+<rect x="46" y="245" width="443" height="29" fill="#eef4f7"/>
+<text x="59" y="266" class="key"></text>
+<text x="133" y="266" class="field">first_name</text>
+<text x="385" y="266" class="type">text</text>
+<text x="59" y="295" class="key"></text>
+<text x="133" y="295" class="field">last_name</text>
+<text x="385" y="295" class="type">text</text>
+<rect x="46" y="303" width="443" height="29" fill="#eef4f7"/>
+<text x="59" y="324" class="key">UK</text>
+<text x="133" y="324" class="field">email</text>
+<text x="385" y="324" class="type">text</text>
+<text x="59" y="353" class="key"></text>
+<text x="133" y="353" class="field">phone</text>
+<text x="385" y="353" class="type">text</text>
+<rect x="46" y="361" width="443" height="29" fill="#eef4f7"/>
+<text x="59" y="382" class="key"></text>
+<text x="133" y="382" class="field">verification_status</text>
+<text x="385" y="382" class="type">text</text>
+<text x="59" y="411" class="key"></text>
+<text x="133" y="411" class="field">created_at</text>
+<text x="385" y="411" class="type">timestamptz</text>
+<rect x="45" y="625" width="445" height="259" rx="8" fill="#f7fafc" stroke="#b5c7d0"/>
+<path d="M53 625 H482 Q490 625 490 633 V669 H45 V633 Q45 625 53 625" fill="#234c62"/>
+<text x="61" y="654" class="heading">accounts</text>
+<text x="59" y="692" class="key">PK</text>
+<text x="133" y="692" class="field">account_id</text>
+<text x="385" y="692" class="type">bigint</text>
+<rect x="46" y="700" width="443" height="29" fill="#eef4f7"/>
+<text x="59" y="721" class="key">UK</text>
+<text x="133" y="721" class="field">account_number</text>
+<text x="385" y="721" class="type">text</text>
+<text x="59" y="750" class="key">FK</text>
+<text x="133" y="750" class="field">customer_id</text>
+<text x="385" y="750" class="type">bigint</text>
+<text x="473" y="750" class="key">?</text>
+<rect x="46" y="758" width="443" height="29" fill="#eef4f7"/>
+<text x="59" y="779" class="key"></text>
+<text x="133" y="779" class="field">account_kind</text>
+<text x="385" y="779" class="type">text</text>
+<text x="59" y="808" class="key"></text>
+<text x="133" y="808" class="field">currency_code</text>
+<text x="385" y="808" class="type">text</text>
+<rect x="46" y="816" width="443" height="29" fill="#eef4f7"/>
+<text x="59" y="837" class="key"></text>
+<text x="133" y="837" class="field">status</text>
+<text x="385" y="837" class="type">text</text>
+<text x="59" y="866" class="key"></text>
+<text x="133" y="866" class="field">opened_at</text>
+<text x="385" y="866" class="type">timestamptz</text>
+<rect x="620" y="625" width="455" height="143" rx="8" fill="#f7fafc" stroke="#b5c7d0"/>
+<path d="M628 625 H1067 Q1075 625 1075 633 V669 H620 V633 Q620 625 628 625" fill="#234c62"/>
+<text x="636" y="654" class="heading">transaction_entries</text>
+<text x="634" y="692" class="key">PK,FK</text>
+<text x="708" y="692" class="field">transaction_id</text>
+<text x="970" y="692" class="type">bigint</text>
+<rect x="621" y="700" width="453" height="29" fill="#eef4f7"/>
+<text x="634" y="721" class="key">PK,FK</text>
+<text x="708" y="721" class="field">account_id</text>
+<text x="970" y="721" class="type">bigint</text>
+<text x="634" y="750" class="key"></text>
+<text x="708" y="750" class="field">amount_minor</text>
+<text x="970" y="750" class="type">bigint</text>
+<rect x="1145" y="170" width="500" height="288" rx="8" fill="#f7fafc" stroke="#b5c7d0"/>
+<path d="M1153 170 H1637 Q1645 170 1645 178 V214 H1145 V178 Q1145 170 1153 170" fill="#234c62"/>
+<text x="1161" y="199" class="heading">transactions</text>
+<text x="1159" y="237" class="key">PK</text>
+<text x="1233" y="237" class="field">transaction_id</text>
+<text x="1540" y="237" class="type">bigint</text>
+<rect x="1146" y="245" width="498" height="29" fill="#eef4f7"/>
+<text x="1159" y="266" class="key">UK</text>
+<text x="1233" y="266" class="field">transaction_reference</text>
+<text x="1540" y="266" class="type">text</text>
+<text x="1159" y="295" class="key"></text>
+<text x="1233" y="295" class="field">transaction_type</text>
+<text x="1540" y="295" class="type">text</text>
+<rect x="1146" y="303" width="498" height="29" fill="#eef4f7"/>
+<text x="1159" y="324" class="key"></text>
+<text x="1233" y="324" class="field">status</text>
+<text x="1540" y="324" class="type">text</text>
+<text x="1159" y="353" class="key">FK</text>
+<text x="1233" y="353" class="field">reversal_of_transaction_id</text>
+<text x="1540" y="353" class="type">bigint</text>
+<text x="1628" y="353" class="key">?</text>
+<rect x="1146" y="361" width="498" height="29" fill="#eef4f7"/>
+<text x="1159" y="382" class="key"></text>
+<text x="1233" y="382" class="field">requested_at</text>
+<text x="1540" y="382" class="type">timestamptz</text>
+<text x="1159" y="411" class="key"></text>
+<text x="1233" y="411" class="field">posted_at</text>
+<text x="1540" y="411" class="type">timestamptz</text>
+<text x="1628" y="411" class="key">?</text>
+<rect x="1146" y="419" width="498" height="29" fill="#eef4f7"/>
+<text x="1159" y="440" class="key"></text>
+<text x="1233" y="440" class="field">failure_reason</text>
+<text x="1540" y="440" class="type">text</text>
+<text x="1628" y="440" class="key">?</text>
+<rect x="1145" y="755" width="500" height="230" rx="8" fill="#f7fafc" stroke="#b5c7d0"/>
+<path d="M1153 755 H1637 Q1645 755 1645 763 V799 H1145 V763 Q1145 755 1153 755" fill="#234c62"/>
+<text x="1161" y="784" class="heading">audit_events</text>
+<text x="1159" y="822" class="key">PK</text>
+<text x="1233" y="822" class="field">event_id</text>
+<text x="1540" y="822" class="type">bigint</text>
+<rect x="1146" y="830" width="498" height="29" fill="#eef4f7"/>
+<text x="1159" y="851" class="key">FK</text>
+<text x="1233" y="851" class="field">transaction_id</text>
+<text x="1540" y="851" class="type">bigint</text>
+<text x="1628" y="851" class="key">?</text>
+<text x="1159" y="880" class="key"></text>
+<text x="1233" y="880" class="field">actor_reference</text>
+<text x="1540" y="880" class="type">text</text>
+<rect x="1146" y="888" width="498" height="29" fill="#eef4f7"/>
+<text x="1159" y="909" class="key"></text>
+<text x="1233" y="909" class="field">action</text>
+<text x="1540" y="909" class="type">text</text>
+<text x="1159" y="938" class="key"></text>
+<text x="1233" y="938" class="field">occurred_at</text>
+<text x="1540" y="938" class="type">timestamptz</text>
+<rect x="1146" y="946" width="498" height="29" fill="#eef4f7"/>
+<text x="1159" y="967" class="key"></text>
+<text x="1233" y="967" class="field">details</text>
+<text x="1540" y="967" class="type">text</text>
+
+<rect x="620" y="820" width="455" height="165" rx="8" fill="#eff7f3" stroke="#b8d5c7"/>
+<text x="640" y="851" class="label" font-weight="700">Business rules beyond foreign keys</text>
+<text x="640" y="882" class="note">Posted payment: 2 entries, sum = 0</text>
+<text x="640" y="909" class="note">Pending / failed: no committed entries</text>
+<text x="640" y="936" class="note">Customer account: exactly one owner</text>
+<text x="640" y="963" class="note">Clearing account: no customer owner</text>
+<text x="45" y="1044" class="subtitle">Cardinalities show the physical foreign-key model. Completion, reversal and balance rules need cross-row checks.</text>
+<text x="45" y="1074" class="subtitle">Source: er_diagram.mmd · Implementation: schema.sql · Five tables, all accounts in NGN</text>
+</svg>

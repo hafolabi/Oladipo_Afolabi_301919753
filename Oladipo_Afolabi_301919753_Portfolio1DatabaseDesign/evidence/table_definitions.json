@@ -1,0 +1,554 @@
+{
+  "columns": [
+    {
+      "table_name": "accounts",
+      "column_name": "account_id",
+      "data_type": "bigint",
+      "is_nullable": "NO",
+      "is_identity": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "account_number",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "customer_id",
+      "data_type": "bigint",
+      "is_nullable": "YES",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "account_kind",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "currency_code",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "'NGN'::text"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "status",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "'active'::text"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "opened_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_name": "audit_events",
+      "column_name": "event_id",
+      "data_type": "bigint",
+      "is_nullable": "NO",
+      "is_identity": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "audit_events",
+      "column_name": "transaction_id",
+      "data_type": "bigint",
+      "is_nullable": "YES",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "audit_events",
+      "column_name": "actor_reference",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "audit_events",
+      "column_name": "action",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "audit_events",
+      "column_name": "occurred_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_name": "audit_events",
+      "column_name": "details",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "customers",
+      "column_name": "customer_id",
+      "data_type": "bigint",
+      "is_nullable": "NO",
+      "is_identity": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "customers",
+      "column_name": "first_name",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "customers",
+      "column_name": "last_name",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "customers",
+      "column_name": "email",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "customers",
+      "column_name": "phone",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "customers",
+      "column_name": "verification_status",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "'pending'::text"
+    },
+    {
+      "table_name": "customers",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_name": "transaction_entries",
+      "column_name": "transaction_id",
+      "data_type": "bigint",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "transaction_entries",
+      "column_name": "account_id",
+      "data_type": "bigint",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "transaction_entries",
+      "column_name": "amount_minor",
+      "data_type": "bigint",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "transaction_id",
+      "data_type": "bigint",
+      "is_nullable": "NO",
+      "is_identity": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "transaction_reference",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "transaction_type",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "status",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "'pending'::text"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "reversal_of_transaction_id",
+      "data_type": "bigint",
+      "is_nullable": "YES",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "requested_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "posted_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "is_identity": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "failure_reason",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "is_identity": "NO",
+      "column_default": null
+    }
+  ],
+  "constraints": [
+    {
+      "relation": "accounts",
+      "name": "accounts_account_id_not_null",
+      "definition": "NOT NULL account_id"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_account_kind_not_null",
+      "definition": "NOT NULL account_kind"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_account_number_key",
+      "definition": "UNIQUE (account_number)"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_account_number_not_null",
+      "definition": "NOT NULL account_number"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_currency_ck",
+      "definition": "CHECK ((currency_code = 'NGN'::text))"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_currency_code_not_null",
+      "definition": "NOT NULL currency_code"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_customer_id_fkey",
+      "definition": "FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE RESTRICT"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_kind_ck",
+      "definition": "CHECK ((account_kind = ANY (ARRAY['customer'::text, 'system_clearing'::text])))"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_number_format_ck",
+      "definition": "CHECK ((account_number ~ '^[0-9]{10}$'::text))"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_opened_at_not_null",
+      "definition": "NOT NULL opened_at"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_ownership_ck",
+      "definition": "CHECK ((((account_kind = 'customer'::text) AND (customer_id IS NOT NULL)) OR ((account_kind = 'system_clearing'::text) AND (customer_id IS NULL))))"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_pkey",
+      "definition": "PRIMARY KEY (account_id)"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_status_ck",
+      "definition": "CHECK ((status = ANY (ARRAY['active'::text, 'frozen'::text, 'closed'::text])))"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_action_check",
+      "definition": "CHECK ((btrim(action) <> ''::text))"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_action_not_null",
+      "definition": "NOT NULL action"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_actor_reference_check",
+      "definition": "CHECK ((btrim(actor_reference) <> ''::text))"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_actor_reference_not_null",
+      "definition": "NOT NULL actor_reference"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_details_check",
+      "definition": "CHECK ((btrim(details) <> ''::text))"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_details_not_null",
+      "definition": "NOT NULL details"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_event_id_not_null",
+      "definition": "NOT NULL event_id"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_occurred_at_not_null",
+      "definition": "NOT NULL occurred_at"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_pkey",
+      "definition": "PRIMARY KEY (event_id)"
+    },
+    {
+      "relation": "audit_events",
+      "name": "audit_events_transaction_id_fkey",
+      "definition": "FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE RESTRICT"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_customer_id_not_null",
+      "definition": "NOT NULL customer_id"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_email_canonical_ck",
+      "definition": "CHECK (((email <> ''::text) AND (email = lower(btrim(email)))))"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_email_key",
+      "definition": "UNIQUE (email)"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_email_not_null",
+      "definition": "NOT NULL email"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_first_name_check",
+      "definition": "CHECK ((btrim(first_name) <> ''::text))"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_first_name_not_null",
+      "definition": "NOT NULL first_name"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_last_name_check",
+      "definition": "CHECK ((btrim(last_name) <> ''::text))"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_last_name_not_null",
+      "definition": "NOT NULL last_name"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_phone_check",
+      "definition": "CHECK ((btrim(phone) <> ''::text))"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_phone_not_null",
+      "definition": "NOT NULL phone"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_pkey",
+      "definition": "PRIMARY KEY (customer_id)"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_verification_status_ck",
+      "definition": "CHECK ((verification_status = ANY (ARRAY['pending'::text, 'verified'::text, 'rejected'::text])))"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_verification_status_not_null",
+      "definition": "NOT NULL verification_status"
+    },
+    {
+      "relation": "transaction_entries",
+      "name": "transaction_entries_account_id_fkey",
+      "definition": "FOREIGN KEY (account_id) REFERENCES accounts(account_id) ON DELETE RESTRICT"
+    },
+    {
+      "relation": "transaction_entries",
+      "name": "transaction_entries_account_id_not_null",
+      "definition": "NOT NULL account_id"
+    },
+    {
+      "relation": "transaction_entries",
+      "name": "transaction_entries_amount_minor_not_null",
+      "definition": "NOT NULL amount_minor"
+    },
+    {
+      "relation": "transaction_entries",
+      "name": "transaction_entries_nonzero_ck",
+      "definition": "CHECK ((amount_minor <> 0))"
+    },
+    {
+      "relation": "transaction_entries",
+      "name": "transaction_entries_pkey",
+      "definition": "PRIMARY KEY (transaction_id, account_id)"
+    },
+    {
+      "relation": "transaction_entries",
+      "name": "transaction_entries_transaction_id_fkey",
+      "definition": "FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE RESTRICT"
+    },
+    {
+      "relation": "transaction_entries",
+      "name": "transaction_entries_transaction_id_not_null",
+      "definition": "NOT NULL transaction_id"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_failure_state_ck",
+      "definition": "CHECK ((((status = 'failed'::text) AND (failure_reason IS NOT NULL) AND (btrim(failure_reason) <> ''::text)) OR ((status = ANY (ARRAY['pending'::text, 'posted'::text])) AND (failure_reason IS NULL))))"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_no_self_reversal_ck",
+      "definition": "CHECK (((reversal_of_transaction_id IS NULL) OR (reversal_of_transaction_id <> transaction_id)))"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_pkey",
+      "definition": "PRIMARY KEY (transaction_id)"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_posting_state_ck",
+      "definition": "CHECK ((((status = 'posted'::text) AND (posted_at IS NOT NULL) AND (posted_at >= requested_at)) OR ((status = ANY (ARRAY['pending'::text, 'failed'::text])) AND (posted_at IS NULL))))"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_reference_ck",
+      "definition": "CHECK ((btrim(transaction_reference) <> ''::text))"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_requested_at_not_null",
+      "definition": "NOT NULL requested_at"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_reversal_link_ck",
+      "definition": "CHECK ((((transaction_type = 'reversal'::text) AND (reversal_of_transaction_id IS NOT NULL)) OR ((transaction_type <> 'reversal'::text) AND (reversal_of_transaction_id IS NULL))))"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_reversal_of_transaction_id_fkey",
+      "definition": "FOREIGN KEY (reversal_of_transaction_id) REFERENCES transactions(transaction_id) ON DELETE RESTRICT"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_status_ck",
+      "definition": "CHECK ((status = ANY (ARRAY['pending'::text, 'posted'::text, 'failed'::text])))"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_transaction_id_not_null",
+      "definition": "NOT NULL transaction_id"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_transaction_reference_key",
+      "definition": "UNIQUE (transaction_reference)"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_transaction_reference_not_null",
+      "definition": "NOT NULL transaction_reference"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_transaction_type_not_null",
+      "definition": "NOT NULL transaction_type"
+    },
+    {
+      "relation": "transactions",
+      "name": "transactions_type_ck",
+      "definition": "CHECK ((transaction_type = ANY (ARRAY['deposit'::text, 'withdrawal'::text, 'transfer'::text, 'reversal'::text])))"
+    }
+  ]
+}

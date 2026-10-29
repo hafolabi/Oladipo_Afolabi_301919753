@@ -1,0 +1,151 @@
+AfolabiPay — database design checks
+Run date: 2026-10-27T14:16:43.398Z
+Node.js: v26.0.0; host: darwin/x64
+PGlite: 0.5.12; temporary database
+PostgreSQL 18.6 (PGlite 0.5.12) on wasm32-unknown-emscripten, compiled by emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.74 (1092ec30a3fb1d46b1782ff1b4db5094d3d06ae5), 32-bit
+These checks use embedded PostgreSQL. Separate-session tests still need a database server.
+
+PASS: created all five tables
+PASS: added the sample data
+[
+  {
+    "table_name": "customers",
+    "row_count": 4
+  },
+  {
+    "table_name": "accounts",
+    "row_count": 5
+  },
+  {
+    "table_name": "transactions",
+    "row_count": 7
+  },
+  {
+    "table_name": "transaction_entries",
+    "row_count": 10
+  },
+  {
+    "table_name": "audit_events",
+    "row_count": 8
+  }
+]
+[
+  {
+    "account_number": "0000000000",
+    "owner": "System clearing",
+    "balance_minor": "-1500000",
+    "balance_ngn": "-15000.00"
+  },
+  {
+    "account_number": "1000000001",
+    "owner": "Ada Okafor",
+    "balance_minor": "800000",
+    "balance_ngn": "8000.00"
+  },
+  {
+    "account_number": "1000000002",
+    "owner": "Bello Musa",
+    "balance_minor": "700000",
+    "balance_ngn": "7000.00"
+  },
+  {
+    "account_number": "1000000003",
+    "owner": "Ada Okafor",
+    "balance_minor": "0",
+    "balance_ngn": "0.00"
+  },
+  {
+    "account_number": "1000000004",
+    "owner": "Chika Obi",
+    "balance_minor": "0",
+    "balance_ngn": "0.00"
+  }
+]
+[
+  {
+    "transaction_reference": "DEP-001",
+    "transaction_type": "deposit",
+    "status": "posted",
+    "entry_count": 2,
+    "net_minor": "0"
+  },
+  {
+    "transaction_reference": "DEP-002",
+    "transaction_type": "deposit",
+    "status": "posted",
+    "entry_count": 2,
+    "net_minor": "0"
+  },
+  {
+    "transaction_reference": "TRF-001",
+    "transaction_type": "transfer",
+    "status": "posted",
+    "entry_count": 2,
+    "net_minor": "0"
+  },
+  {
+    "transaction_reference": "WDR-001",
+    "transaction_type": "withdrawal",
+    "status": "posted",
+    "entry_count": 2,
+    "net_minor": "0"
+  },
+  {
+    "transaction_reference": "WDR-FAIL-001",
+    "transaction_type": "withdrawal",
+    "status": "failed",
+    "entry_count": 0,
+    "net_minor": "0"
+  },
+  {
+    "transaction_reference": "TRF-PEND-001",
+    "transaction_type": "transfer",
+    "status": "pending",
+    "entry_count": 0,
+    "net_minor": "0"
+  },
+  {
+    "transaction_reference": "REV-001",
+    "transaction_type": "reversal",
+    "status": "posted",
+    "entry_count": 2,
+    "net_minor": "0"
+  }
+]
+PASS: sample payments, reversals, row counts, and balances are correct
+
+Checking which writes the database accepts or rejects:
+PASS: a valid customer and owned account were accepted, then rolled back
+PASS: database rejected "duplicate email after trimming and lowercasing" (error 23505)
+PASS: database rejected "email still contains capital letters" (error 23514)
+PASS: database rejected "missing customer name" (error 23502)
+PASS: database rejected "duplicate account number" (error 23505)
+PASS: database rejected "customer account with no owner" (error 23514)
+PASS: database rejected "clearing account with a customer owner" (error 23514)
+PASS: database rejected "account points to a customer who does not exist" (error 23503)
+PASS: database rejected "account uses another currency" (error 23514)
+PASS: database rejected "delete an account that has payment entries" (error 23001)
+PASS: database rejected "duplicate payment reference" (error 23505)
+PASS: database rejected "unknown payment status" (error 23514)
+PASS: database rejected "completed payment has no posting time" (error 23514)
+PASS: database rejected "posting time is earlier than the request" (error 23514)
+PASS: database rejected "pending payment already has a posting time" (error 23514)
+PASS: database rejected "failed payment has no reason" (error 23514)
+PASS: database rejected "failure reason is only spaces" (error 23514)
+PASS: database rejected "reversal does not name the original payment" (error 23514)
+PASS: database rejected "payment tries to reverse itself" (error 23514)
+PASS: database rejected "original payment does not exist" (error 23503)
+PASS: database rejected "same account is entered twice for one payment" (error 23505)
+PASS: database rejected "entry moves zero money" (error 23514)
+PASS: database rejected "entry points to an account that does not exist" (error 23503)
+PASS: the sample rows are unchanged after the write checks
+
+Checking that the queries spot bad payment data:
+PASS: queries found "two entries that do not add up to zero"
+PASS: queries found "entries added to a pending payment"
+PASS: queries found "deposit takes money out of the customer account"
+PASS: queries found "reversal returns the wrong amount"
+PASS: queries found "transfer leaves a customer below zero"
+PASS: all five changes were found and rolled back
+
+ALL CHECKS PASSED. Closing the temporary database.

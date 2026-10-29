@@ -1,41 +1,65 @@
 # Normalisation
 
-The tables separate facts that belong to different things: a customer’s email, an account’s status, and a payment’s details. That means a change to one fact can be made in one place. This explanation follows the current design; I’ll check it against the SQL tables once they are built.
+Normalisation helps us decide which facts belong together in a table. For AfolabiPay, the aim is to avoid repeating customer and account details every time someone makes a payment.
 
-## The problem with one large payment record
+For example, if Ada makes ten payments, her email should still be stored once in `customers`. Changing her email then means updating one row. These notes explain the five tables in [schema.sql](schema.sql).
 
-Putting customer details, account details, payment entries, and audit events into one record would repeat a lot of information. A customer making ten payments would have the same name and email stored against all ten.
+## Why one large table would cause problems
 
-Changing that email would mean updating several records. It could also be difficult to add an account before its first payment, or to delete a payment without losing the only copy of the customer’s details. These are the update, insertion, and deletion problems the separate tables are intended to avoid.
+Imagine keeping the payment, customer details, account details, and action notes in one record:
 
-## First normal form: separate repeating groups
+```text
+Payment(reference, type, status,
+        entries = [{account_number, owner_email, amount}, ...],
+        audit_events = [{actor, action, time, details}, ...])
+```
 
-Each table has a key, and each field holds one value for this application. Account postings have separate rows in `transaction_entries`, and audit events have separate rows in `audit_events`.
+The entries and audit events can repeat. Customer details would also appear in many payments. This creates three common problems, called **anomalies**:
 
-A transfer therefore has two entry rows, one for each account. Account numbers and amounts do not need to be packed into comma-separated fields. First and last names are separate because the queries may use them individually.
+- **Update:** changing an email means finding and changing every copy.
+- **Insertion:** it is awkward to add a customer who has not made a payment yet.
+- **Deletion:** removing their last payment could also remove the only copy of their details.
 
-## Second normal form: remove partial dependencies
+## First normal form: one value in each field
 
-In `transaction_entries`, the key is `(transaction_id, account_id)`. The transaction ID identifies the payment, and the account ID identifies the account affected. Both are needed to identify a particular entry, so `amount_minor` depends on the whole key.
+Each column holds one value for that row. Instead of storing both account numbers or several amounts in one field, each payment entry gets its own row in `transaction_entries`. Each audit event also gets its own row.
 
-Payment type, status, and request time depend only on the transaction ID and belong in `transactions`. Account number, ownership, and status depend only on the account ID and belong in `accounts`. Leaving those details out of entry rows removes dependencies on part of the composite key. The other tables have single-field candidate keys, so partial key dependencies do not arise there.
+For Ada's transfer to Bello, there are two entries: one taking money from Ada and one adding it to Bello. This is easier to query than a comma-separated list of accounts and amounts.
 
-## Third normal form: remove transitive dependencies
+## Second normal form: use the whole key
 
-Customer name and email stay in `customers`. If email were also stored in `accounts`, the dependency would be `account_id → customer_id → email`. An account identifies its owner, and that owner determines the email. Keeping the customer foreign key in the account avoids duplicating the email.
+The key for `transaction_entries` is the pair `(transaction_id, account_id)`. We need both IDs: which payment is this, and which account does this entry affect?
 
-Audit events follow the same approach: they link to the transaction without copying its payment reference, type, and status.
+The amount belongs to that pair. The payment's status depends only on `transaction_id`, so it stays in `transactions`. The account number depends only on `account_id`, so it stays in `accounts`. We do not copy either into the entry row.
 
-The main functional dependencies are:
+This removes **partial dependencies**: facts that depend on only part of a combined key. The other tables use single-column candidate keys, so this particular issue does not arise for them.
 
-| Relation | Determinant | Dependent attributes |
-| --- | --- | --- |
-| `customers` | `customer_id`, or unique canonical `email` | All other customer attributes |
-| `accounts` | `account_id`, or `account_number` | All other account attributes |
-| `transactions` | `transaction_id` or `transaction_reference` | All other transaction attributes |
-| `transaction_entries` | `(transaction_id, account_id)` | `amount_minor` |
-| `audit_events` | `event_id` | All other event attributes |
+## Third normal form: keep customer facts with the customer
 
-Under the project’s assumptions, no non-key field determines another independent non-key fact in these tables. Status and type fields use fixed allowed values, with no code descriptions stored beside them. All accounts use NGN. Calculating balances from postings also avoids maintaining a separate editable balance alongside the payment history.
+An account links to its owner through `customer_id`. It does not store another copy of the customer's name or email.
 
-These choices are intended to give a third normal form design. Payment routines, constraints, and concurrency control still need to keep entries balanced and prevent overdrafts. Those checks are set out in the schema and will be tested in Portfolio 3.
+If we put the email in `accounts`, the dependency would be:
+
+```text
+account_id → customer_id → email
+```
+
+The account identifies a customer, and the customer identifies the email. This is a **transitive dependency**. Keeping the email in `customers` avoids it. The same idea applies to audit events: they link to a payment without copying its reference, type, and status.
+
+## The dependencies in this design
+
+A **functional dependency** means one value, or group of values, determines another. Here, each key below identifies the rest of its row:
+
+| Table | Key that determines the other columns |
+| --- | --- |
+| `customers` | `customer_id`, or the unique lowercase email |
+| `accounts` | `account_id`, or the unique account number |
+| `transactions` | `transaction_id`, or the unique payment reference |
+| `transaction_entries` | `transaction_id` and `account_id` together |
+| `audit_events` | `event_id` |
+
+Under this project's assumptions, the tables follow 3NF: each field holds one value, facts depend on the whole key, and customer or payment details are not copied into other tables through another non-key field. Foreign keys let us join the tables when we need those details.
+
+All accounts use NGN, and statuses are short allowed values with no extra descriptions to store. If we later add currency details or other facts about those codes, we can consider separate lookup tables.
+
+Normalisation does not check that a payment balances or that a customer has enough money. The [saved checks](evidence/schema_validation.txt) test the sample data. Payment checks and locking are separate topics for Portfolio 3.
