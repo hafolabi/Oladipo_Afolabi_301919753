@@ -1,0 +1,14 @@
+[
+  {
+    "account_number": "1000000001",
+    "status": "active",
+    "balance_minor": "800000",
+    "balance_ngn": "8000.00"
+  },
+  {
+    "account_number": "1000000003",
+    "status": "active",
+    "balance_minor": "0",
+    "balance_ngn": "0.00"
+  }
+]

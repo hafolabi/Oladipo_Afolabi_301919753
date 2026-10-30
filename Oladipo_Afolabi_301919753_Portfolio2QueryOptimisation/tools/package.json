@@ -1,0 +1,11 @@
+{
+  "name": "afolabipay-query-checks",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify": "node run_queries.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.12"
+  }
+}

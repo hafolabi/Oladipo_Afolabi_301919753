@@ -1,0 +1,21 @@
+AfolabiPay — Portfolio 2 query and optimisation checks
+Run date: 2026-10-29T15:31:39.425Z
+PostgreSQL 18.6 (PGlite 0.5.12) on wasm32-unknown-emscripten, compiled by emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.74 (1092ec30a3fb1d46b1782ff1b4db5094d3d06ae5), 32-bit
+PGlite 0.5.12; Node.js v26.0.0; darwin/x64
+Temporary in-memory database; these measurements are not a standalone-server benchmark.
+PASS: Ada has NGN 8,000, and her unused account is included with zero
+PASS: account history shows the right payments, signs, and order
+PASS: the transfer is counted once, with a value of NGN 2,000
+PASS: the original sample has no payment problems
+PASS: history includes the start of the day and excludes the next day
+PASS: payment check found "missing transfer entry"
+PASS: payment check found "amounts do not balance"
+PASS: payment check found "deposit moves money in the wrong direction"
+PASS: saved all four query results for the small dataset
+PASS: larger dataset has 20,207 transactions, 40,410 balanced entries, and no negative customer balances
+Saved five execution plans before adding the index
+PASS: all 203 history rows are identical before and after adding the index
+Index used in all five after plans: true; index size: 1256 kB
+Median execution time before: 44.248 ms; after: 1.971 ms
+Median time ratio (before / after): 22.45
+ALL PORTFOLIO 2 CHECKS PASSED. Closing the temporary database.

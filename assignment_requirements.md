@@ -12,8 +12,8 @@ I’ll use PostgreSQL for the relational activities and MongoDB for NoSQL, keepi
 
 | Activity | Marks | Required evidence | Current status |
 | --- | ---: | --- | --- |
-| Portfolio 1: Database Design and Modelling | 7 | Case study description; ER diagram; relational schema; keys; constraints; normalisation explanation | Design and SQL complete; embedded PostgreSQL checks and output saved; standalone-server run pending |
-| Portfolio 2: Query Processing and Optimisation | 7 | SQL queries; query results; execution plans; indexing/optimisation evidence; brief performance analysis | Query and comparison plan ready; experiments still to run |
+| Portfolio 1: Database Design and Modelling | 7 | Case study description; ER diagram; relational schema; keys; constraints; normalisation explanation | Design and SQL complete; embedded PostgreSQL checks and output saved |
+| Portfolio 2: Query Processing and Optimisation | 7 | SQL queries; query results; execution plans; indexing/optimisation evidence; brief performance analysis | Four queries and checks complete; embedded PostgreSQL before/after plans, timings, index, and analysis saved |
 | Portfolio 3: Transactions and Concurrency | 7 | Commit; rollback; isolation; concurrency issue or control mechanism; screenshots/output | Scenarios planned; experiments still to run |
 | Portfolio 4: NoSQL and Advanced Data Models | 7 | NoSQL model for the same case study; document/key-value/column/graph example; implementation evidence; suitability explanation | Collections outlined; MongoDB work still to build |
 | Portfolio 5: Distributed and Cloud Database Exercise | 6 | Discussion or setup for the same case study covering replication, sharding, availability, consistency, or deployment evidence | Discussion outlined; no system deployed |

@@ -1,0 +1,16 @@
+[
+  {
+    "transaction_reference": "DEP-001",
+    "transaction_type": "deposit",
+    "posted_at": "2026-10-02T09:00:01.000Z",
+    "amount_minor": 1000000,
+    "amount_ngn": "10000.00"
+  },
+  {
+    "transaction_reference": "TRF-001",
+    "transaction_type": "transfer",
+    "posted_at": "2026-10-02T10:00:01.000Z",
+    "amount_minor": -200000,
+    "amount_ngn": "-2000.00"
+  }
+]

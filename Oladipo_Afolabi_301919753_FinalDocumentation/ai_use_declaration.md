@@ -1,7 +1,7 @@
 # AI Use Declaration
 
-I chose a Bank / Fintech Platform for this portfolio and used OpenAI Codex to help with the AfolabiPay case study, database design, project folders, and wording. On 27 October 2026, Codex also wrote the Portfolio 1 SQL, sample data, check scripts, diagram helper, and supporting notes. It ran the checks using PGlite, an embedded version of PostgreSQL.
+I used OpenAI Codex to assist with database explanations, design suggestions, drafts of SQL and supporting scripts, and clearer wording. The support included sample data, diagram generation, automated checks, and interpreting the query-performance results for Portfolios 1 and 2.
 
-I reviewed the earlier wording and asked for simpler code, comments, and explanations because my background is in frontend engineering. Codex then simplified the sample inserts and checks, rewrote the notes, and added a reading guide with JavaScript examples.
+I selected the Bank / Fintech case study and directed the scope and level of detail. I reviewed the wording, requested simpler code and comments, and asked for explanations to help me understand the backend work from my frontend background.
 
-The [saved results](../Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/evidence/schema_validation.txt) are from Codex's automated run. I still need to review the SQL and diagram myself, repeat the checks, and be able to explain the design. Running a separate PostgreSQL server and testing multiple sessions are still to come. I am responsible for understanding and checking the work I submit.
+The saved [Portfolio 1 results](../Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/evidence/schema_validation.txt) and [Portfolio 2 results](../Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/evidence/query_validation.txt) come from Codex-run automated checks. My independent review of the SQL and diagrams, repeat checks, and personal reflection are still to be completed. I remain responsible for understanding, checking, and explaining the work I submit.

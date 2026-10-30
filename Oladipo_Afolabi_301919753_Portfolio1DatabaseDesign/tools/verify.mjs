@@ -18,7 +18,13 @@ async function readSql(filename) {
 }
 
 const checkSql = await readSql('verify.sql');
-const expectedCounts = { customers: '4', accounts: '5', transactions: '7', transaction_entries: '10', audit_events: '8' };
+const expectedCounts = {
+  customers: '4',
+  accounts: '5',
+  transactions: '7',
+  transaction_entries: '10',
+  audit_events: '8',
+};
 const expectedBalances = {
   '0000000000': '-1500000',
   '1000000001': '800000',
@@ -57,7 +63,9 @@ try {
   log('AfolabiPay — database design checks');
   log(`Run date: ${new Date().toISOString()}`);
   log(`Node.js: ${process.version}; host: ${process.platform}/${process.arch}`);
-  const packageInfo = JSON.parse(await readFile(new URL('./node_modules/@electric-sql/pglite/package.json', import.meta.url), 'utf8'));
+  const packageFile = new URL('./node_modules/@electric-sql/pglite/package.json', import.meta.url);
+  const packageText = await readFile(packageFile, 'utf8');
+  const packageInfo = JSON.parse(packageText);
   log(`PGlite: ${packageInfo.version}; temporary database`);
   const versionResult = await database.query('SELECT version() AS version');
   log(versionResult.rows[0].version);

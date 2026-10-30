@@ -1,0 +1,152 @@
+{
+  "run_date": "2026-10-29T15:31:39.425Z",
+  "engine": "PostgreSQL 18.6 (PGlite 0.5.12) on wasm32-unknown-emscripten, compiled by emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.74 (1092ec30a3fb1d46b1782ff1b4db5094d3d06ae5), 32-bit",
+  "pglite_version": "0.5.12",
+  "node_version": "v26.0.0",
+  "host": "darwin/x64",
+  "environment": "Fresh PGlite in-memory database. No concurrent clients. Warm-cache comparison.",
+  "parameters": {
+    "account_number": "1000000001",
+    "from_inclusive": "2026-10-02 00:00:00+00",
+    "to_exclusive": "2026-10-03 00:00:00+00"
+  },
+  "settings": {
+    "time_zone": "UTC",
+    "shared_buffers": "128MB",
+    "work_mem": "4MB",
+    "random_page_cost": "4",
+    "enable_seqscan": "on",
+    "enable_indexscan": "on",
+    "enable_bitmapscan": "on"
+  },
+  "row_counts": [
+    {
+      "table_name": "customers",
+      "row_count": 203
+    },
+    {
+      "table_name": "accounts",
+      "row_count": 204
+    },
+    {
+      "table_name": "transactions",
+      "row_count": 20207
+    },
+    {
+      "table_name": "transaction_entries",
+      "row_count": 40410
+    },
+    {
+      "table_name": "audit_events",
+      "row_count": 8
+    }
+  ],
+  "indexes_before": [
+    {
+      "indexname": "accounts_account_number_key",
+      "indexdef": "CREATE UNIQUE INDEX accounts_account_number_key ON public.accounts USING btree (account_number)"
+    },
+    {
+      "indexname": "accounts_pkey",
+      "indexdef": "CREATE UNIQUE INDEX accounts_pkey ON public.accounts USING btree (account_id)"
+    },
+    {
+      "indexname": "audit_events_pkey",
+      "indexdef": "CREATE UNIQUE INDEX audit_events_pkey ON public.audit_events USING btree (event_id)"
+    },
+    {
+      "indexname": "customers_email_key",
+      "indexdef": "CREATE UNIQUE INDEX customers_email_key ON public.customers USING btree (email)"
+    },
+    {
+      "indexname": "customers_pkey",
+      "indexdef": "CREATE UNIQUE INDEX customers_pkey ON public.customers USING btree (customer_id)"
+    },
+    {
+      "indexname": "transaction_entries_pkey",
+      "indexdef": "CREATE UNIQUE INDEX transaction_entries_pkey ON public.transaction_entries USING btree (transaction_id, account_id)"
+    },
+    {
+      "indexname": "transactions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX transactions_pkey ON public.transactions USING btree (transaction_id)"
+    },
+    {
+      "indexname": "transactions_transaction_reference_key",
+      "indexdef": "CREATE UNIQUE INDEX transactions_transaction_reference_key ON public.transactions USING btree (transaction_reference)"
+    }
+  ],
+  "warm_up_runs_per_phase": 1,
+  "measured_runs_per_phase": 5,
+  "statistics": "ANALYZE before the first phase; data and statistics unchanged between phases",
+  "before": [
+    {
+      "run": 1,
+      "execution_ms": 94.66,
+      "planning_ms": 1.085
+    },
+    {
+      "run": 2,
+      "execution_ms": 56.26,
+      "planning_ms": 1.476
+    },
+    {
+      "run": 3,
+      "execution_ms": 42.115,
+      "planning_ms": 0.9
+    },
+    {
+      "run": 4,
+      "execution_ms": 43.309,
+      "planning_ms": 0.616
+    },
+    {
+      "run": 5,
+      "execution_ms": 44.248,
+      "planning_ms": 0.628
+    }
+  ],
+  "after": [
+    {
+      "run": 1,
+      "execution_ms": 1.983,
+      "planning_ms": 0.676
+    },
+    {
+      "run": 2,
+      "execution_ms": 1.971,
+      "planning_ms": 0.669
+    },
+    {
+      "run": 3,
+      "execution_ms": 1.979,
+      "planning_ms": 0.919
+    },
+    {
+      "run": 4,
+      "execution_ms": 1.956,
+      "planning_ms": 0.651
+    },
+    {
+      "run": 5,
+      "execution_ms": 1.949,
+      "planning_ms": 0.69
+    }
+  ],
+  "before_summary": {
+    "minimum_ms": 42.115,
+    "median_ms": 44.248,
+    "maximum_ms": 94.66
+  },
+  "after_summary": {
+    "minimum_ms": 1.949,
+    "median_ms": 1.971,
+    "maximum_ms": 1.983
+  },
+  "median_speedup": 22.449518011161846,
+  "matching_history_rows": 203,
+  "results_identical": true,
+  "new_index": "idx_entries_account_transaction",
+  "new_index_size": "1256 kB",
+  "new_index_used_in_all_after_plans": true,
+  "entries_sequential_scan_before": true
+}

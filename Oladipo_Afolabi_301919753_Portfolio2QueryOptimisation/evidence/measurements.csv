@@ -1,0 +1,11 @@
+phase,run,execution_ms,planning_ms
+before,1,94.66,1.085
+before,2,56.26,1.476
+before,3,42.115,0.9
+before,4,43.309,0.616
+before,5,44.248,0.628
+after,1,1.983,0.676
+after,2,1.971,0.669
+after,3,1.979,0.919
+after,4,1.956,0.651
+after,5,1.949,0.69

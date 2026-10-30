@@ -27,16 +27,20 @@ The folders follow `Surname_Firstname_StudentID_DocumentType`.
 
 ## Where the project stands
 
-Portfolio 1 now has the case study, ER diagram, relational schema, normalisation explanation, executable SQL tables, and fictional sample data. The schema and data checks passed in embedded PostgreSQL (PGlite); [the activity README](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/README.md) links to the actual output and records the engine and remaining limits. A standalone PostgreSQL server has not yet been installed or tested. Portfolios 2–5 remain at the planning stage.
+Portfolio 1 has the case study, ER diagram, relational schema, normalisation explanation, executable SQL tables, and fictional sample data. The schema and data checks passed in embedded PostgreSQL (PGlite); [the activity README](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/README.md) links to the actual output.
+
+Portfolio 2 now has four checked queries and one before-and-after index comparison. The saved run uses 40,410 entries and returns the same 203 history rows in both phases. Its [README](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/README.md) and [performance notes](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/performance_analysis.md) explain the measured results and the embedded-engine limits. A standalone PostgreSQL server has not yet been installed or tested. Portfolios 3–5 remain at the planning stage.
 
 The [assignment checklist](assignment_requirements.md) keeps the requirements and marking rubric in one place. The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/case_study.md) explains the organisation, its users, and the database requirements.
 
 For a first look at the SQL, use the [Portfolio 1 reading guide](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/start_here.md). It explains the keys using JavaScript objects and walks through the sample transfer.
 
+The [Portfolio 2 reading guide](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/start_here.md) follows the balances query and explains the index and execution plans.
+
 ## What comes next
 
-1. Review Portfolio 1's five-table design and saved results, then set up a standalone PostgreSQL database for the query and concurrency work.
-2. Write and run the SQL queries, then compare execution plans before and after optimisation.
+1. Review the Portfolio 1 design and Portfolio 2 query results, then repeat their checks and explain the examples.
+2. Set up a standalone PostgreSQL database for Portfolio 3's separate-session work. A server rerun of the query comparison can also be recorded if carried out.
 3. Test commits, rollbacks, and simultaneous requests against the same account.
 4. Represent the same customers and payments as MongoDB documents.
 5. Write the distributed/cloud discussion around replication, availability, and consistency, with a short assessment of sharding. A deployment is optional.

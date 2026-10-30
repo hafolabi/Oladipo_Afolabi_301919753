@@ -1,0 +1,29 @@
+[
+  {
+    "example": "missing transfer entry",
+    "detected": [
+      {
+        "transaction_reference": "TRF-001",
+        "problem": "Wrong entry count or unbalanced amounts"
+      }
+    ]
+  },
+  {
+    "example": "amounts do not balance",
+    "detected": [
+      {
+        "transaction_reference": "TRF-001",
+        "problem": "Wrong entry count or unbalanced amounts"
+      }
+    ]
+  },
+  {
+    "example": "deposit moves money in the wrong direction",
+    "detected": [
+      {
+        "transaction_reference": "DEP-001",
+        "problem": "Wrong account types or money direction"
+      }
+    ]
+  }
+]

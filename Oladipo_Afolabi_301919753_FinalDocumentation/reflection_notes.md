@@ -43,6 +43,18 @@ These are factual notes from the Codex-assisted implementation, not a completed 
 - After the request for beginner-friendly code, the sample data uses direct inserts and the automatic checks use JavaScript objects, loops, and `try/catch`. The [reading guide](../Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/start_here.md) connects the database terms to frontend concepts.
 - Questions for my own review: Why is `(transaction_id, account_id)` the entry key? Why can clearing have no owner? Why can two individually valid entries still describe an invalid payment? Which rules will need locks?
 
+## Evidence available from Portfolio 2 — 29 October 2026
+
+These are notes from the Codex-assisted implementation to review before writing my own reflection:
+
+- The four queries cover account balances, history, daily transfer totals, and payment problems. The first includes an account with no entries; the transfer summary counts only the positive entry so one transfer is counted once.
+- The history test inserts payments at both midnight boundaries. The start is included, and the next day is excluded. Those test payments are then rolled back.
+- The performance dataset has 40,410 entries. An index starting with `account_id` changes the entry lookup from a full sequential scan to a bitmap index/heap scan. The same 203 history rows are returned in both phases.
+- In the latest saved embedded-engine run, the median execution time changed from 44.248 ms to 1.971 ms across five runs per phase. The slower first before run, 94.660 ms, is retained in the evidence. The results are not a production-server benchmark.
+- The index used 1256 kB. That storage and the extra maintenance needed for future writes are tradeoffs; the activity did not measure write performance.
+- The [performance notes](../Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/performance_analysis.md) link to the complete plans and measurements. Questions for my review: Why does column order matter in this index? Why can PostgreSQL still scan the small accounts table? Why should the result stay unchanged when an index is added?
+- A later readability pass gave the queries names such as `queries.history`, separated the timing helper, and replaced the window-function setup with a simple numbered account list. The checks passed again, and the performance notes were updated to match the new run.
+
 ## Choosing what goes in the report
 
 A decision, a challenge, and a lesson supported by a result should give the reflection a clear focus. I’ll explain those examples in my own words, link to the relevant files, and keep the reflection short enough to fit within the overall 2–3 page summary.

@@ -1,0 +1,144 @@
+Run 1
+Sort  (cost=852.09..852.58 rows=198 width=70) (actual time=94.276..94.350 rows=203.00 loops=1)
+  Sort Key: payment.posted_at, payment.transaction_reference
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=870
+  ->  Nested Loop  (cost=5.85..844.53 rows=198 width=70) (actual time=2.186..93.649 rows=203.00 loops=1)
+        Buffers: shared hit=870
+        ->  Hash Join  (cost=5.56..775.94 rows=198 width=16) (actual time=2.062..88.320 rows=203.00 loops=1)
+              Hash Cond: (entry.account_id = account.account_id)
+              Buffers: shared hit=261
+              ->  Seq Scan on transaction_entries entry  (cost=0.00..662.10 rows=40410 width=24) (actual time=0.118..53.572 rows=40410.00 loops=1)
+                    Buffers: shared hit=258
+              ->  Hash  (cost=5.55..5.55 rows=1 width=8) (actual time=1.910..1.915 rows=1.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 5kB
+                    Buffers: shared hit=3
+                    ->  Seq Scan on accounts account  (cost=0.00..5.55 rows=1 width=8) (actual time=0.030..1.869 rows=1.00 loops=1)
+                          Filter: (account_number = '1000000001'::text)
+                          Rows Removed by Filter: 203
+                          Buffers: shared hit=3
+        ->  Index Scan using transactions_pkey on transactions payment  (cost=0.29..0.34 rows=1 width=38) (actual time=0.017..0.017 rows=1.00 loops=203)
+              Index Cond: (transaction_id = entry.transaction_id)
+              Filter: ((posted_at >= '2026-10-02 00:00:00+00'::timestamp with time zone) AND (posted_at < '2026-10-03 00:00:00+00'::timestamp with time zone) AND (status = 'posted'::text))
+              Index Searches: 203
+              Buffers: shared hit=609
+Planning:
+  Buffers: shared hit=16
+Planning Time: 1.085 ms
+Execution Time: 94.660 ms
+
+Run 2
+Sort  (cost=852.09..852.58 rows=198 width=70) (actual time=55.956..56.078 rows=203.00 loops=1)
+  Sort Key: payment.posted_at, payment.transaction_reference
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=870
+  ->  Nested Loop  (cost=5.85..844.53 rows=198 width=70) (actual time=0.108..55.449 rows=203.00 loops=1)
+        Buffers: shared hit=870
+        ->  Hash Join  (cost=5.56..775.94 rows=198 width=16) (actual time=0.083..48.787 rows=203.00 loops=1)
+              Hash Cond: (entry.account_id = account.account_id)
+              Buffers: shared hit=261
+              ->  Seq Scan on transaction_entries entry  (cost=0.00..662.10 rows=40410 width=24) (actual time=0.020..23.109 rows=40410.00 loops=1)
+                    Buffers: shared hit=258
+              ->  Hash  (cost=5.55..5.55 rows=1 width=8) (actual time=0.042..0.045 rows=1.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 5kB
+                    Buffers: shared hit=3
+                    ->  Seq Scan on accounts account  (cost=0.00..5.55 rows=1 width=8) (actual time=0.011..0.038 rows=1.00 loops=1)
+                          Filter: (account_number = '1000000001'::text)
+                          Rows Removed by Filter: 203
+                          Buffers: shared hit=3
+        ->  Index Scan using transactions_pkey on transactions payment  (cost=0.29..0.34 rows=1 width=38) (actual time=0.027..0.027 rows=1.00 loops=203)
+              Index Cond: (transaction_id = entry.transaction_id)
+              Filter: ((posted_at >= '2026-10-02 00:00:00+00'::timestamp with time zone) AND (posted_at < '2026-10-03 00:00:00+00'::timestamp with time zone) AND (status = 'posted'::text))
+              Index Searches: 203
+              Buffers: shared hit=609
+Planning:
+  Buffers: shared hit=16
+Planning Time: 1.476 ms
+Execution Time: 56.260 ms
+
+Run 3
+Sort  (cost=852.09..852.58 rows=198 width=70) (actual time=41.923..41.986 rows=203.00 loops=1)
+  Sort Key: payment.posted_at, payment.transaction_reference
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=870
+  ->  Nested Loop  (cost=5.85..844.53 rows=198 width=70) (actual time=0.139..41.581 rows=203.00 loops=1)
+        Buffers: shared hit=870
+        ->  Hash Join  (cost=5.56..775.94 rows=198 width=16) (actual time=0.111..39.202 rows=203.00 loops=1)
+              Hash Cond: (entry.account_id = account.account_id)
+              Buffers: shared hit=261
+              ->  Seq Scan on transaction_entries entry  (cost=0.00..662.10 rows=40410 width=24) (actual time=0.021..18.474 rows=40410.00 loops=1)
+                    Buffers: shared hit=258
+              ->  Hash  (cost=5.55..5.55 rows=1 width=8) (actual time=0.079..0.080 rows=1.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 5kB
+                    Buffers: shared hit=3
+                    ->  Seq Scan on accounts account  (cost=0.00..5.55 rows=1 width=8) (actual time=0.014..0.073 rows=1.00 loops=1)
+                          Filter: (account_number = '1000000001'::text)
+                          Rows Removed by Filter: 203
+                          Buffers: shared hit=3
+        ->  Index Scan using transactions_pkey on transactions payment  (cost=0.29..0.34 rows=1 width=38) (actual time=0.007..0.007 rows=1.00 loops=203)
+              Index Cond: (transaction_id = entry.transaction_id)
+              Filter: ((posted_at >= '2026-10-02 00:00:00+00'::timestamp with time zone) AND (posted_at < '2026-10-03 00:00:00+00'::timestamp with time zone) AND (status = 'posted'::text))
+              Index Searches: 203
+              Buffers: shared hit=609
+Planning:
+  Buffers: shared hit=16
+Planning Time: 0.900 ms
+Execution Time: 42.115 ms
+
+Run 4
+Sort  (cost=852.09..852.58 rows=198 width=70) (actual time=42.994..43.124 rows=203.00 loops=1)
+  Sort Key: payment.posted_at, payment.transaction_reference
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=870
+  ->  Nested Loop  (cost=5.85..844.53 rows=198 width=70) (actual time=0.083..42.591 rows=203.00 loops=1)
+        Buffers: shared hit=870
+        ->  Hash Join  (cost=5.56..775.94 rows=198 width=16) (actual time=0.063..39.590 rows=203.00 loops=1)
+              Hash Cond: (entry.account_id = account.account_id)
+              Buffers: shared hit=261
+              ->  Seq Scan on transaction_entries entry  (cost=0.00..662.10 rows=40410 width=24) (actual time=0.014..18.853 rows=40410.00 loops=1)
+                    Buffers: shared hit=258
+              ->  Hash  (cost=5.55..5.55 rows=1 width=8) (actual time=0.040..0.043 rows=1.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 5kB
+                    Buffers: shared hit=3
+                    ->  Seq Scan on accounts account  (cost=0.00..5.55 rows=1 width=8) (actual time=0.010..0.036 rows=1.00 loops=1)
+                          Filter: (account_number = '1000000001'::text)
+                          Rows Removed by Filter: 203
+                          Buffers: shared hit=3
+        ->  Index Scan using transactions_pkey on transactions payment  (cost=0.29..0.34 rows=1 width=38) (actual time=0.008..0.008 rows=1.00 loops=203)
+              Index Cond: (transaction_id = entry.transaction_id)
+              Filter: ((posted_at >= '2026-10-02 00:00:00+00'::timestamp with time zone) AND (posted_at < '2026-10-03 00:00:00+00'::timestamp with time zone) AND (status = 'posted'::text))
+              Index Searches: 203
+              Buffers: shared hit=609
+Planning:
+  Buffers: shared hit=16
+Planning Time: 0.616 ms
+Execution Time: 43.309 ms
+
+Run 5
+Sort  (cost=852.09..852.58 rows=198 width=70) (actual time=44.070..44.134 rows=203.00 loops=1)
+  Sort Key: payment.posted_at, payment.transaction_reference
+  Sort Method: quicksort  Memory: 29kB
+  Buffers: shared hit=870
+  ->  Nested Loop  (cost=5.85..844.53 rows=198 width=70) (actual time=0.080..43.664 rows=203.00 loops=1)
+        Buffers: shared hit=870
+        ->  Hash Join  (cost=5.56..775.94 rows=198 width=16) (actual time=0.062..40.369 rows=203.00 loops=1)
+              Hash Cond: (entry.account_id = account.account_id)
+              Buffers: shared hit=261
+              ->  Seq Scan on transaction_entries entry  (cost=0.00..662.10 rows=40410 width=24) (actual time=0.013..18.917 rows=40410.00 loops=1)
+                    Buffers: shared hit=258
+              ->  Hash  (cost=5.55..5.55 rows=1 width=8) (actual time=0.040..0.042 rows=1.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 5kB
+                    Buffers: shared hit=3
+                    ->  Seq Scan on accounts account  (cost=0.00..5.55 rows=1 width=8) (actual time=0.010..0.036 rows=1.00 loops=1)
+                          Filter: (account_number = '1000000001'::text)
+                          Rows Removed by Filter: 203
+                          Buffers: shared hit=3
+        ->  Index Scan using transactions_pkey on transactions payment  (cost=0.29..0.34 rows=1 width=38) (actual time=0.010..0.010 rows=1.00 loops=203)
+              Index Cond: (transaction_id = entry.transaction_id)
+              Filter: ((posted_at >= '2026-10-02 00:00:00+00'::timestamp with time zone) AND (posted_at < '2026-10-03 00:00:00+00'::timestamp with time zone) AND (status = 'posted'::text))
+              Index Searches: 203
+              Buffers: shared hit=609
+Planning:
+  Buffers: shared hit=16
+Planning Time: 0.628 ms
+Execution Time: 44.248 ms
