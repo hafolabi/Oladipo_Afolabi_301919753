@@ -1,0 +1,15 @@
+{
+  "name": "afolabipay-document-example",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "verify": "node run_queries.mjs"
+  },
+  "devDependencies": {
+    "mongodb": "6.20.0",
+    "mongodb-memory-server-core": "11.3.0"
+  }
+}

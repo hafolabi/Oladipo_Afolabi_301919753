@@ -1,0 +1,11 @@
+AfolabiPay — Portfolio 4 MongoDB document example
+Run date: 2026-10-30T16:33:31.032Z
+MongoDB 8.0.16; driver 6.20.0; server helper 11.3.0.
+Node.js v26.0.0; darwin/x64.
+PASS: inserted two customer profiles and three payment events into two collections.
+PASS: profile lookup returned Ada Okafor with embedded name and contact details.
+PASS: Ada account 1000000001 returned DEP-001 and TRF-001 in posting-time order.
+PASS: completed-transfer lookup returned TRF-001, moving 200000 kobo (NGN 2,000).
+PASS: each sample event has two balanced entries stored as BSON Long whole kobo.
+ALL PORTFOLIO 4 CHECKS PASSED.
+Stopped MongoDB and removed its temporary data.

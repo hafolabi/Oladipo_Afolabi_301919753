@@ -1,0 +1,40 @@
+[
+  {
+    "_id": {
+      "$numberInt": "3"
+    },
+    "transaction_reference": "TRF-001",
+    "transaction_type": "transfer",
+    "status": "posted",
+    "requested_at": {
+      "$date": {
+        "$numberLong": "1790935200000"
+      }
+    },
+    "posted_at": {
+      "$date": {
+        "$numberLong": "1790935201000"
+      }
+    },
+    "entries": [
+      {
+        "account_number": "1000000001",
+        "customer_id": {
+          "$numberInt": "1"
+        },
+        "amount_minor": {
+          "$numberLong": "-200000"
+        }
+      },
+      {
+        "account_number": "1000000002",
+        "customer_id": {
+          "$numberInt": "2"
+        },
+        "amount_minor": {
+          "$numberLong": "200000"
+        }
+      }
+    ]
+  }
+]

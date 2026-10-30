@@ -1,41 +1,70 @@
 # Portfolio 4: NoSQL and Advanced Data Models
 
-**Marks:** 7  
-**Chosen model:** MongoDB document database  
-**Case study:** AfolabiPay, the same simulated fintech used in the SQL activities  
-**Progress:** Collections outlined; scripts and database runs still to complete.
+**Marks:** 7
 
-In this activity I’ll represent AfolabiPay’s customer profiles and payment events as MongoDB documents. It gives me a way to compare the relational design with a model where related details can sit together inside one document.
+**Chosen model:** MongoDB documents for AfolabiPay
 
-Section 4 asks for one NoSQL model, implementation evidence, and an explanation of its suitability. A document model meets that choice; the brief does not require separate document, key-value, column, and graph implementations.
+**Progress:** The document example and three query checks passed on 30 October 2026 using MongoDB 8.0.16.
 
-## Planned collections
+This activity uses the document option in the brief. It stores two customer profiles and three completed payment events from the SQL case study. Start with [the document model](document_model.md), then [the queries](tools/queries.mjs).
 
-| Collection | What it stores | How related data is handled |
+## Required work and evidence
+
+| Requirement | Implementation or evidence |
+| --- | --- |
+| NoSQL model based on the same case study | [document_model.md](document_model.md) explains the two collections and how IDs match the SQL data |
+| Document example | [sample_data.mjs](tools/sample_data.mjs) inserts Ada, Bello, two deposits, and their transfer |
+| Implementation evidence | [validation.txt](evidence/validation.txt), the query results below, and [environment.json](evidence/environment.json) |
+| Explanation of suitability | The model explains embedding, references, the queries they support, and the limits of this design |
+
+## Run the example
+
+You need Node.js **20.19 or later** and npm. From the repository root:
+
+```sh
+cd Oladipo_Afolabi_301919753_Portfolio4NoSQL/tools
+npm ci
+npm run verify
+```
+
+`npm ci` installs the pinned packages. The first verification run downloads MongoDB 8.0.16 from MongoDB's distribution site, so it needs internet access and may take a little longer. The binary is cached under `tools/node_modules/.cache` and is ignored by Git.
+
+The helper starts a real `mongod` process on a free local port, bound to `127.0.0.1`. It uses a fresh temporary database called `afolabipay_portfolio4`, inserts the sample, runs the queries and checks, and saves the results. It then closes the connection, stops MongoDB, and removes the temporary data. It does not use an existing database service.
+
+A successful run ends with:
+
+```text
+ALL PORTFOLIO 4 CHECKS PASSED.
+Stopped MongoDB and removed its temporary data.
+```
+
+The recorded run used MongoDB **8.0.16**, the MongoDB Node.js driver **6.20.0**, mongodb-memory-server-core **11.3.0**, and Node.js **26.0.0** on **macOS x64**. Only that platform has been tested for this project. Rerunning replaces the generated evidence.
+
+## Collections and queries
+
+| Collection | What it contains |
+| --- | --- |
+| `customer_profiles` | Two profiles, with embedded name and contact objects |
+| `transaction_events` | Three completed payments, each containing its two money entries |
+
+| Query | Checked result | Saved output |
 | --- | --- | --- |
-| `customer_profiles` | Customer ID, name, contact details, and verification details | Keep the small contact and verification subdocuments inside the profile because they are often read together |
-| `transaction_events` | Transaction ID, reference, type, status, timestamps, original transaction ID for a reversal, and two entries for a posted payment | Keep the two entries inside the event and link them to their accounts, so an account document does not need to hold its entire payment history |
+| Find a customer by email | Ada Okafor, customer ID 1 | [query_01_profile.json](evidence/query_01_profile.json) |
+| Find completed payments affecting account `1000000001` | `DEP-001` and `TRF-001`, in posting-time order | [query_02_history.json](evidence/query_02_history.json) |
+| Find completed transfers | `TRF-001`, moving 200000 kobo, or NGN 2,000 | [query_03_transfers.json](evidence/query_03_transfers.json) |
 
-I’ll use fictional customers and payments from the SQL scenario and explain how their IDs match across the two models. A script will recreate the documents. Each database will be loaded separately; there is no automatic synchronisation between them.
+The history query returns the whole payment document, including both entries. It matches an account inside the entries array using `'entries.account_number'`.
 
-## Work to complete
+The results use MongoDB Extended JSON to preserve BSON types. `$numberLong` identifies an exact 64-bit integer, `$numberInt` a smaller integer such as an ID, and `$date` a date. For example, `{ "$numberLong": "200000" }` means 200000 whole kobo. The [Extended JSON documentation](https://www.mongodb.com/docs/drivers/node/v6.x/data-formats/extended-json/) explains these wrappers.
 
-- [ ] Write a `mongosh` script to create the planned collections and insert sample documents.
-- [ ] Use fictional customers and at least one payment example from the SQL case study. The sample count is a project choice.
-- [ ] Store money as exact whole kobo using a suitable BSON integer type, such as `NumberLong`.
-- [ ] Query the documents, including a lookup of payments affecting an account, and save the outputs.
-- [ ] Explain embedding, references, and why this model suits the chosen queries.
-- [ ] Record the software versions and commands for setting up, loading, and querying the data.
-- [ ] Explain the checks, link to their outputs, and note any fixes or limits.
+## Files and checks
 
-## Reasons for the document structure
+| File | Purpose |
+| --- | --- |
+| [sample_data.mjs](tools/sample_data.mjs) | Insert the small set of fictional documents |
+| [queries.mjs](tools/queries.mjs) | The three MongoDB find queries |
+| [run_queries.mjs](tools/run_queries.mjs) | Start MongoDB, load the data, check answers, save output, and close the server |
 
-A customer profile keeps contact and verification details together for lookup. A posted payment has a fixed pair of entries, which can be read together inside its event document. Account history keeps growing, so the model links separate events to the account instead of keeping the whole history in one array.
+The checks confirm collection counts, the expected customer and payment results, and that every sample event has two BSON Long amounts adding up to zero. They check this document example; they are not a separate payment-validation suite.
 
-An atomic write keeps changes to one event together. If MongoDB were used as the main financial record, updating two separate accounts safely and preventing concurrent overdrafts would need additional transaction and concurrency controls.
-
-MongoDB’s [data modelling guidance](https://www.mongodb.com/docs/manual/data-modeling/best-practices/) explains embedding, references, and single-document atomicity. I’ll compare that guidance with how the example queries work on this model.
-
-## Optional extensions
-
-An `account_snapshots` collection, a validation rule, or a simple aggregation can be added if it helps the explanation. Advanced validation, additional indexes, a second optimisation exercise, other NoSQL model types, and live SQL-to-MongoDB synchronisation are outside the core plan.
+PostgreSQL remains the main financial record. This MongoDB example is loaded separately and demonstrates profile and payment-history reads. The interactive terminal menu remains scheduled for after Portfolio 5.

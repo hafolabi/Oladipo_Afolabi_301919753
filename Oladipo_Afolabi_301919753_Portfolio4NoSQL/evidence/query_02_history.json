@@ -1,0 +1,76 @@
+[
+  {
+    "_id": {
+      "$numberInt": "1"
+    },
+    "transaction_reference": "DEP-001",
+    "transaction_type": "deposit",
+    "status": "posted",
+    "requested_at": {
+      "$date": {
+        "$numberLong": "1790931600000"
+      }
+    },
+    "posted_at": {
+      "$date": {
+        "$numberLong": "1790931601000"
+      }
+    },
+    "entries": [
+      {
+        "account_number": "0000000000",
+        "customer_id": null,
+        "amount_minor": {
+          "$numberLong": "-1000000"
+        }
+      },
+      {
+        "account_number": "1000000001",
+        "customer_id": {
+          "$numberInt": "1"
+        },
+        "amount_minor": {
+          "$numberLong": "1000000"
+        }
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$numberInt": "3"
+    },
+    "transaction_reference": "TRF-001",
+    "transaction_type": "transfer",
+    "status": "posted",
+    "requested_at": {
+      "$date": {
+        "$numberLong": "1790935200000"
+      }
+    },
+    "posted_at": {
+      "$date": {
+        "$numberLong": "1790935201000"
+      }
+    },
+    "entries": [
+      {
+        "account_number": "1000000001",
+        "customer_id": {
+          "$numberInt": "1"
+        },
+        "amount_minor": {
+          "$numberLong": "-200000"
+        }
+      },
+      {
+        "account_number": "1000000002",
+        "customer_id": {
+          "$numberInt": "2"
+        },
+        "amount_minor": {
+          "$numberLong": "200000"
+        }
+      }
+    ]
+  }
+]

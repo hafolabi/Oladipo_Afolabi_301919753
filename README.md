@@ -31,7 +31,9 @@ Portfolio 1 has the case study, ER diagram, relational schema, normalisation exp
 
 Portfolio 2 now has four checked queries and one before-and-after index comparison. The saved run uses 40,410 entries and returns the same 203 history rows in both phases. Its [README](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/README.md) and [performance notes](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/performance_analysis.md) explain the measured results and the embedded-engine limits.
 
-Portfolio 3 uses a project-local native PostgreSQL server with separate connections. Commit, rollback after an error, Read Committed visibility, and competing withdrawals with account locks passed on 30 October 2026. The [activity README](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/README.md) links to the saved outputs and run command. The native server stops after the checks; Portfolio 2's saved performance comparison remains a PGlite run. Portfolios 4 and 5 remain at the planning stage.
+Portfolio 3 uses a project-local native PostgreSQL server with separate connections. Commit, rollback after an error, Read Committed visibility, and competing withdrawals with account locks passed on 30 October 2026. The [activity README](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/README.md) links to the saved outputs and run command. The native server stops after the checks; Portfolio 2's saved performance comparison remains a PGlite run.
+
+Portfolio 4 now has two MongoDB collections, three checked queries, saved outputs, and a short explanation of embedding and references. Its [README](Oladipo_Afolabi_301919753_Portfolio4NoSQL/README.md) maps the work to the brief and provides the run command. The checks passed on MongoDB 8.0.16 on 30 October 2026. Portfolio 5 remains at the planning stage.
 
 The [assignment checklist](assignment_requirements.md) keeps the requirements and marking rubric in one place. The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/case_study.md) explains the organisation, its users, and the database requirements.
 
@@ -41,13 +43,14 @@ The [Portfolio 2 reading guide](Oladipo_Afolabi_301919753_Portfolio2QueryOptimis
 
 The [Portfolio 3 reading guide](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/start_here.md) follows a payment from `BEGIN` to `COMMIT` or `ROLLBACK`, then explains the two-session tests.
 
+The [Portfolio 4 document model](Oladipo_Afolabi_301919753_Portfolio4NoSQL/document_model.md) explains the nested objects, entries array, and links back to the same customers and accounts.
+
 ## What comes next
 
-1. Review and repeat the completed Portfolio 1–3 checks, then explain the design, query comparison, and transaction results.
-2. Represent the same customers and payments as MongoDB documents for Portfolio 4.
-3. Write Portfolio 5's distributed/cloud discussion around replication, availability, and consistency, with a short assessment of sharding. A deployment is optional.
-4. After Portfolio 5, add one interactive terminal menu so the lecturer can list the existing mock accounts and supply values for the implemented operations.
-5. Write the final 2–3 page summary, covering all five activities, AfolabiPay, the GitHub link, and the required evidence. Prepare editable Word and Markdown versions for the LMS submission.
+1. Review and repeat the completed Portfolio 1–4 checks, then explain the design, queries, transaction examples, and document model.
+2. Write Portfolio 5's distributed/cloud discussion around replication, availability, and consistency, with a short assessment of sharding. A deployment is optional.
+3. After Portfolio 5, add one interactive terminal menu so the lecturer can list the existing mock accounts and supply values for the implemented operations.
+4. Write the final 2–3 page summary, covering all five activities, AfolabiPay, the GitHub link, and the required evidence. Prepare editable Word and Markdown versions for the LMS submission.
 
 Git is initialised with an `origin` remote. Before submission, I’ll check that the GitHub repository is private and the assessor has access. As the work develops, I’ll commit useful milestones and keep the commands, software versions, and results with each activity so the experiments can be repeated.
 

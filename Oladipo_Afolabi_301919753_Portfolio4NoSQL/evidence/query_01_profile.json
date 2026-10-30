@@ -1,0 +1,14 @@
+{
+  "_id": {
+    "$numberInt": "1"
+  },
+  "name": {
+    "first": "Ada",
+    "last": "Okafor"
+  },
+  "contact": {
+    "email": "ada@example.test",
+    "phone": "+2340000000001"
+  },
+  "verification_status": "verified"
+}

@@ -64,6 +64,14 @@ These are factual notes from the Codex-assisted implementation, not a completed 
 - The four demonstrations include balance and saved-row checks and use only Ada, Bello, and clearing in their fixture.
 - Questions for my review: Why must one transaction stay on one connection? Why do the account locks come before the balance query? What happens if a writer bypasses this procedure? Why does locking clearing also make some unrelated requests wait?
 
+## Evidence available from Portfolio 4 — 30 October 2026
+
+These are factual notes from the Codex-assisted implementation, not a completed personal reflection:
+
+- The two collections reuse Ada, Bello, and the first three SQL payments. Name/contact objects and a payment's two entries are embedded; customer IDs reference separate profiles. Account history stays in separate event documents.
+- The [saved MongoDB checks](../Oladipo_Afolabi_301919753_Portfolio4NoSQL/evidence/validation.txt) confirm the profile lookup, Ada's two history events, the NGN 2,000 transfer, and balanced BSON Long entries. The run used a real temporary MongoDB 8.0.16 process; no SQL-to-MongoDB synchronisation is implemented.
+- Questions for my review: Why embed the two entries but keep growing payment history separate? How does dot notation search nested data? Why do the saved results use `$numberLong`, and which SQL foreign-key guarantees would need other handling here?
+
 ## Choosing what goes in the report
 
 A decision, a challenge, and a lesson supported by a result should give the reflection a clear focus. I’ll explain those examples in my own words, link to the relevant files, and keep the reflection short enough to fit within the overall 2–3 page summary.
