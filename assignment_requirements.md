@@ -14,7 +14,7 @@ I’ll use PostgreSQL for the relational activities and MongoDB for NoSQL, keepi
 | --- | ---: | --- | --- |
 | Portfolio 1: Database Design and Modelling | 7 | Case study description; ER diagram; relational schema; keys; constraints; normalisation explanation | Design and SQL complete; embedded PostgreSQL checks and output saved |
 | Portfolio 2: Query Processing and Optimisation | 7 | SQL queries; query results; execution plans; indexing/optimisation evidence; brief performance analysis | Four queries and checks complete; embedded PostgreSQL before/after plans, timings, index, and analysis saved |
-| Portfolio 3: Transactions and Concurrency | 7 | Commit; rollback; isolation; concurrency issue or control mechanism; screenshots/output | Scenarios planned; experiments still to run |
+| Portfolio 3: Transactions and Concurrency | 7 | Commit; rollback; isolation; concurrency issue or control mechanism; screenshots/output | Native PostgreSQL commit, rollback, Read Committed, and two-session locking checks passed; outputs and explanations saved |
 | Portfolio 4: NoSQL and Advanced Data Models | 7 | NoSQL model for the same case study; document/key-value/column/graph example; implementation evidence; suitability explanation | Collections outlined; MongoDB work still to build |
 | Portfolio 5: Distributed and Cloud Database Exercise | 6 | Discussion or setup for the same case study covering replication, sharding, availability, consistency, or deployment evidence | Discussion outlined; no system deployed |
 | Final Documentation | 6 | 2–3 page summary; GitHub link; selected organisation; screenshots/evidence; individual reflection; references; AI-use declaration because AI has been used | Report plan ready; final report still to write |
@@ -36,6 +36,8 @@ Section 4 of the brief sets out the evidence for each activity. The plan below f
 The user roles, verification status, and balanced account postings in the case study are modelling choices. They help explain the data and payment examples. They do not require a working user interface, external verification service, or production banking system. Word and Markdown versions remain the chosen final formats.
 
 The separate design notes and working files organise the supporting evidence in the repository. They do not increase the 2–3 page length of the LMS summary. Section 8 still calls for clear explanations of implementation and testing, so the shorter scope keeps those explanations and the saved outputs.
+
+After Portfolio 5, a small terminal menu will let the lecturer list existing mock accounts and supply values for the implemented operations. This is an agreed usability addition; it does not require a frontend or expand the assignment into a complete banking application.
 
 ## How the portfolio is marked
 
@@ -86,7 +88,7 @@ The lecturer may select a small sample for a brief technical discussion. Unclear
 
 For each experiment, I’ll keep the command or script, its output, the software version, and a short explanation in the activity folder. Matching names such as `query_01.sql`, `query_01_result.txt`, `query_01_plan_before.txt`, and `query_01_plan_after.txt` should make the files easy to find.
 
-Worked examples will stay labelled as expected outcomes until they are tested. Timing results need the dataset size and measurement conditions. If an experiment fails, I’ll keep the output and explain the correction. All customer and payment data will be fictional.
+Worked examples will stay labelled as expected outcomes until they are tested. Timing results need the dataset size and measurement conditions. All customer and payment data will be fictional.
 
 The [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/reflection_notes.md) are a place to record decisions and experiences as they happen. The personal reflection is still to write.
 

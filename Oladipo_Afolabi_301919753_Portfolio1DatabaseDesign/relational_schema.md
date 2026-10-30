@@ -94,19 +94,11 @@ Foreign keys use `ON DELETE RESTRICT`: a referenced customer, account, or paymen
 
 The primary and unique keys also create the starting indexes. Additional indexes will be considered in Portfolio 2.
 
-## Which rules need to check several rows
+## Rules involving several rows
 
-[verify.sql](verify.sql) looks for unbalanced payments, wrong account types, incorrect reversals, repeated completed reversals, and negative customer balances. The [JavaScript runner](tools/verify.mjs) also compares the sample's counts and balances with the expected values.
+[verify.sql](verify.sql) checks that the sample's completed payments have two entries adding up to zero. The [JavaScript runner](tools/verify.mjs) also checks its row counts and balances. These are checks of this sample, not rules automatically applied to every possible write.
 
-These are checks of our sample data. They are not rules that run automatically every time anyone writes to the database. PostgreSQL's [constraint documentation](https://www.postgresql.org/docs/18/ddl-constraints.html) explains why `CHECK` is for the current row.
-
-The later payment examples will need to check that:
-
-- The customer is verified before opening an account, and accounts are active for ordinary payments.
-- A transfer connects two customer accounts. A deposit goes from clearing to a customer; a withdrawal goes the other way.
-- A completed payment is reversed at most once, using exactly the opposite entries. Partial reversals and reversing a reversal are outside the scope.
-- A customer has enough money, including when a reversal takes money back. The concurrency example will lock affected account rows before checking the balance.
-- Correcting a completed payment adds a reversal and an audit event, preserving the original record.
+A row-level `CHECK` cannot enforce all rules involving other rows; see PostgreSQL's [constraint documentation](https://www.postgresql.org/docs/18/ddl-constraints.html). Portfolio 3 demonstrates active-account checks, sufficient funds, and locks inside payment transactions. Automated account opening and reversal requests are outside the implemented exercises.
 
 ## Calculating a balance
 

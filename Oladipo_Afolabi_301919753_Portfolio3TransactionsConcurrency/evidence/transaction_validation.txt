@@ -1,0 +1,23 @@
+AfolabiPay — Portfolio 3 transaction and concurrency checks
+Run date: 2026-10-30T16:06:17.518Z
+Started a temporary PostgreSQL server on 127.0.0.1:55329.
+PostgreSQL 18.4 on x86_64-apple-darwin24.6.0, compiled by Apple clang version 17.0.0 (clang-1700.6.3.2), 64-bit
+Node.js v26.0.0; darwin/x64; embedded-postgres 18.4.0-beta.17; pg 8.16.3.
+Separate server sessions: A=61561, B=61562, observer=61563.
+Loaded the Portfolio 1 schema and Portfolio 3 mock accounts. Reset funds between experiments.
+COMMIT — A: start with Ada NGN 10,000 and Bello NGN 0.
+PASS: BEGIN -> transfer NGN 2,000 -> COMMIT. Ada has NGN 8,000; Bello has NGN 2,000.
+ROLLBACK — A: BEGIN; stage the NGN 2,000 transfer without committing.
+PASS: division-by-zero error 22012 -> ROLLBACK. Both balances unchanged; payment, entries, and audit event removed.
+ISOLATION — B: BEGIN READ COMMITTED; reads Ada NGN 10,000.
+ISOLATION — A: stages transfer; sees its own new balance of NGN 8,000. No COMMIT yet.
+PASS: B still reads NGN 10,000; it cannot see A's uncommitted payment (no dirty read).
+ISOLATION — A: COMMIT.
+PASS: B reads again in the SAME transaction and now sees NGN 8,000 (a nonrepeatable read).
+LOCKING — A: locks accounts, checks NGN 1,000, and stages an NGN 800 withdrawal. Keeps the transaction open.
+LOCKING — B: requests the same account lock for another NGN 800 withdrawal.
+PASS: observer confirms B (PID 61562) is waiting for A (PID 61561); event transactionid.
+LOCKING — A: COMMIT; releases its account locks.
+PASS: B obtains the lock, reads the new NGN 200 balance, and rejects the withdrawal: Insufficient funds: available 20000 kobo, requested 80000 kobo.
+PASS: exactly one withdrawal saved, customer balance NGN 200, balanced ledger, no saved rows for B.
+ALL PORTFOLIO 3 CHECKS PASSED. Closing the connections and removing the temporary database.

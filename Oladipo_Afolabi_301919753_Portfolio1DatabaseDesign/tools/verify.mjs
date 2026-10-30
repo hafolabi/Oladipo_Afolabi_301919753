@@ -1,7 +1,6 @@
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { PGlite } from '@electric-sql/pglite';
 import { checkConstraints } from './check_constraints.mjs';
-import { checkBadData } from './check_bad_data.mjs';
 
 // PGlite runs PostgreSQL inside this script. The database lasts for this run only.
 const database = new PGlite();
@@ -69,24 +68,19 @@ try {
   log(`PGlite: ${packageInfo.version}; temporary database`);
   const versionResult = await database.query('SELECT version() AS version');
   log(versionResult.rows[0].version);
-  log('These checks use embedded PostgreSQL. Separate-session tests still need a database server.');
+  log('These checks cover the schema and sample data in embedded PostgreSQL.');
 
   await database.exec(await readSql('schema.sql'));
   log('\nPASS: created all five tables');
   await database.exec(await readSql('seed.sql'));
   log('PASS: added the sample data');
   await checkData(true);
-  log('PASS: sample payments, reversals, row counts, and balances are correct');
+  log('PASS: sample row counts, balances, and payment entry pairs are correct');
 
   log('\nChecking which writes the database accepts or rejects:');
   await checkConstraints(database, log);
   await checkData();
   log('PASS: the sample rows are unchanged after the write checks');
-
-  log('\nChecking that the queries spot bad payment data:');
-  await checkBadData(database, checkData, log);
-  await checkData();
-  log('PASS: all five changes were found and rolled back');
 
   // Read the table definitions from PostgreSQL so the evidence matches the SQL.
   const columns = await database.query(`

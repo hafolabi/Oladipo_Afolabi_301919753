@@ -29,7 +29,9 @@ The folders follow `Surname_Firstname_StudentID_DocumentType`.
 
 Portfolio 1 has the case study, ER diagram, relational schema, normalisation explanation, executable SQL tables, and fictional sample data. The schema and data checks passed in embedded PostgreSQL (PGlite); [the activity README](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/README.md) links to the actual output.
 
-Portfolio 2 now has four checked queries and one before-and-after index comparison. The saved run uses 40,410 entries and returns the same 203 history rows in both phases. Its [README](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/README.md) and [performance notes](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/performance_analysis.md) explain the measured results and the embedded-engine limits. A standalone PostgreSQL server has not yet been installed or tested. Portfolios 3–5 remain at the planning stage.
+Portfolio 2 now has four checked queries and one before-and-after index comparison. The saved run uses 40,410 entries and returns the same 203 history rows in both phases. Its [README](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/README.md) and [performance notes](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/performance_analysis.md) explain the measured results and the embedded-engine limits.
+
+Portfolio 3 uses a project-local native PostgreSQL server with separate connections. Commit, rollback after an error, Read Committed visibility, and competing withdrawals with account locks passed on 30 October 2026. The [activity README](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/README.md) links to the saved outputs and run command. The native server stops after the checks; Portfolio 2's saved performance comparison remains a PGlite run. Portfolios 4 and 5 remain at the planning stage.
 
 The [assignment checklist](assignment_requirements.md) keeps the requirements and marking rubric in one place. The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/case_study.md) explains the organisation, its users, and the database requirements.
 
@@ -37,14 +39,15 @@ For a first look at the SQL, use the [Portfolio 1 reading guide](Oladipo_Afolabi
 
 The [Portfolio 2 reading guide](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/start_here.md) follows the balances query and explains the index and execution plans.
 
+The [Portfolio 3 reading guide](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/start_here.md) follows a payment from `BEGIN` to `COMMIT` or `ROLLBACK`, then explains the two-session tests.
+
 ## What comes next
 
-1. Review the Portfolio 1 design and Portfolio 2 query results, then repeat their checks and explain the examples.
-2. Set up a standalone PostgreSQL database for Portfolio 3's separate-session work. A server rerun of the query comparison can also be recorded if carried out.
-3. Test commits, rollbacks, and simultaneous requests against the same account.
-4. Represent the same customers and payments as MongoDB documents.
-5. Write the distributed/cloud discussion around replication, availability, and consistency, with a short assessment of sharding. A deployment is optional.
-6. Write the final 2–3 page summary, covering all five activities, AfolabiPay, the GitHub link, and the required evidence. Prepare editable Word and Markdown versions for the LMS submission.
+1. Review and repeat the completed Portfolio 1–3 checks, then explain the design, query comparison, and transaction results.
+2. Represent the same customers and payments as MongoDB documents for Portfolio 4.
+3. Write Portfolio 5's distributed/cloud discussion around replication, availability, and consistency, with a short assessment of sharding. A deployment is optional.
+4. After Portfolio 5, add one interactive terminal menu so the lecturer can list the existing mock accounts and supply values for the implemented operations.
+5. Write the final 2–3 page summary, covering all five activities, AfolabiPay, the GitHub link, and the required evidence. Prepare editable Word and Markdown versions for the LMS submission.
 
 Git is initialised with an `origin` remote. Before submission, I’ll check that the GitHub repository is private and the assessor has access. As the work develops, I’ll commit useful milestones and keep the commands, software versions, and results with each activity so the experiments can be repeated.
 

@@ -14,7 +14,7 @@ UNION ALL
 
 -- Then check the account types and direction of ordinary payments.
 -- UNION ALL combines the results of these two checks.
--- Reversal eligibility is checked separately in Portfolio 1.
+-- Reversal workflows are outside this query.
 SELECT DISTINCT
     payment.transaction_reference,
     'Wrong account types or money direction' AS problem

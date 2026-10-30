@@ -1,9 +1,0 @@
-Excerpt from the first `npm run verify` run on 27 October 2026.
-Engine: PostgreSQL 18.6 (PGlite 0.5.12).
-The schema and seed checks succeeded before this rejected-write check failed.
-
-VERIFICATION FAILED: delete referenced account: unexpected failure [23001] update or delete on table "accounts" violates RESTRICT setting of foreign key constraint "transaction_entries_account_id_fkey" on table "transaction_entries" (constraint transaction_entries_account_id_fkey)
-
-The test had expected SQLSTATE 23503 (foreign_key_violation). The database
-correctly blocked deletion and returned 23001 (restrict_violation). The expected
-code was corrected to 23001; schema_validation.txt records the passing rerun.

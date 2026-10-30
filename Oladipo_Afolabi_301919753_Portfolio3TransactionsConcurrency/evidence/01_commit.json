@@ -1,0 +1,47 @@
+{
+  "before": [
+    {
+      "account_number": "0000000000",
+      "account_kind": "system_clearing",
+      "balance_minor": "-1000000",
+      "balance_ngn": "-10000.00"
+    },
+    {
+      "account_number": "1000000001",
+      "account_kind": "customer",
+      "balance_minor": "1000000",
+      "balance_ngn": "10000.00"
+    },
+    {
+      "account_number": "1000000002",
+      "account_kind": "customer",
+      "balance_minor": "0",
+      "balance_ngn": "0.00"
+    }
+  ],
+  "after": [
+    {
+      "account_number": "0000000000",
+      "account_kind": "system_clearing",
+      "balance_minor": "-1000000",
+      "balance_ngn": "-10000.00"
+    },
+    {
+      "account_number": "1000000001",
+      "account_kind": "customer",
+      "balance_minor": "800000",
+      "balance_ngn": "8000.00"
+    },
+    {
+      "account_number": "1000000002",
+      "account_kind": "customer",
+      "balance_minor": "200000",
+      "balance_ngn": "2000.00"
+    }
+  ],
+  "saved": {
+    "payments": 1,
+    "entries": 2,
+    "audit_events": 1
+  }
+}

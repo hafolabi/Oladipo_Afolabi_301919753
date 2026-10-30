@@ -1,0 +1,24 @@
+{
+  "run_date": "2026-10-30T16:06:17.518Z",
+  "engine": "PostgreSQL 18.4 on x86_64-apple-darwin24.6.0, compiled by Apple clang version 17.0.0 (clang-1700.6.3.2), 64-bit",
+  "node_version": "v26.0.0",
+  "host": "darwin/x64",
+  "versions": {
+    "embedded_postgres": "18.4.0-beta.17",
+    "pg": "8.16.3"
+  },
+  "session_ids": {
+    "session_a": 61561,
+    "session_b": 61562,
+    "observer": 61563
+  },
+  "isolation_level": "read committed",
+  "server": "Disposable native PostgreSQL on loopback; three independent pg.Client connections.",
+  "scenarios": [
+    "commit",
+    "rollback after a database error",
+    "read committed visibility",
+    "two competing withdrawals with account locks"
+  ],
+  "all_checks_passed": true
+}

@@ -1,0 +1,69 @@
+{
+  "before": [
+    {
+      "account_number": "0000000000",
+      "account_kind": "system_clearing",
+      "balance_minor": "-100000",
+      "balance_ngn": "-1000.00"
+    },
+    {
+      "account_number": "1000000001",
+      "account_kind": "customer",
+      "balance_minor": "100000",
+      "balance_ngn": "1000.00"
+    },
+    {
+      "account_number": "1000000002",
+      "account_kind": "customer",
+      "balance_minor": "0",
+      "balance_ngn": "0.00"
+    }
+  ],
+  "session_ids": {
+    "session_a": 61561,
+    "session_b": 61562,
+    "observer": 61563
+  },
+  "observed_lock_wait": {
+    "pid": 61562,
+    "wait_event_type": "Lock",
+    "wait_event": "transactionid",
+    "blocked_by": [
+      61561
+    ]
+  },
+  "outcome_b": {
+    "succeeded": false,
+    "message": "Insufficient funds: available 20000 kobo, requested 80000 kobo."
+  },
+  "after": [
+    {
+      "account_number": "0000000000",
+      "account_kind": "system_clearing",
+      "balance_minor": "-20000",
+      "balance_ngn": "-200.00"
+    },
+    {
+      "account_number": "1000000001",
+      "account_kind": "customer",
+      "balance_minor": "20000",
+      "balance_ngn": "200.00"
+    },
+    {
+      "account_number": "1000000002",
+      "account_kind": "customer",
+      "balance_minor": "0",
+      "balance_ngn": "0.00"
+    }
+  ],
+  "saved_a": {
+    "payments": 1,
+    "entries": 2,
+    "audit_events": 1
+  },
+  "saved_b": {
+    "payments": 0,
+    "entries": 0,
+    "audit_events": 0
+  }
+}

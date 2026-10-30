@@ -1,0 +1,12 @@
+{
+  "name": "afolabipay-transaction-checks",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify": "node run_transactions.mjs"
+  },
+  "devDependencies": {
+    "embedded-postgres": "18.4.0-beta.17",
+    "pg": "8.16.3"
+  }
+}
