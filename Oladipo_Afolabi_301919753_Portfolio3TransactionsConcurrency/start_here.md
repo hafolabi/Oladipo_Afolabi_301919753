@@ -46,4 +46,4 @@ The waiting request must read the balance in a **new statement after getting the
 
 One terminal command opens separate A and B connections. An observer confirms PostgreSQL reports B waiting for A, then checks that only the first withdrawal was saved. Open [transaction_validation.txt](evidence/transaction_validation.txt) to follow the order, and the four numbered JSON files for the actual balances and rows.
 
-The experiments use fixed inputs for repeatable checks. The interactive account-and-amount menu remains planned for after the last portfolio task.
+The experiments use fixed inputs for repeatable checks. To supply your own account numbers and amounts, follow the [terminal menu guide](../README.md#run-the-terminal-menu) and run `npm start` from the project root.

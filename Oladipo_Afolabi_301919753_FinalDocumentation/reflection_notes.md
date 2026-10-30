@@ -72,6 +72,14 @@ These are factual notes from the Codex-assisted implementation, not a completed 
 - The [saved MongoDB checks](../Oladipo_Afolabi_301919753_Portfolio4NoSQL/evidence/validation.txt) confirm the profile lookup, Ada's two history events, the NGN 2,000 transfer, and balanced BSON Long entries. The run used a real temporary MongoDB 8.0.16 process; no SQL-to-MongoDB synchronisation is implemented.
 - Questions for my review: Why embed the two entries but keep growing payment history separate? How does dot notation search nested data? Why do the saved results use `$numberLong`, and which SQL foreign-key guarantees would need other handling here?
 
+## Material available from Portfolio 5 — 30 October 2026
+
+These are notes from the Codex-assisted discussion, not a completed personal reflection:
+
+- The [proposed arrangement](../Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/distributed_discussion.md) keeps PostgreSQL as the financial record and considers a standby plus a three-member MongoDB replica set. Replication protects copies; the local transaction checks remain necessary for payment decisions.
+- The discussion connects stale balances to the competing withdrawals, explains pauses during failover or lost acknowledgements, and assesses why the small dataset should stay unsharded. It is a sourced proposal, not an observed cloud or failover experiment.
+- Questions for my review: Why can synchronous replication reduce availability? Why must the current balance come from the financial primary? How would sharding affect an account-history query or a transfer between accounts on different servers?
+
 ## Choosing what goes in the report
 
 A decision, a challenge, and a lesson supported by a result should give the reflection a clear focus. I’ll explain those examples in my own words, link to the relevant files, and keep the reflection short enough to fit within the overall 2–3 page summary.

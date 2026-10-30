@@ -8,6 +8,8 @@ This activity follows the brief: transaction examples showing **commit, rollback
 
 ## Run the four demonstrations
 
+To try your own amounts and account numbers, use the [terminal menu guide in the root README](../README.md#run-the-terminal-menu). The checks below demonstrate the required transaction and concurrency behaviour automatically.
+
 From the repository root, with Node.js 20 or later and npm:
 
 ```sh
@@ -67,7 +69,7 @@ The code starts B's waiting request without immediately awaiting it, so A can st
 
 The checks directly support the four demonstrations. Basic payment validation and ledger checks keep the examples using valid accounts, amounts, and balanced entries.
 
-The payment helper supports the three operations used here: a deposit sets up starting funds, a transfer demonstrates commit/rollback/isolation, and withdrawals demonstrate locking. The interactive menu is still scheduled for after Portfolio 5.
+The payment helper supports the three operations used here: a deposit sets up starting funds, a transfer demonstrates commit/rollback/isolation, and withdrawals demonstrate locking. The terminal menu reuses these functions with values supplied by the user.
 
 This is a focused local demonstration. Every cooperating payment writer must follow the same lock-then-check order; arbitrary direct SQL can bypass it. Locking clearing too means some otherwise unrelated payments can wait for each other. Crash recovery, every isolation level, reversal workflows, and a full banking application are outside this activity.
 

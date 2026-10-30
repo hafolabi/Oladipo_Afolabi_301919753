@@ -67,4 +67,4 @@ The results use MongoDB Extended JSON to preserve BSON types. `$numberLong` iden
 
 The checks confirm collection counts, the expected customer and payment results, and that every sample event has two BSON Long amounts adding up to zero. They check this document example; they are not a separate payment-validation suite.
 
-PostgreSQL remains the main financial record. This MongoDB example is loaded separately and demonstrates profile and payment-history reads. The interactive terminal menu remains scheduled for after Portfolio 5.
+PostgreSQL remains the main financial record. This MongoDB example is loaded separately and demonstrates profile and payment-history reads. The [terminal menu](../README.md#run-the-terminal-menu) lets you try the SQL payment operations; its new payments are not copied into these MongoDB documents.

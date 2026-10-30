@@ -1,0 +1,16 @@
+{
+  "name": "afolabipay-portfolio",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "setup": "node tools/install_dependencies.mjs",
+    "start": "node Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/tools/interactive.mjs",
+    "check:p1": "npm --prefix Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/tools run verify",
+    "check:p2": "npm --prefix Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/tools run verify",
+    "check:p3": "npm --prefix Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/tools run verify",
+    "check:p4": "npm --prefix Oladipo_Afolabi_301919753_Portfolio4NoSQL/tools run verify"
+  }
+}

@@ -16,7 +16,7 @@ I’ll use PostgreSQL for the relational activities and MongoDB for NoSQL, keepi
 | Portfolio 2: Query Processing and Optimisation | 7 | SQL queries; query results; execution plans; indexing/optimisation evidence; brief performance analysis | Four queries and checks complete; embedded PostgreSQL before/after plans, timings, index, and analysis saved |
 | Portfolio 3: Transactions and Concurrency | 7 | Commit; rollback; isolation; concurrency issue or control mechanism; screenshots/output | Native PostgreSQL commit, rollback, Read Committed, and two-session locking checks passed; outputs and explanations saved |
 | Portfolio 4: NoSQL and Advanced Data Models | 7 | NoSQL model for the same case study; document/key-value/column/graph example; implementation evidence; suitability explanation | Two MongoDB collections and three queries implemented; checks passed on MongoDB 8.0.16; model explanation and outputs saved |
-| Portfolio 5: Distributed and Cloud Database Exercise | 6 | Discussion or setup for the same case study covering replication, sharding, availability, consistency, or deployment evidence | Discussion outlined; no system deployed |
+| Portfolio 5: Distributed and Cloud Database Exercise | 6 | Discussion or setup for the same case study covering replication, sharding, availability, consistency, or deployment evidence | Sourced AfolabiPay discussion and proposed diagram complete; replication, availability, consistency, and sharding covered; no deployment |
 | Final Documentation | 6 | 2–3 page summary; GitHub link; selected organisation; screenshots/evidence; individual reflection; references; AI-use declaration because AI has been used | Report plan ready; final report still to write |
 | **Total** | **40** | | |
 
@@ -37,7 +37,7 @@ The user roles, verification status, and balanced account postings in the case s
 
 The separate design notes and working files organise the supporting evidence in the repository. They do not increase the 2–3 page length of the LMS summary. Section 8 still calls for clear explanations of implementation and testing, so the shorter scope keeps those explanations and the saved outputs.
 
-After Portfolio 5, a small terminal menu will let the lecturer list existing mock accounts and supply values for the implemented operations. This is an agreed usability addition; it does not require a frontend or expand the assignment into a complete banking application.
+The [terminal menu](README.md#run-the-terminal-menu) lets the student or lecturer list existing mock accounts and supply values for history, deposits, withdrawals, and transfers. It reuses the existing SQL payment implementation. This is an agreed usability addition; it does not require a frontend or expand the assignment into a complete banking application.
 
 ## How the portfolio is marked
 
@@ -100,12 +100,12 @@ I’ll keep an editable Word document (`.docx`) and a Markdown copy (`.md`). The
 
 ## Final submission checks
 
-- [ ] Clearly state the selected case study and organisation.
-- [ ] Use AfolabiPay consistently across all five activities, unless the lecturer approves a change.
-- [ ] Complete all five portfolio activities.
+- [x] Clearly state the selected case study and organisation.
+- [x] Use AfolabiPay consistently across all five activities, unless the lecturer approves a change.
+- [x] Complete all five portfolio activities.
 - [ ] Organise the private GitHub repository clearly.
-- [ ] Include the practical work and its supporting evidence.
-- [ ] Explain implementation and testing in the READMEs and documentation.
+- [x] Include the practical work and its supporting evidence.
+- [x] Explain implementation and testing in the READMEs and documentation.
 - [ ] Submit the required files through the LMS.
 - [ ] Describe all five activities, name the case study, and include the GitHub link in the LMS document.
 - [ ] Include supporting screenshots or evidence in the LMS submission where required.

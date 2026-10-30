@@ -1,35 +1,24 @@
 # Portfolio 5: Distributed and Cloud Database Exercise
 
-**Marks:** 6  
-**Case study:** AfolabiPay  
-**Progress:** Discussion outlined; no cluster or cloud database deployed.
+**Marks:** 6
 
-Here I’ll consider how AfolabiPay could run across several database servers. A payment service needs to deal with failures, keep financial decisions based on current data, and handle a payment history that grows over time.
+**Case study:** AfolabiPay
 
-Section 4 allows a discussion **or** a setup using the case study. This portfolio will take the discussion route, focusing on replication, availability, and consistency, with a brief assessment of sharding. No deployment is planned as a required task.
+**Progress:** The sourced discussion was completed on 30 October 2026. The architecture is proposed; no cluster or cloud service was deployed.
 
-## Topics to cover
+The brief permits a distributed/cloud database **discussion or setup**. This activity takes the discussion route. Read [distributed_discussion.md](distributed_discussion.md) for the completed work and its source links.
 
-| Topic | What it means for AfolabiPay | What the discussion needs to explain |
-| --- | --- | --- |
-| Replication | Keep copies of the data on other database servers | How the copies are maintained and what happens when a server fails |
-| Availability | Explain what happens to payments when a database server fails | How replication can help, when service may pause, and the limits of the proposed arrangement |
-| Consistency | Check current financial data before allowing a payment; allow reporting delays only where acceptable | Where reads go and how stale data could affect each operation |
-| Sharding | Divide account or event data as the history grows | Possible shard keys, uneven traffic, and transfers between accounts on different shards |
+## How the work meets the brief
 
-## Proposed approach
+| Topic | Coverage in the discussion |
+| --- | --- |
+| Same case study | PostgreSQL remains AfolabiPay's financial record, with MongoDB profiles and events from Portfolio 4 |
+| Replication | [Copies and acknowledgements](distributed_discussion.md#replication) for a PostgreSQL standby and a three-member MongoDB replica set |
+| Availability | [Server failures, elections, and pauses](distributed_discussion.md#availability-and-failures), including the limits of synchronous replication |
+| Consistency | [Where reads go](distributed_discussion.md#consistency-and-payment-decisions), using the competing withdrawals from Portfolio 3 |
+| Sharding | [Why the sample stays unsharded](distributed_discussion.md#sharding-assessment), with possible keys and their tradeoffs |
+| Cloud context | A small [proposed architecture diagram](distributed_discussion.md#proposed-cloud-arrangement) and placement across availability zones |
 
-The discussion will keep PostgreSQL as the proposed main financial record and use a MongoDB replica set as a concrete example for the document workload. I’ll explain how replication helps availability and why a stale read could be a problem when authorising a payment. A short paragraph will assess whether this small dataset needs sharding. These are proposed arrangements to discuss, not systems already deployed.
+The written analysis is the evidence for this route. It distinguishes the proposed arrangement from the local database checks already performed. There are no deployment commands or runtime results for Portfolio 5.
 
-MongoDB’s [replication guide](https://www.mongodb.com/docs/manual/replication/) will support the explanation. A small architecture diagram can be added if it makes the discussion clearer. The cloud context can be explained without opening an account or selecting a paid service.
-
-## Work to complete
-
-- [ ] Write a short distributed/cloud discussion tied to AfolabiPay, with sources.
-- [ ] Explain the tradeoffs between replication, consistency, and availability.
-- [ ] Briefly assess sharding against the expected data size and queries.
-- [ ] Make clear which parts are proposed and connect the explanation to the case study.
-
-## Optional extensions
-
-A local replica-set demonstration or cloud setup can be added later if there is a clear reason. Actual failover experiments, sharded clusters, backup/restore drills, provider comparisons, and cost studies are outside the core plan. If a setup is carried out, its configuration, commands, versions, and observed results will need to be saved as evidence.
+For review, be able to explain why a delayed copy must not authorise a withdrawal, why a replica set can pause writes during failure, and why adding shards would complicate this small example. The [project references](../Oladipo_Afolabi_301919753_FinalDocumentation/references.md) record the official documentation used.

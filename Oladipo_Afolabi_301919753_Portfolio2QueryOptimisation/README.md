@@ -63,4 +63,4 @@ The runner checks the larger sample, measures the same history query five times 
 
 This is one index comparison in an embedded database with made-up data. It does not establish production-server or simultaneous-request performance. The [brief analysis](performance_analysis.md) explains the recorded improvement and index tradeoff. Rerunning replaces the generated evidence; review the written timings after a new run.
 
-[Portfolio 3](../Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/README.md) covers commit, rollback, isolation, and competing withdrawals. The interactive menu remains planned for after Portfolio 5.
+[Portfolio 3](../Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/README.md) covers commit, rollback, isolation, and competing withdrawals. The [terminal menu](../README.md#run-the-terminal-menu) accepts your own account numbers, amounts, and history dates. Its parameterised history query uses the same filtering logic; the fixed query above stays unchanged for the saved optimisation comparison.
