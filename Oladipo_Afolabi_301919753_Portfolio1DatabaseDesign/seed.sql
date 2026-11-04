@@ -4,12 +4,13 @@
 BEGIN;
 
 -- Customer IDs: 1 = Ada, 2 = Bello, 3 = Chika, 4 = Dami.
-INSERT INTO customers (first_name, last_name, email, phone, verification_status, created_at)
+-- All sample customers start active, with no changes after registration.
+INSERT INTO customers (first_name, last_name, email, phone, verification_status, created_at, updated_at)
 VALUES
-    ('Ada', 'Okafor', 'ada@example.test', '+2340000000001', 'verified', '2026-10-01 08:00:00+00'),
-    ('Bello', 'Musa', 'bello@example.test', '+2340000000002', 'verified', '2026-10-01 08:05:00+00'),
-    ('Chika', 'Obi', 'chika@example.test', '+2340000000003', 'verified', '2026-10-01 08:10:00+00'),
-    ('Dami', 'Ade', 'dami@example.test', '+2340000000004', 'pending', '2026-10-01 08:15:00+00');
+    ('Ada', 'Okafor', 'ada@example.test', '+2340000000001', 'verified', '2026-10-01 08:00:00+00', '2026-10-01 08:00:00+00'),
+    ('Bello', 'Musa', 'bello@example.test', '+2340000000002', 'verified', '2026-10-01 08:05:00+00', '2026-10-01 08:05:00+00'),
+    ('Chika', 'Obi', 'chika@example.test', '+2340000000003', 'verified', '2026-10-01 08:10:00+00', '2026-10-01 08:10:00+00'),
+    ('Dami', 'Ade', 'dami@example.test', '+2340000000004', 'pending', '2026-10-01 08:15:00+00', '2026-10-01 08:15:00+00');
 
 -- Account IDs: 1 = clearing, 2 = Ada, 3 = Bello, 4 = Ada's spare, 5 = Chika.
 -- customer_id points to the customer above. NULL means there is no customer owner.

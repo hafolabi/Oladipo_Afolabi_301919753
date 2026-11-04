@@ -5,11 +5,11 @@
 **Selected case study:** Bank / Fintech Platform  
 **Simulated organisation:** AfolabiPay
 
-My case study is AfolabiPay, a fictional fintech platform for deposits, withdrawals, and transfers between customers. Alongside moving money, the system needs to keep a payment history that staff can follow when checking balances or investigating a problem.
+AfolabiPay is a fictional fintech platform for deposits, withdrawals, and transfers between customers. Alongside moving money, the system keeps a payment history that staff can follow when checking balances or investigating a problem.
 
-I’ll use the same case study throughout the five activities: **PostgreSQL for Portfolios 1–3**, **MongoDB for Portfolio 4**, and a discussion of distributed and cloud databases in Portfolio 5. This covers the SQL and NoSQL work in the brief. The software choice can change if the lecturer specifies a particular product.
+The same case study connects all five activities: **PostgreSQL for Portfolios 1–3**, **MongoDB for Portfolio 4**, and a discussion of distributed and cloud databases in Portfolio 5. This covers the SQL and NoSQL work in the brief.
 
-The aim is a small database portfolio with clear practical evidence. The work will focus on the deliverables in Section 4 of the brief: a sound design, SQL queries and an optimisation example, transaction and concurrency examples, one NoSQL model, and a distributed/cloud discussion. The [scope notes](assignment_requirements.md) identify optional extensions so they do not become extra requirements.
+The portfolio follows Section 4 of the brief: database design, SQL queries and an optimisation example, transaction and concurrency examples, one NoSQL model, and a distributed/cloud discussion. The [scope notes](assignment_requirements.md) distinguish the required work from optional extensions.
 
 ## Finding the work
 
@@ -29,13 +29,13 @@ The folders follow `Surname_Firstname_StudentID_DocumentType`.
 
 Portfolio 1 has the case study, ER diagram, relational schema, normalisation explanation, executable SQL tables, and fictional sample data. The schema and data checks passed in embedded PostgreSQL (PGlite); [the activity README](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/README.md) links to the actual output.
 
-Portfolio 2 now has four checked queries and one before-and-after index comparison. The saved run uses 40,410 entries and returns the same 203 history rows in both phases. Its [README](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/README.md) and [performance notes](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/performance_analysis.md) explain the measured results and the embedded-engine limits.
+Portfolio 2 has four checked queries and one before-and-after index comparison. The saved run uses 40,410 entries and returns the same 203 history rows in both phases. Its [README](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/README.md) and [performance notes](Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/performance_analysis.md) explain the measured results and the embedded-engine limits.
 
 Portfolio 3 uses a project-local native PostgreSQL server with separate connections. Commit, rollback after an error, Read Committed visibility, and competing withdrawals with account locks passed on 30 October 2026. The [activity README](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/README.md) links to the saved outputs and run command. The native server stops after the checks; Portfolio 2's saved performance comparison remains a PGlite run.
 
-Portfolio 4 now has two MongoDB collections, three checked queries, saved outputs, and a short explanation of embedding and references. Its [README](Oladipo_Afolabi_301919753_Portfolio4NoSQL/README.md) maps the work to the brief and provides the run command. The checks passed on MongoDB 8.0.16 on 30 October 2026.
+Portfolio 4 has two MongoDB collections, three checked queries, saved outputs, and a short explanation of embedding and references. Its [README](Oladipo_Afolabi_301919753_Portfolio4NoSQL/README.md) maps the work to the brief and provides the run command. The checks passed on MongoDB 8.0.16 on 30 October 2026.
 
-Portfolio 5 has a sourced [distributed/cloud discussion](Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/distributed_discussion.md) covering replication, availability, consistency, and sharding. It includes a proposed architecture diagram and uses the discussion route allowed by the brief. No distributed cluster or cloud deployment was performed. All five activity deliverables and the terminal menu are present. An editable [Word report draft](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx) now brings the work together; personal review, reflection details, and the repository access check remain.
+Portfolio 5 has a sourced [distributed/cloud discussion](Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/distributed_discussion.md) covering replication, availability, consistency, and sharding. It includes a proposed architecture diagram and uses the discussion route allowed by the brief. No distributed cluster or cloud deployment was performed. All five activity deliverables and the terminal menu are present. An editable [Word report draft](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx) brings the work together; personal review, reflection details, and the repository access check remain.
 
 The [assignment checklist](assignment_requirements.md) keeps the requirements and marking rubric in one place. The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/case_study.md) explains the organisation, its users, and the database requirements.
 
@@ -49,7 +49,7 @@ The [Portfolio 4 document model](Oladipo_Afolabi_301919753_Portfolio4NoSQL/docum
 
 ## Run the terminal menu
 
-The menu is for **both me and my lecturer**. It lets either person try the payment operations with their own amounts and the existing mock account numbers. It runs a local PostgreSQL database, using Portfolio 1's schema and sample data and Portfolio 3's payment functions.
+The menu lets students and lecturers try the payment operations with their own amounts and the existing mock account numbers. It runs a local PostgreSQL database, using Portfolio 1's schema and sample data and Portfolio 3's payment functions.
 
 Install Node.js 22 or newer with npm. Open a terminal in this project's root folder, where this README and `package.json` are, and run:
 
@@ -116,16 +116,16 @@ The menu code is in [interactive.mjs](Oladipo_Afolabi_301919753_Portfolio3Transa
 
 The menu checks passed on 30 October 2026: a custom transfer, deposit and withdrawal with decimal amounts, refused payments, supplied and default history dates, session reset, and Ctrl+C cleanup. The existing activity evidence was reviewed against the brief; the Portfolio 2 benchmark was kept as recorded rather than timed again during this audit.
 
-## What comes next
+## Before submission
 
-1. Review and repeat the Portfolio 1–4 checks, and explain those results and Portfolio 5's proposed design in my own words.
-2. Open the [Word report](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx), finish the highlighted personal reflection and review notes, and update the declaration with my own verification.
+1. Review and repeat the Portfolio 1–4 checks, then use the results and Portfolio 5's proposed design to support the final reflection.
+2. Open the [Word report](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx), finish the highlighted personal reflection and review notes, and record the checks performed in the declaration.
 3. Fine-tune the report in Word, check the 2–3 page limit, confirm lecturer access to the committed and pushed repository, and prepare the LMS submission. The [final documentation guide](Oladipo_Afolabi_301919753_FinalDocumentation/README.md) explains the remaining edits.
 
-Git is initialised with an `origin` remote. Before submission, I’ll check that the GitHub repository is private and the assessor has access. As the work develops, I’ll commit useful milestones and keep the commands, software versions, and results with each activity so the experiments can be repeated.
+Git is initialised with an `origin` remote. Before submission, confirm that the GitHub repository is private and the assessor has access. Keep meaningful commits and save the commands, software versions, and results with each activity so the experiments can be repeated.
 
 ## Notes for the final submission
 
-Each activity’s README will explain how it was built and tested. I’ll use the [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/reflection_notes.md) to record design decisions, challenges, and lessons for the final report. This is an individual assessment, and the lecturer may ask selected students to explain their work; a viva is not compulsory for everyone.
+Each activity’s README explains its implementation and testing. The [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/reflection_notes.md) collect design decisions, challenges, and lessons for the final report.
 
-The [AI-use declaration](Oladipo_Afolabi_301919753_FinalDocumentation/ai_use_declaration.md) records Codex’s contribution and my documentation review so far. I’ll update it as the practical work is completed and keep the [reference list](Oladipo_Afolabi_301919753_FinalDocumentation/references.md) up to date. Before uploading the required files to the LMS, I need to check that the assessor can open the private GitHub repository.
+The [AI-use declaration](Oladipo_Afolabi_301919753_FinalDocumentation/ai_use_declaration.md) records the assistance used and the current review status. Check that it and the [reference list](Oladipo_Afolabi_301919753_FinalDocumentation/references.md) reflect the final submission. Confirm that the assessor can open the private GitHub repository before uploading the required files to the LMS.

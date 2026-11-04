@@ -4,7 +4,7 @@
 
 **Case study:** AfolabiPay, a fictional fintech platform
 
-**Progress:** Design complete; focused schema and sample-data checks passed on 30 October 2026.
+**Progress:** Design complete; schema, sample-data, customer-status, and update-timestamp checks passed on 4 November 2026.
 
 This activity covers the case study, ER diagram, relational schema, keys, constraints, and normalisation required by the brief. Start with [the reading guide](start_here.md).
 
@@ -22,6 +22,8 @@ This activity covers the case study, ER diagram, relational schema, keys, constr
 
 The five tables store customers, accounts, payments, money entries, and audit events. A customer can own several accounts. Each completed payment has two equal-and-opposite entries. Clearing has no customer owner; ordinary customer accounts need one.
 
+Customers have a `status` of `active`, `deleted`, or `suspended`, defaulting to `active`. The database refreshes `updated_at` automatically whenever a customer row changes. Customer status is separate from verification and account status; `deleted` keeps the row and its linked history.
+
 ## Run the supporting checks
 
 With Node.js 20 or later and npm, run these commands from the repository root:
@@ -36,7 +38,9 @@ This uses PGlite to run PostgreSQL in a temporary database. It creates the table
 
 [verify.mjs](tools/verify.mjs) checks the row counts, balances, and payment entry pairs using [verify.sql](verify.sql). [check_constraints.mjs](tools/check_constraints.mjs) demonstrates six rule types: `PRIMARY KEY`, `FOREIGN KEY`, `UNIQUE`, `NOT NULL`, `CHECK`, and `ON DELETE RESTRICT`. It also confirms a valid customer and account can be inserted, then rolls them back. These are focused examples, not an exhaustive test of every business rule.
 
-The [saved output](evidence/schema_validation.txt) records the passing checks and software versions. The run used PGlite 0.5.12 / PostgreSQL 18.6, Node.js 26.0.0, and macOS x64. The [table definitions](evidence/table_definitions.json) come from PostgreSQL's actual columns and constraints.
+[check_customer_lifecycle.mjs](tools/check_customer_lifecycle.mjs) checks the default status and timestamps, all three allowed statuses, automatic timestamp updates, and rejection of unsupported or missing values. Its test changes are rolled back.
+
+The [saved output](evidence/schema_validation.txt) records the passing checks and software versions. The latest run used PGlite 0.5.12 / PostgreSQL 18.6, Node.js 24.19.0, and macOS x64. The [table definitions](evidence/table_definitions.json) record PostgreSQL's actual columns, constraints, and update trigger.
 
 ## Sample data
 

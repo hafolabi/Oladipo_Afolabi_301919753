@@ -55,10 +55,10 @@ text { font-family: Arial, Helvetica, sans-serif; fill: #182f40; }
 <rect width="1720" height="1120" fill="#fff"/>
 <text x="45" y="51" class="title">AfolabiPay — relational database design</text>
 <text x="45" y="83" class="subtitle">PK: primary key · UK: unique candidate key · FK: foreign key · ?: nullable · Amounts: whole NGN kobo</text>
-<path class="edge" d="M267 429 V625"/>
-<text x="281" y="453" class="cardinality">0..1</text>
+<path class="edge" d="M267 487 V625"/>
+<text x="281" y="511" class="cardinality">0..1</text>
 <text x="281" y="612" class="cardinality">0..*</text>
-<text x="281" y="530" class="label">owns</text>
+<text x="281" y="565" class="label">owns</text>
 <path class="edge" d="M490 690 H620"/>
 <text x="500" y="681" class="cardinality">1</text>
 <text x="574" y="681" class="cardinality">0..*</text>

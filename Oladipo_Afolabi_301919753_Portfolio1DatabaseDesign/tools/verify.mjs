@@ -1,6 +1,7 @@
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { PGlite } from '@electric-sql/pglite';
 import { checkConstraints } from './check_constraints.mjs';
+import { checkCustomerLifecycle } from './check_customer_lifecycle.mjs';
 
 // PGlite runs PostgreSQL inside this script. The database lasts for this run only.
 const database = new PGlite();
@@ -79,6 +80,8 @@ try {
 
   log('\nChecking which writes the database accepts or rejects:');
   await checkConstraints(database, log);
+  log('\nChecking customer status and update timestamps:');
+  await checkCustomerLifecycle(database, log);
   await checkData();
   log('PASS: the sample rows are unchanged after the write checks');
 
@@ -92,9 +95,14 @@ try {
     SELECT conrelid::regclass::text AS relation, conname AS name, pg_get_constraintdef(oid) AS definition
     FROM pg_constraint WHERE connamespace = 'public'::regnamespace ORDER BY relation, name
   `);
+  const triggers = await database.query(`
+    SELECT trigger_name, event_manipulation, event_object_table, action_timing, action_statement
+    FROM information_schema.triggers WHERE trigger_schema = 'public'
+    ORDER BY event_object_table, trigger_name
+  `);
 
   await mkdir(evidenceFolder, { recursive: true });
-  await writeFile(new URL('table_definitions.json', evidenceFolder), JSON.stringify({ columns: columns.rows, constraints: constraints.rows }, null, 2) + '\n');
+  await writeFile(new URL('table_definitions.json', evidenceFolder), JSON.stringify({ columns: columns.rows, constraints: constraints.rows, triggers: triggers.rows }, null, 2) + '\n');
   log('\nALL CHECKS PASSED. Closing the temporary database.');
   await writeFile(new URL('schema_validation.txt', evidenceFolder), output.join('\n') + '\n');
 } catch (error) {

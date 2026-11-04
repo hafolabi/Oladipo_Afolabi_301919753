@@ -12,7 +12,9 @@ CREATE TABLE customers (
     email text NOT NULL,
     phone text NOT NULL CHECK (btrim(phone) <> ''),
     verification_status text NOT NULL DEFAULT 'pending',
+    status text NOT NULL DEFAULT 'active',
     created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT customers_email_key UNIQUE (email),
     -- Keep emails lowercase with no spaces at either end.
     -- In JavaScript, the same preparation is email.trim().toLowerCase().
@@ -21,8 +23,25 @@ CREATE TABLE customers (
     ),
     CONSTRAINT customers_verification_status_ck CHECK (
         verification_status IN ('pending', 'verified', 'rejected')
+    ),
+    CONSTRAINT customers_status_ck CHECK (
+        status IN ('active', 'deleted', 'suspended')
     )
 );
+
+-- Record the time of each update, including changes to customer status.
+-- statement_timestamp() also advances between statements in one transaction.
+CREATE FUNCTION set_customer_updated_at() RETURNS trigger
+LANGUAGE plpgsql AS $$
+BEGIN
+    NEW.updated_at := statement_timestamp();
+    RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER customers_updated_at_trg
+BEFORE UPDATE ON customers
+FOR EACH ROW EXECUTE FUNCTION set_customer_updated_at();
 
 -- An account links to its owner through customer_id.
 -- REFERENCES checks that the linked row exists.

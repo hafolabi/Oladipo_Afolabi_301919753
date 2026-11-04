@@ -154,7 +154,23 @@
     },
     {
       "table_name": "customers",
+      "column_name": "status",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "'active'::text"
+    },
+    {
+      "table_name": "customers",
       "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "is_identity": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_name": "customers",
+      "column_name": "updated_at",
       "data_type": "timestamp with time zone",
       "is_nullable": "NO",
       "is_identity": "NO",
@@ -432,6 +448,21 @@
     },
     {
       "relation": "customers",
+      "name": "customers_status_ck",
+      "definition": "CHECK ((status = ANY (ARRAY['active'::text, 'deleted'::text, 'suspended'::text])))"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "relation": "customers",
+      "name": "customers_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "relation": "customers",
       "name": "customers_verification_status_ck",
       "definition": "CHECK ((verification_status = ANY (ARRAY['pending'::text, 'verified'::text, 'rejected'::text])))"
     },
@@ -549,6 +580,15 @@
       "relation": "transactions",
       "name": "transactions_type_ck",
       "definition": "CHECK ((transaction_type = ANY (ARRAY['deposit'::text, 'withdrawal'::text, 'transfer'::text, 'reversal'::text])))"
+    }
+  ],
+  "triggers": [
+    {
+      "trigger_name": "customers_updated_at_trg",
+      "event_manipulation": "UPDATE",
+      "event_object_table": "customers",
+      "action_timing": "BEFORE",
+      "action_statement": "EXECUTE FUNCTION set_customer_updated_at()"
     }
   ]
 }

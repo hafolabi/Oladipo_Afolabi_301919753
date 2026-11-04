@@ -16,11 +16,13 @@ AfolabiPay is a fictional fintech platform for deposits, withdrawals, transfers,
 
 The design has five tables: `customers`, `accounts`, `transactions`, `transaction_entries`, and `audit_events`. One customer can own several accounts. Accounts and payments each link to many entries; a payment can also have several audit events. The [full ER diagram](https://github.com/hafolabi/Oladipo_Afolabi_301919753/blob/main/Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/er_diagram.svg) shows the keys and relationships.
 
+Customers have an `active`, `deleted`, or `suspended` status, separate from verification and account status. A trigger refreshes `updated_at` whenever a customer row changes; `deleted` preserves the row and its financial history.
+
 Entries use the combined primary key `(transaction_id, account_id)`. Other tables have individual ID keys. Foreign keys link records; unique constraints protect emails, account numbers, and payment references. Required fields, check constraints, and restricted deletion protect the stored rows [1].
 
 The normalisation explanation covers 1NF through single values, 2NF through amounts depending on the whole entry key, and 3NF through keeping customer details out of account rows. Payment balance rules still need checks across rows and transaction logic.
 
-**Evidence 1 — saved schema checks:** five tables created; 4 customers, 5 accounts, 7 payments, 10 entries, and 8 audit events loaded. Six invalid writes were rejected. Ada's closing balance was NGN 8,000 and Bello's was NGN 7,000. [Open the saved output](https://github.com/hafolabi/Oladipo_Afolabi_301919753/blob/main/Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/evidence/schema_validation.txt).
+**Evidence 1 — saved schema checks:** five tables created; 4 customers, 5 accounts, 7 payments, 10 entries, and 8 audit events loaded. Nine invalid writes were rejected, and customer-status and timestamp checks passed on 4 November 2026. Ada's closing balance was NGN 8,000 and Bello's was NGN 7,000. [Open the saved output](https://github.com/hafolabi/Oladipo_Afolabi_301919753/blob/main/Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/evidence/schema_validation.txt).
 
 ### Portfolio 2: Query processing and optimisation
 
@@ -80,11 +82,11 @@ Payment decisions must use the PostgreSQL primary and the Portfolio 3 lock-then-
 
 The payment examples show the difference between finding a negative balance afterwards and refusing an unaffordable payment before it is saved. Locking before checking funds protects that decision when requests overlap. The index comparison also shows why an optimisation must preserve the answers and be assessed against its measurement conditions and storage cost.
 
-**My own challenge and check:** [Add a challenge I personally worked through, what I tried, what changed, and a check I reran with its result.]
+**Personal challenge and check:** [Describe a challenge encountered, the steps taken, what changed, and a check repeated with its result.]
 
 ### AI use and verification
 
-OpenAI Codex assisted with explanations, design suggestions, SQL and JavaScript some drafts, documentation. I selected the case study and directed the project scope.
+OpenAI Codex assisted with explanations, design suggestions, SQL and JavaScript drafts, and documentation. The student selected the case study and directed the project scope. The [AI-use declaration](ai_use_declaration.md) records the assistance and review status.
 
 ### Selected references
 

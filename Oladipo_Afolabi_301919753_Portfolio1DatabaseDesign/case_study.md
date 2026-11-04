@@ -4,7 +4,7 @@
 
 AfolabiPay is a fictional fintech platform for individual customers. It offers digital accounts, deposits, withdrawals, and transfers between its customers. Customers need to see their balances and payment history. Staff need enough detail to trace a payment, resolve a problem, or reverse a transaction when the rules allow it.
 
-The database will hold customer details, accounts, transactions, account postings, and audit events. A posting records the amount added to or taken from an account. Audit events record actions such as requesting a reversal or changing an account’s status. The users below need different access to that information.
+The database stores customer details, accounts, transactions, account postings, and audit events. A posting records the amount added to or taken from an account. Audit events record actions such as requesting a reversal or changing an account’s status. The users below need different access to that information.
 
 ## Database users
 
@@ -22,7 +22,7 @@ These roles explain who would use the database. Implementing logins, a user inte
 
 | Data | Examples |
 | --- | --- |
-| Customers | Customer ID, name, unique email, phone number, verification status, and registration time |
+| Customers | Customer ID, name, unique email, phone number, verification status, customer status (`active`, `deleted`, `suspended`), and creation/update times |
 | Accounts | Account ID, unique account number, owner, account kind, currency, and status |
 | Transactions | Payment reference, type, status, request and posting times, and the original transaction for a reversal |
 | Account postings | The transaction, affected account, and amount added or taken away |
@@ -53,10 +53,10 @@ These are the working assumptions for this course project:
 - Customer balances must stay at zero or above, including after a reversal. Debt recovery is outside the scope.
 - A completed transaction can be fully reversed once. Partial reversals and reversals of reversals are outside the scope.
 - Payments stay within AfolabiPay. Transfers to other banks, foreign exchange, loans, interest, fees, card networks, and a customer-facing application are outside the scope.
-- PostgreSQL will hold the main financial record. The MongoDB exercise will use fictional profiles and events from the same scenario. Automatic synchronisation between the two databases is outside the initial scope.
+- PostgreSQL holds the main financial record. The MongoDB exercise uses fictional profiles and events from the same scenario. Automatic synchronisation between the two databases is outside the scope.
 - Verification status is a sample-data attribute. There is no external identity-checking service. Request-retry handling and a production payment API are also outside the core scope.
 
-## How the design will be checked
+## Design checks
 
 Portfolio 1 includes made-up deposits, a transfer, a withdrawal, its reversal, and pending or failed requests. The [saved output](evidence/schema_validation.txt) shows the closing balances and the checks of payment entries and table rules. The reversal is part of the sample inserts. A function for users to request reversals has not been built.
 

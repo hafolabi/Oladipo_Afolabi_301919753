@@ -7,7 +7,7 @@
 ## Open the report
 
 - [Word report (.docx)](Oladipo_Afolabi_301919753_FinalReport.docx): open this file in Microsoft Word to edit and fine-tune it.
-- [Markdown copy (.md)](Oladipo_Afolabi_301919753_FinalReport.md): the same starting draft in plain text.
+- [Markdown report (.md)](Oladipo_Afolabi_301919753_FinalReport.md): a plain-text version for reading and editing in the repository.
 
 The report covers AfolabiPay, all five portfolios, selected results, the terminal menu, the GitHub link, references, and AI use. The tables are editable Word tables. Links lead to the full evidence in the repository. The report uses A4 pages, Arial body text, page numbers, and two page breaks to organise the summary into three pages.
 
@@ -23,7 +23,7 @@ The results come from the saved portfolio runs. Creating the report did not reru
 4. Confirm the GitHub link and lecturer access. The links use the repository's `main` branch, so commit and push the finished files before checking them from another account.
 5. Check the final report in Word's Print Layout view and keep it within 2–3 pages after editing. Save the final `.docx` for submission.
 
-The Word and Markdown copies match when generated. Later Word edits do not automatically update Markdown; copy across any changes if keeping both versions in step.
+The Word and Markdown reports are separate files. Edits to one do not automatically update the other; copy across any changes needed to keep them in step.
 
 ## Supporting notes
 
@@ -31,4 +31,4 @@ The Word and Markdown copies match when generated. Later Word edits do not autom
 - [AI-use declaration](ai_use_declaration.md): support used and the current review status.
 - [Full reference list](references.md): documentation, libraries, versions, datasets, and tools.
 
-The remaining submission steps are the student's own review and reflection, repository access confirmation, a final page-count check after edits, and the LMS upload.
+Before submission, complete the personal review and reflection, confirm repository access, check the final page count, and upload the required files to the LMS.

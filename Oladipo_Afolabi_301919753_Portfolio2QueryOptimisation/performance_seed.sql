@@ -4,11 +4,11 @@
 -- || joins text. LPAD adds leading zeroes, like String(number).padStart(...).
 BEGIN;
 
-INSERT INTO customers (first_name, last_name, email, phone, verification_status, created_at)
+INSERT INTO customers (first_name, last_name, email, phone, verification_status, created_at, updated_at)
 SELECT 'Example', 'Customer ' || number,
        'performance' || number || '@example.test',
        '+2340001' || LPAD(number::text, 6, '0'),
-       'verified', '2026-10-01 08:00:00+00'
+       'verified', '2026-10-01 08:00:00+00', '2026-10-01 08:00:00+00'
 FROM generate_series(1, 199) AS numbers(number);
 
 -- Each new customer gets one active account. Account numbers still have ten digits.

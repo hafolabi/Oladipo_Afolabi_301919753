@@ -26,9 +26,15 @@ All columns are required unless the description says they are nullable. The four
 | `email` | text | Unique email; another candidate key |
 | `phone` | text | Contact number; it does not have to be unique |
 | `verification_status` | text | `pending`, `verified`, or `rejected`; defaults to `pending` |
+| `status` | text | `active`, `deleted`, or `suspended`; defaults to `active` |
 | `created_at` | timestamptz | When the customer was added; defaults to the current time |
+| `updated_at` | timestamptz | Defaults to the current time; refreshed automatically on every customer update |
 
 Emails are lowercase with no spaces at either end. The caller prepares the email before insertion, and the database rejects it if it is not in that form. Real email or identity verification is outside this exercise.
+
+Customer status is separate from identity verification and account status. `deleted` marks a soft deletion: the customer row and linked financial history stay in the database. Changing customer status does not automatically change an account's status.
+
+The `customers_updated_at_trg` trigger sets `updated_at` to the update statement's timestamp, including when a status changes. Ordinary profile and status updates leave `created_at` unchanged. The sample data starts with matching creation and update times.
 
 ## Accounts
 
@@ -92,7 +98,7 @@ Primary keys, `UNIQUE`, and `NOT NULL` prevent duplicate identifiers and missing
 
 Foreign keys use `ON DELETE RESTRICT`: a referenced customer, account, or payment cannot be deleted. For example, an account with payment entries cannot be removed. This does not stop every possible edit to payment history.
 
-The primary and unique keys also create the starting indexes. Additional indexes will be considered in Portfolio 2.
+The primary and unique keys also create the starting indexes. Portfolio 2 adds and measures an index for the account-history query.
 
 ## Rules involving several rows
 
@@ -112,4 +118,4 @@ Transfer:     -200000 kobo
 Balance:       800000 kobo = NGN 8,000.00
 ```
 
-Bello's balance also includes his own deposit, withdrawal, and reversal; the full results are in the [README](README.md). We use exact integer amounts rather than floating-point money values. PostgreSQL returns `numeric` when summing `bigint`, so the total has more room than one entry. See [Numeric Types](https://www.postgresql.org/docs/18/datatype-numeric.html) and [Aggregate Functions](https://www.postgresql.org/docs/18/functions-aggregate.html).
+Bello's balance also includes his own deposit, withdrawal, and reversal; the full results are in the [README](README.md). Money is stored as exact integer amounts rather than floating-point values. PostgreSQL returns `numeric` when summing `bigint`, so the total has more room than one entry. See [Numeric Types](https://www.postgresql.org/docs/18/datatype-numeric.html) and [Aggregate Functions](https://www.postgresql.org/docs/18/functions-aggregate.html).

@@ -42,7 +42,7 @@ Read Committed prevents a **dirty read**, meaning a read of someone else's uncom
 
 If Ada has NGN 1,000, two requests for NGN 800 could both make their decision using the original amount. `SELECT ... FOR UPDATE` makes cooperating requests take turns on those account rows until commit or rollback.
 
-The waiting request must read the balance in a **new statement after getting the lock**. In our example, it then sees NGN 200 and refuses the second withdrawal. Accounts are locked in ID order to reduce deadlock risk between these payment paths.
+The waiting request must read the balance in a **new statement after getting the lock**. In this example, it then sees NGN 200 and refuses the second withdrawal. Accounts are locked in ID order to reduce deadlock risk between these payment paths.
 
 One terminal command opens separate A and B connections. An observer confirms PostgreSQL reports B waiting for A, then checks that only the first withdrawal was saved. Open [transaction_validation.txt](evidence/transaction_validation.txt) to follow the order, and the four numbered JSON files for the actual balances and rows.
 

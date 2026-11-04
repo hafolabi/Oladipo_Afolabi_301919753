@@ -30,9 +30,9 @@ The JavaScript files in `tools` run the checks automatically. You can read them 
 | `transaction_entries` | Money added to or taken from one account in a payment |
 | `audit_events` | A note about an action, including who did it and when |
 
-`transactions` and `transaction_entries` have different jobs. For example, the transaction says “Ada sent Bello NGN 2,000.” Its two entries say “take NGN 2,000 from Ada” and “add NGN 2,000 to Bello.” Keeping both entries lets us trace the money.
+`transactions` and `transaction_entries` have different jobs. For example, the transaction says “Ada sent Bello NGN 2,000.” Its two entries say “take NGN 2,000 from Ada” and “add NGN 2,000 to Bello.” Keeping both entries makes the movement of money traceable.
 
-## SQL words you will see
+## SQL terms used in the examples
 
 | SQL | Meaning here |
 | --- | --- |

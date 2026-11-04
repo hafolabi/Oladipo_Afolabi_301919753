@@ -1,6 +1,6 @@
 # Start here: reading and improving queries
 
-Portfolio 1 set up the tables. In Portfolio 2, we use those tables to answer a few questions, then see whether an index helps one query run faster.
+Portfolio 1 set up the tables. Portfolio 2 queries those tables, then compares one query before and after adding an index.
 
 Read [query_01_balances.sql](queries/query_01_balances.sql) first. It asks: **which accounts belong to Ada, and how much is in each one?** You can picture its result as an array returned by an API:
 
@@ -18,14 +18,14 @@ These two fields are an excerpt; the actual query also returns the status and ba
 1. `FROM customers AS customer` starts with customer rows. `AS customer` gives the table a shorter name within this query.
 2. `JOIN accounts` connects each account to its owner through `customer_id`.
 3. `LEFT JOIN transaction_entries` adds money entries while keeping accounts with no entries yet.
-4. `LEFT JOIN transactions` lets us check whether a payment completed.
+4. `LEFT JOIN transactions` links each entry to its payment so the query can check whether it completed.
 5. `WHERE customer.email = 'ada@example.test'` selects Ada.
 6. `GROUP BY account.account_id` groups each account's entries together.
 7. `SUM(CASE WHEN ... THEN ... ELSE 0 END)` adds amounts from completed payments. Other statuses contribute zero.
 8. `COALESCE(..., 0)` gives an unused account a zero balance. Dividing kobo by 100 gives naira.
 9. `ORDER BY` makes the account order predictable.
 
-PostgreSQL does this work and sends the result back to our JavaScript script.
+PostgreSQL does this work and returns the result to the JavaScript runner.
 
 ## The other three questions
 
@@ -43,16 +43,16 @@ Query 4 returns an empty array for the healthy sample. The automatic checks also
 
 The history query needs entries for one account. With many entries in the table, PostgreSQL can read the whole table to find them, or use an index to locate matching rows.
 
-An index is similar to a book's index: it helps locate what you want without reading every page. Our example adds this one:
+An index is similar to a book's index: it helps locate what you want without reading every page. This example adds an index on the account and transaction IDs:
 
 ```sql
 CREATE INDEX idx_entries_account_transaction
 ON transaction_entries (account_id, transaction_id);
 ```
 
-The order matters. `account_id` comes first because our query looks up an account. Portfolio 1's entry primary key starts with `transaction_id`, which suits looking up entries for a payment.
+The order matters. `account_id` comes first because the query looks up an account. Portfolio 1's entry primary key starts with `transaction_id`, which suits looking up entries for a payment.
 
-PostgreSQL still chooses the plan. We leave its normal scan options enabled and check the saved plan to see what it actually used. An index takes storage and needs maintaining when entries change, so adding one has a cost too.
+PostgreSQL still chooses the plan. The comparison keeps its normal scan options enabled; the saved plans show which scans it chose. An index takes storage and needs maintaining when entries change, so adding one has a cost too.
 
 ## What EXPLAIN shows
 
@@ -78,7 +78,7 @@ const result = await database.query(queries.history);
 const payments = result.rows;
 ```
 
-Here, `queries.history` holds the SQL read from the history file. `await` waits for PostgreSQL, and `result.rows` gives us an array of payment objects.
+Here, `queries.history` holds the SQL read from the history file. `await` waits for PostgreSQL, and `result.rows` contains an array of payment objects.
 
 | Helper | What it does |
 | --- | --- |
