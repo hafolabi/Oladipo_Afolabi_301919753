@@ -17,7 +17,7 @@ I’ll use PostgreSQL for the relational activities and MongoDB for NoSQL, keepi
 | Portfolio 3: Transactions and Concurrency | 7 | Commit; rollback; isolation; concurrency issue or control mechanism; screenshots/output | Native PostgreSQL commit, rollback, Read Committed, and two-session locking checks passed; outputs and explanations saved |
 | Portfolio 4: NoSQL and Advanced Data Models | 7 | NoSQL model for the same case study; document/key-value/column/graph example; implementation evidence; suitability explanation | Two MongoDB collections and three queries implemented; checks passed on MongoDB 8.0.16; model explanation and outputs saved |
 | Portfolio 5: Distributed and Cloud Database Exercise | 6 | Discussion or setup for the same case study covering replication, sharding, availability, consistency, or deployment evidence | Sourced AfolabiPay discussion and proposed diagram complete; replication, availability, consistency, and sharding covered; no deployment |
-| Final Documentation | 6 | 2–3 page summary; GitHub link; selected organisation; screenshots/evidence; individual reflection; references; AI-use declaration because AI has been used | Report plan ready; final report still to write |
+| Final Documentation | 6 | 2–3 page summary; GitHub link; selected organisation; screenshots/evidence; individual reflection; references; AI-use declaration because AI has been used | Editable Word and Markdown drafts created, with all five portfolios and selected outputs; personal reflection/review notes and access confirmation still to finish |
 | **Total** | **40** | | |
 
 ## Keeping the work within scope
@@ -37,7 +37,7 @@ The user roles, verification status, and balanced account postings in the case s
 
 The separate design notes and working files organise the supporting evidence in the repository. They do not increase the 2–3 page length of the LMS summary. Section 8 still calls for clear explanations of implementation and testing, so the shorter scope keeps those explanations and the saved outputs.
 
-The [terminal menu](README.md#run-the-terminal-menu) lets the student or lecturer list existing mock accounts and supply values for history, deposits, withdrawals, and transfers. It reuses the existing SQL payment implementation. This is an agreed usability addition; it does not require a frontend or expand the assignment into a complete banking application.
+The [terminal menu](README.md#run-the-terminal-menu) lets the student or lecturer list existing mock accounts and supply values for history, deposits, withdrawals, and transfers. It reuses the existing SQL payment implementation. This is an agreed usability addition; a graphical interface and a complete banking application are outside the assignment scope.
 
 ## How the portfolio is marked
 
@@ -96,7 +96,7 @@ The [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/reflection_n
 
 The LMS submission is a 2–3 page document covering all five activities, the selected organisation, and the GitHub link. The assessor must have repository access before submission. Screenshots or other supporting evidence must be included where required.
 
-I’ll keep an editable Word document (`.docx`) and a Markdown copy (`.md`). These are my preferred formats; the brief does not specify a file type. Once the practical work is finished, the report will be proofread and checked for consistent headings, spacing, table and image alignment, captions, links, and page count.
+The [final documentation folder](Oladipo_Afolabi_301919753_FinalDocumentation/README.md) now contains an editable Word draft (`.docx`) and a Markdown copy (`.md`). These are my preferred formats; the brief does not specify a file type. After completing the highlighted personal notes and fine-tuning the text, the report needs a final proofread and page-count check in Word.
 
 ## Final submission checks
 

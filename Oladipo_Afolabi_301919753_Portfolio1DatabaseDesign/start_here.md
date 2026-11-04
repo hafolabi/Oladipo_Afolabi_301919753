@@ -1,6 +1,6 @@
 # Start here: reading the database design
 
-If you are coming from frontend work, begin with the data you would expect an API to return. A table stores rows with the same set of columns. For this example, you can picture rows as JavaScript objects:
+A table stores rows with the same set of columns. These JavaScript objects illustrate one customer and an account linked to that customer:
 
 ```js
 const customer = { customer_id: 1, first_name: 'Ada' };

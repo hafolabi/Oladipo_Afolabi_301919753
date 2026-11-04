@@ -35,7 +35,7 @@ Portfolio 3 uses a project-local native PostgreSQL server with separate connecti
 
 Portfolio 4 now has two MongoDB collections, three checked queries, saved outputs, and a short explanation of embedding and references. Its [README](Oladipo_Afolabi_301919753_Portfolio4NoSQL/README.md) maps the work to the brief and provides the run command. The checks passed on MongoDB 8.0.16 on 30 October 2026.
 
-Portfolio 5 has a sourced [distributed/cloud discussion](Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/distributed_discussion.md) covering replication, availability, consistency, and sharding. It includes a proposed architecture diagram and uses the discussion route allowed by the brief. No distributed cluster or cloud deployment was performed. All five activity deliverables are present. The terminal menu is also implemented; the final report, personal reflection, and repository access check remain.
+Portfolio 5 has a sourced [distributed/cloud discussion](Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/distributed_discussion.md) covering replication, availability, consistency, and sharding. It includes a proposed architecture diagram and uses the discussion route allowed by the brief. No distributed cluster or cloud deployment was performed. All five activity deliverables and the terminal menu are present. An editable [Word report draft](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx) now brings the work together; personal review, reflection details, and the repository access check remain.
 
 The [assignment checklist](assignment_requirements.md) keeps the requirements and marking rubric in one place. The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/case_study.md) explains the organisation, its users, and the database requirements.
 
@@ -119,8 +119,8 @@ The menu checks passed on 30 October 2026: a custom transfer, deposit and withdr
 ## What comes next
 
 1. Review and repeat the Portfolio 1–4 checks, and explain those results and Portfolio 5's proposed design in my own words.
-2. Write my personal reflection and update the declaration with my own review and verification.
-3. Write the final 2–3 page summary, covering all five activities, AfolabiPay, the GitHub link, and the required evidence. Prepare editable Word and Markdown versions for the LMS submission.
+2. Open the [Word report](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx), finish the highlighted personal reflection and review notes, and update the declaration with my own verification.
+3. Fine-tune the report in Word, check the 2–3 page limit, confirm lecturer access to the committed and pushed repository, and prepare the LMS submission. The [final documentation guide](Oladipo_Afolabi_301919753_FinalDocumentation/README.md) explains the remaining edits.
 
 Git is initialised with an `origin` remote. Before submission, I’ll check that the GitHub repository is private and the assessor has access. As the work develops, I’ll commit useful milestones and keep the commands, software versions, and results with each activity so the experiments can be repeated.
 

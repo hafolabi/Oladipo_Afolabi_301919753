@@ -4,7 +4,7 @@
 
 **Case study:** AfolabiPay
 
-**Progress:** The sourced discussion was completed on 30 October 2026. The architecture is proposed; no cluster or cloud service was deployed.
+**Progress:** The sourced discussion was completed on 31 October 2026. The architecture is proposed; no cluster or cloud service was deployed.
 
 The brief permits a distributed/cloud database **discussion or setup**. This activity takes the discussion route. Read [distributed_discussion.md](distributed_discussion.md) for the completed work and its source links.
 

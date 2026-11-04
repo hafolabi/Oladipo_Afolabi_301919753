@@ -6,7 +6,7 @@
 
 **Progress:** Design complete; focused schema and sample-data checks passed on 30 October 2026.
 
-This activity covers the case study, ER diagram, relational schema, keys, constraints, and normalisation required by the brief. If you are new to SQL, start with [the reading guide](start_here.md).
+This activity covers the case study, ER diagram, relational schema, keys, constraints, and normalisation required by the brief. Start with [the reading guide](start_here.md).
 
 ## Required work and evidence
 
