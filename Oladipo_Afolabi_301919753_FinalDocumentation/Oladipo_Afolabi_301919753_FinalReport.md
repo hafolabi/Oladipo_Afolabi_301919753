@@ -86,7 +86,7 @@ The payment examples show the difference between finding a negative balance afte
 
 ### AI use and verification
 
-OpenAI Codex assisted with explanations, design suggestions, SQL and JavaScript drafts, and documentation. The student selected the case study and directed the project scope. The [AI-use declaration](ai_use_declaration.md) records the assistance and review status.
+The student selected the case study and directed the project scope and requested changes. OpenAI Codex provided minimal technical assistance during development and verification. The [AI-use declaration](ai_use_declaration.md) records the tasks supported and the review status.
 
 ### Selected references
 

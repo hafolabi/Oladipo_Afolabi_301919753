@@ -1,7 +1,7 @@
 # AI Use Declaration
 
-OpenAI Codex provided database explanations, design suggestions, and SQL drafts. Support also covered sample data, diagram generation, and automated checks.
+Oladipo Afolabi selected the Bank / Fintech case study, set the AfolabiPay project scope, and directed the requested changes.
 
-The student selected the Bank / Fintech case study, directed the project scope, and reviewed the wording and explanations.
+OpenAI Codex provided assistance with design suggestions, SQL and JavaScript drafts and revisions, diagram generation and updates, documentation edits, and automated checks. For example, the customer `status` constraint and `updated_at` trigger were added and checked against the existing queries and transaction tests with Codex assistance.
 
-The saved [Portfolio 1 results](../Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/evidence/schema_validation.txt), [Portfolio 2 results](../Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/evidence/query_validation.txt), [Portfolio 3 results](../Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/evidence/transaction_validation.txt), and [Portfolio 4 results](../Oladipo_Afolabi_301919753_Portfolio4NoSQL/evidence/validation.txt) come from automated checks run with Codex. Independent review of the code, diagrams, and discussion, repeat checks, and personal reflection are still to complete. The student remains responsible for understanding, checking, and explaining the submitted work.
+The saved [Portfolio 1 results](../Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/evidence/schema_validation.txt), [Portfolio 2 results](../Oladipo_Afolabi_301919753_Portfolio2QueryOptimisation/evidence/query_validation.txt), [Portfolio 3 results](../Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/evidence/transaction_validation.txt), and [Portfolio 4 results](../Oladipo_Afolabi_301919753_Portfolio4NoSQL/evidence/validation.txt) record automated validation performed with Codex. Independent review of the code, diagrams, and discussion, repeat checks, and the personal reflection remain to be completed before submission.
