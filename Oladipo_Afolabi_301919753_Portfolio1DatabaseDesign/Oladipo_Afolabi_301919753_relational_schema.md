@@ -43,7 +43,7 @@ The `customers_updated_at_trg` trigger sets `updated_at` to the update statement
 | `account_id` | bigint | PK, generated automatically |
 | `account_number` | text | Unique ten-digit number; another candidate key |
 | `customer_id` | bigint | FK to `customers`; nullable for clearing |
-| `account_kind` | text | `customer` or `system_clearing` |
+| `account_type` | text | `customer` or `system_clearing` |
 | `currency_code` | text | Always `NGN`, which is also the default |
 | `status` | text | `active`, `frozen`, or `closed`; defaults to `active` |
 | `opened_at` | timestamptz | When the account was opened; defaults to the current time |

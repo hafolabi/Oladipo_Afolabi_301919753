@@ -26,7 +26,7 @@
     },
     {
       "table_name": "accounts",
-      "column_name": "account_kind",
+      "column_name": "account_type",
       "data_type": "text",
       "is_nullable": "NO",
       "is_identity": "NO",
@@ -273,11 +273,6 @@
     },
     {
       "relation": "accounts",
-      "name": "accounts_account_kind_not_null",
-      "definition": "NOT NULL account_kind"
-    },
-    {
-      "relation": "accounts",
       "name": "accounts_account_number_key",
       "definition": "UNIQUE (account_number)"
     },
@@ -285,6 +280,11 @@
       "relation": "accounts",
       "name": "accounts_account_number_not_null",
       "definition": "NOT NULL account_number"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_account_type_not_null",
+      "definition": "NOT NULL account_type"
     },
     {
       "relation": "accounts",
@@ -303,11 +303,6 @@
     },
     {
       "relation": "accounts",
-      "name": "accounts_kind_ck",
-      "definition": "CHECK ((account_kind = ANY (ARRAY['customer'::text, 'system_clearing'::text])))"
-    },
-    {
-      "relation": "accounts",
       "name": "accounts_number_format_ck",
       "definition": "CHECK ((account_number ~ '^[0-9]{10}$'::text))"
     },
@@ -319,7 +314,7 @@
     {
       "relation": "accounts",
       "name": "accounts_ownership_ck",
-      "definition": "CHECK ((((account_kind = 'customer'::text) AND (customer_id IS NOT NULL)) OR ((account_kind = 'system_clearing'::text) AND (customer_id IS NULL))))"
+      "definition": "CHECK ((((account_type = 'customer'::text) AND (customer_id IS NOT NULL)) OR ((account_type = 'system_clearing'::text) AND (customer_id IS NULL))))"
     },
     {
       "relation": "accounts",
@@ -335,6 +330,11 @@
       "relation": "accounts",
       "name": "accounts_status_not_null",
       "definition": "NOT NULL status"
+    },
+    {
+      "relation": "accounts",
+      "name": "accounts_type_ck",
+      "definition": "CHECK ((account_type = ANY (ARRAY['customer'::text, 'system_clearing'::text])))"
     },
     {
       "relation": "audit_events",

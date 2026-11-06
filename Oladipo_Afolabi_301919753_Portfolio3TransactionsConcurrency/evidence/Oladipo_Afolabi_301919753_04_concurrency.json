@@ -2,19 +2,19 @@
   "before": [
     {
       "account_number": "0000000000",
-      "account_kind": "system_clearing",
+      "account_type": "system_clearing",
       "balance_minor": "-100000",
       "balance_ngn": "-1000.00"
     },
     {
       "account_number": "1000000001",
-      "account_kind": "customer",
+      "account_type": "customer",
       "balance_minor": "100000",
       "balance_ngn": "1000.00"
     },
     {
       "account_number": "1000000002",
-      "account_kind": "customer",
+      "account_type": "customer",
       "balance_minor": "0",
       "balance_ngn": "0.00"
     }
@@ -39,19 +39,19 @@
   "after": [
     {
       "account_number": "0000000000",
-      "account_kind": "system_clearing",
+      "account_type": "system_clearing",
       "balance_minor": "-20000",
       "balance_ngn": "-200.00"
     },
     {
       "account_number": "1000000001",
-      "account_kind": "customer",
+      "account_type": "customer",
       "balance_minor": "20000",
       "balance_ngn": "200.00"
     },
     {
       "account_number": "1000000002",
-      "account_kind": "customer",
+      "account_type": "customer",
       "balance_minor": "0",
       "balance_ngn": "0.00"
     }

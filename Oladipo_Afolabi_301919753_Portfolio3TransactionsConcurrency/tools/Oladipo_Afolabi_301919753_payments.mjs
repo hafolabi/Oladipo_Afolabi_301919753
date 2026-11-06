@@ -44,18 +44,18 @@ export async function writePayment(database, payment) {
     throw new Error('Both accounts must be active.');
   }
 
-  if (type === 'transfer' && (source.account_kind !== 'customer' || destination.account_kind !== 'customer')) {
+  if (type === 'transfer' && (source.account_type !== 'customer' || destination.account_type !== 'customer')) {
     throw new Error('A transfer needs two customer accounts.');
   }
-  if (type === 'deposit' && (source.account_kind !== 'system_clearing' || destination.account_kind !== 'customer')) {
+  if (type === 'deposit' && (source.account_type !== 'system_clearing' || destination.account_type !== 'customer')) {
     throw new Error('A deposit must move from clearing to a customer account.');
   }
-  if (type === 'withdrawal' && (source.account_kind !== 'customer' || destination.account_kind !== 'system_clearing')) {
+  if (type === 'withdrawal' && (source.account_type !== 'customer' || destination.account_type !== 'system_clearing')) {
     throw new Error('A withdrawal must move from a customer account to clearing.');
   }
 
   // Take the lock first, then read the balance. Do not combine these two queries.
-  if (source.account_kind === 'customer') {
+  if (source.account_type === 'customer') {
     const balanceResult = await database.query(queries.balance, [sourceAccountNumber]);
     const availableMinor = balanceResult.rows[0].balance_minor;
 

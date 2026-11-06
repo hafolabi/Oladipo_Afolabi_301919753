@@ -14,7 +14,7 @@ VALUES
 
 -- Account IDs: 1 = clearing, 2 = Ada, 3 = Bello, 4 = Ada's spare, 5 = Chika.
 -- customer_id points to the customer above. NULL means there is no customer owner.
-INSERT INTO accounts (account_number, customer_id, account_kind, status, opened_at)
+INSERT INTO accounts (account_number, customer_id, account_type, status, opened_at)
 VALUES
     ('0000000000', NULL, 'system_clearing', 'active', '2026-10-01 09:00:00+00'),
     ('1000000001', 1, 'customer', 'active', '2026-10-01 09:00:00+00'),

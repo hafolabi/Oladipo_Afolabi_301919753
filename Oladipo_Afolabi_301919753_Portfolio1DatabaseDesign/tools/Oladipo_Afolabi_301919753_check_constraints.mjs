@@ -13,7 +13,7 @@ const examples = [
   },
   {
     name: 'customer account with no owner (CHECK)',
-    sql: `INSERT INTO accounts (account_number, account_kind) VALUES ('1000000098', 'customer')`,
+    sql: `INSERT INTO accounts (account_number, account_type) VALUES ('1000000098', 'customer')`,
     expectedCode: '23514',
   },
   {
@@ -39,7 +39,7 @@ export async function checkConstraints(database, log) {
     BEGIN;
     INSERT INTO customers (first_name, last_name, email, phone, verification_status)
     VALUES ('Test', 'Customer', lower(trim('  TEST@EXAMPLE.TEST  ')), '+2340000000099', 'verified');
-    INSERT INTO accounts (account_number, customer_id, account_kind)
+    INSERT INTO accounts (account_number, customer_id, account_type)
     SELECT '1000000099', customer_id, 'customer' FROM customers WHERE email = 'test@example.test';
     ROLLBACK;
   `);

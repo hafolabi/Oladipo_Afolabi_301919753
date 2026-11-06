@@ -22,14 +22,14 @@ FROM transactions AS payment
 JOIN transaction_entries AS entry ON entry.transaction_id = payment.transaction_id
 JOIN accounts AS account ON account.account_id = entry.account_id
 WHERE payment.status = 'posted' AND (
-    (payment.transaction_type = 'transfer' AND account.account_kind <> 'customer')
+    (payment.transaction_type = 'transfer' AND account.account_type <> 'customer')
     OR (payment.transaction_type = 'deposit' AND (
-        (entry.amount_minor > 0 AND account.account_kind <> 'customer')
-        OR (entry.amount_minor < 0 AND account.account_kind <> 'system_clearing')
+        (entry.amount_minor > 0 AND account.account_type <> 'customer')
+        OR (entry.amount_minor < 0 AND account.account_type <> 'system_clearing')
     ))
     OR (payment.transaction_type = 'withdrawal' AND (
-        (entry.amount_minor < 0 AND account.account_kind <> 'customer')
-        OR (entry.amount_minor > 0 AND account.account_kind <> 'system_clearing')
+        (entry.amount_minor < 0 AND account.account_type <> 'customer')
+        OR (entry.amount_minor > 0 AND account.account_type <> 'system_clearing')
     ))
 )
 ORDER BY transaction_reference, problem;

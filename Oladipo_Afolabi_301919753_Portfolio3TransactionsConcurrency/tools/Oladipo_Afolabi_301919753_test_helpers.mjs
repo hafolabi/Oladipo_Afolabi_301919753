@@ -55,7 +55,7 @@ export async function checkLedger(database) {
   assert.deepEqual(problemsResult.rows, []);
   const balances = await getBalances(database);
   for (const account of balances) {
-    if (account.account_kind === 'customer') {
+    if (account.account_type === 'customer') {
       assert.ok(BigInt(account.balance_minor) >= 0n, `Negative customer balance: ${account.account_number}`);
     }
   }

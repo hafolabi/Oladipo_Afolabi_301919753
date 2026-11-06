@@ -12,7 +12,7 @@ SELECT 'Example', 'Customer ' || number,
 FROM generate_series(1, 199) AS numbers(number);
 
 -- Each new customer gets one active account. Account numbers still have ten digits.
-INSERT INTO accounts (account_number, customer_id, account_kind, opened_at)
+INSERT INTO accounts (account_number, customer_id, account_type, opened_at)
 SELECT '8' || LPAD(number::text, 9, '0'), customer.customer_id,
        'customer', '2026-10-01 09:00:00+00'
 FROM generate_series(1, 199) AS numbers(number)

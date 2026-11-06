@@ -23,7 +23,7 @@ These roles explain who would use the database. Implementing logins, a user inte
 | Data | Examples |
 | --- | --- |
 | Customers | Customer ID, name, unique email, phone number, verification status, customer status (`active`, `deleted`, `suspended`), and creation/update times |
-| Accounts | Account ID, unique account number, owner, account kind, currency, and status |
+| Accounts | Account ID, unique account number, owner, account type, currency, and status |
 | Transactions | Payment reference, type, status, request and posting times, and the original transaction for a reversal |
 | Account postings | The transaction, affected account, and amount added or taken away |
 | Audit events | When an action happened, who performed it, the related transaction where relevant, and an explanation |

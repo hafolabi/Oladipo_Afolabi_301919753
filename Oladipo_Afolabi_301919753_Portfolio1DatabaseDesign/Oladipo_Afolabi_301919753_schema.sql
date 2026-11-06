@@ -50,18 +50,18 @@ CREATE TABLE accounts (
     account_id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     account_number text NOT NULL UNIQUE,
     customer_id bigint REFERENCES customers (customer_id) ON DELETE RESTRICT,
-    account_kind text NOT NULL,
+    account_type text NOT NULL,
     currency_code text NOT NULL DEFAULT 'NGN',
     status text NOT NULL DEFAULT 'active',
     opened_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
     -- Store account numbers as text so the first zero is kept.
     -- This pattern accepts exactly ten digits.
     CONSTRAINT accounts_number_format_ck CHECK (account_number ~ '^[0-9]{10}$'),
-    CONSTRAINT accounts_kind_ck CHECK (account_kind IN ('customer', 'system_clearing')),
+    CONSTRAINT accounts_type_ck CHECK (account_type IN ('customer', 'system_clearing')),
     -- Customer accounts need an owner. The clearing account has no customer.
     CONSTRAINT accounts_ownership_ck CHECK (
-        (account_kind = 'customer' AND customer_id IS NOT NULL)
-        OR (account_kind = 'system_clearing' AND customer_id IS NULL)
+        (account_type = 'customer' AND customer_id IS NOT NULL)
+        OR (account_type = 'system_clearing' AND customer_id IS NULL)
     ),
     CONSTRAINT accounts_currency_ck CHECK (currency_code = 'NGN'),
     CONSTRAINT accounts_status_ck CHECK (status IN ('active', 'frozen', 'closed'))

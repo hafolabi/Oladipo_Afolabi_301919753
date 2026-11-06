@@ -25,7 +25,7 @@ async function showAccounts(database) {
 async function askAccount(database, prompt) {
   const accountNumber = await ask(prompt);
   const result = await database.query(
-    "SELECT account_number FROM accounts WHERE account_number = $1 AND account_kind = 'customer'",
+    "SELECT account_number FROM accounts WHERE account_number = $1 AND account_type = 'customer'",
     [accountNumber],
   );
   if (result.rows.length === 0) {

@@ -112,7 +112,7 @@ try {
     FROM accounts AS account
     LEFT JOIN transaction_entries AS entry ON entry.account_id = account.account_id
     LEFT JOIN transactions AS payment ON payment.transaction_id = entry.transaction_id
-    WHERE account.account_kind = 'customer'
+    WHERE account.account_type = 'customer'
     GROUP BY account.account_id
     HAVING COALESCE(SUM(CASE WHEN payment.status = 'posted' THEN entry.amount_minor ELSE 0 END), 0) < 0
   `);

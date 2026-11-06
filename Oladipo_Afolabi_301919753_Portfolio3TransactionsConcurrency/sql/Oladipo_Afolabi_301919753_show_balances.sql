@@ -1,7 +1,7 @@
 -- Include unused accounts and the clearing account so both sides can be checked.
 SELECT
     account.account_number,
-    account.account_kind,
+    account.account_type,
     COALESCE(SUM(
         CASE WHEN payment.status = 'posted' THEN entry.amount_minor ELSE 0 END
     ), 0)::text AS balance_minor,

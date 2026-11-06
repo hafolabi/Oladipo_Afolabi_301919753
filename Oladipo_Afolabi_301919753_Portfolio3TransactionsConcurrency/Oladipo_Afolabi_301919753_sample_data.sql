@@ -7,7 +7,7 @@ VALUES
     ('Ada', 'Okafor', 'ada@example.test', '+2340000000001', 'verified'),
     ('Bello', 'Musa', 'bello@example.test', '+2340000000002', 'verified');
 
-INSERT INTO accounts (account_number, customer_id, account_kind, status)
+INSERT INTO accounts (account_number, customer_id, account_type, status)
 VALUES
     ('0000000000', NULL, 'system_clearing', 'active'),
     ('1000000001', 1, 'customer', 'active'),
