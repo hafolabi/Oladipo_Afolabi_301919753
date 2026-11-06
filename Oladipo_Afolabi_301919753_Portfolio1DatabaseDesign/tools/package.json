@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "verify": "node verify.mjs"
+    "verify": "node Oladipo_Afolabi_301919753_verify.mjs"
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.12"

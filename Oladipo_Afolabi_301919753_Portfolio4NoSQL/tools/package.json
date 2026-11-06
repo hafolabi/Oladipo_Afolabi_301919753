@@ -6,7 +6,7 @@
     "node": ">=20.19.0"
   },
   "scripts": {
-    "verify": "node run_queries.mjs"
+    "verify": "node Oladipo_Afolabi_301919753_run_queries.mjs"
   },
   "devDependencies": {
     "mongodb": "6.20.0",

@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "verify": "node run_transactions.mjs"
+    "verify": "node Oladipo_Afolabi_301919753_run_transactions.mjs"
   },
   "devDependencies": {
     "embedded-postgres": "18.4.0-beta.17",
