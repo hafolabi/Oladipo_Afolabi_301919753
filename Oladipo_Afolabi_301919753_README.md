@@ -9,7 +9,7 @@ AfolabiPay is a fictional fintech platform for deposits, withdrawals, and transf
 
 The same case study connects all five activities: **PostgreSQL for Portfolios 1–3**, **MongoDB for Portfolio 4**, and a discussion of distributed and cloud databases in Portfolio 5. This covers the SQL and NoSQL work in the brief.
 
-The portfolio follows Section 4 of the brief: database design, SQL queries and an optimisation example, transaction and concurrency examples, one NoSQL model, and a distributed/cloud discussion. The [scope notes](Oladipo_Afolabi_301919753_assignment_requirements.md) distinguish the required work from optional extensions.
+The portfolio follows Section 4 of the brief: database design, SQL queries and an optimisation example, transaction and concurrency examples, one NoSQL model, and a distributed/cloud discussion. The [scope notes](Oladipo_Afolabi_301919753_assignment_requirements.md) map the implemented work to the assignment requirements.
 
 ## Finding the work
 

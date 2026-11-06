@@ -30,7 +30,7 @@ All columns are required unless the description says they are nullable. The four
 | `created_at` | timestamptz | When the customer was added; defaults to the current time |
 | `updated_at` | timestamptz | Defaults to the current time; refreshed automatically on every customer update |
 
-Emails are lowercase with no spaces at either end. The caller prepares the email before insertion, and the database rejects it if it is not in that form. Real email or identity verification is outside this exercise.
+Emails are lowercase with no spaces at either end. The caller prepares the email before insertion, and the database rejects it if it is not in that form. Customer identities and contact details are fictional sample data.
 
 Customer status is separate from identity verification and account status. `deleted` marks a soft deletion: the customer row and linked financial history stay in the database. Changing customer status does not automatically change an account's status.
 
@@ -90,7 +90,7 @@ A completed payment has two entries on different accounts, with equal amounts an
 | `occurred_at` | timestamptz | When it happened; defaults to the current time |
 | `details` | text | A short explanation |
 
-A payment can have several audit events. An event can also describe something else, such as an account being frozen. The actor is a descriptive label; a working login system is outside this portfolio.
+A payment can have several audit events. An event can also describe an account being frozen, as shown in the sample data. The actor is a descriptive label for the person or script associated with the event.
 
 ## Which rules the tables enforce
 
@@ -104,7 +104,7 @@ The primary and unique keys also create the starting indexes. Portfolio 2 adds a
 
 [Oladipo_Afolabi_301919753_verify.sql](Oladipo_Afolabi_301919753_verify.sql) checks that the sample's completed payments have two entries adding up to zero. The [JavaScript runner](tools/Oladipo_Afolabi_301919753_verify.mjs) also checks its row counts and balances. These are checks of this sample, not rules automatically applied to every possible write.
 
-A row-level `CHECK` cannot enforce all rules involving other rows; see PostgreSQL's [constraint documentation](https://www.postgresql.org/docs/18/ddl-constraints.html). Portfolio 3 demonstrates active-account checks, sufficient funds, and locks inside payment transactions. Automated account opening and reversal requests are outside the implemented exercises.
+A row-level `CHECK` cannot enforce all rules involving other rows; see PostgreSQL's [constraint documentation](https://www.postgresql.org/docs/18/ddl-constraints.html). Portfolio 3 demonstrates active-account checks, sufficient funds, and locks inside deposit, withdrawal, and transfer transactions.
 
 ## Calculating a balance
 

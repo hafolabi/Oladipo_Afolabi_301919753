@@ -58,6 +58,6 @@ Ada deposits NGN 10,000 and sends Bello NGN 2,000. Bello also deposits NGN 5,000
 
 ## Scope
 
-This activity designs and checks the tables. It does not implement a complete banking application. Some rules, such as checking available funds across payments, need more than a row-level constraint. [Portfolio 3](../Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/Oladipo_Afolabi_301919753_README.md) demonstrates payment checks and account locking.
+This activity designs and checks the tables. Some rules, such as checking available funds across payments, need more than a row-level constraint. [Portfolio 3](../Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/Oladipo_Afolabi_301919753_README.md) demonstrates payment checks and account locking.
 
 The diagram helper supports the required ER diagram. From this activity's folder, `python3 tools/Oladipo_Afolabi_301919753_export_diagram.py` regenerates the SVG from the Mermaid attributes. It does not change the database.

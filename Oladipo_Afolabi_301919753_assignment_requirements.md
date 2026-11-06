@@ -24,20 +24,20 @@ The project uses PostgreSQL for the relational activities and MongoDB for NoSQL,
 
 Section 4 of the brief sets out the evidence for each activity. The table below follows those deliverables. The number of queries, documents, and examples is a project choice; the screenshots do not set minimum counts or dataset sizes.
 
-| Activity | Core work for this portfolio | Optional extensions |
-| --- | --- | --- |
-| Portfolio 1 | Describe AfolabiPay; provide the ER diagram, relational schema, keys, constraints, and normalisation explanation. Build a small database that can also support Portfolios 2 and 3. | A login system, detailed access-control implementation, real customer verification, or a complete banking application |
-| Portfolio 2 | Run a small set of relevant SQL queries, save their results, and explain one before-and-after optimisation comparison using execution plans and an index or query change. | A large benchmark suite, load testing, or tuning every query |
-| Portfolio 3 | Demonstrate commit, rollback, isolation, and one concurrency issue or control mechanism, with outputs and a short explanation. The control example uses account-row locking. | Showing both an unsafe and corrected implementation, request-retry handling, automatic deadlock retries, or durable failure-logging workflows |
-| Portfolio 4 | Implement one MongoDB document model for the same case study, insert sample documents, run queries, save outputs, and explain why the model suits those queries. | Additional NoSQL model types, extra collections, advanced validation, aggregation exercises, or a separate MongoDB performance study |
-| Portfolio 5 | Write a case-based discussion of replication, availability, and consistency, with a brief assessment of sharding. The brief allows discussion or setup; this activity takes the discussion route. | A deployed cluster, cloud spending, a failover demonstration, backup/restore drills, or a provider cost study |
-| Final documentation | Produce the 2–3 page LMS summary with all five activities, the organisation, GitHub link, selected evidence, reflection, references, and AI-use declaration. | A longer technical report or reproducing every script and screenshot in the summary |
+| Activity | Core work for this portfolio |
+| --- | --- |
+| Portfolio 1 | Describe AfolabiPay; provide the ER diagram, relational schema, keys, constraints, and normalisation explanation. Build a small database that can also support Portfolios 2 and 3. |
+| Portfolio 2 | Run a small set of relevant SQL queries, save their results, and explain one before-and-after optimisation comparison using execution plans and an index or query change. |
+| Portfolio 3 | Demonstrate commit, rollback, isolation, and one concurrency issue or control mechanism, with outputs and a short explanation. The control example uses account-row locking. |
+| Portfolio 4 | Implement one MongoDB document model for the same case study, insert sample documents, run queries, save outputs, and explain why the model suits those queries. |
+| Portfolio 5 | Write a case-based discussion of replication, availability, and consistency, with a brief assessment of sharding. The brief allows discussion or setup; this activity takes the discussion route. |
+| Final documentation | Produce the 2–3 page LMS summary with all five activities, the organisation, GitHub link, selected evidence, reflection, references, and AI-use declaration. |
 
-The user roles, verification status, and balanced account postings in the case study are modelling choices. They help explain the data and payment examples. They do not require a working user interface, external verification service, or production banking system. Word and Markdown versions remain the chosen final formats.
+The user roles, verification status, and balanced account postings in the case study explain the fictional customer records and payment examples. Word and Markdown versions are the chosen final formats.
 
 The separate design notes and working files organise the supporting evidence in the repository. They do not increase the 2–3 page length of the LMS summary. Section 8 still calls for clear explanations of implementation and testing, so the shorter scope keeps those explanations and the saved outputs.
 
-The [terminal menu](Oladipo_Afolabi_301919753_README.md#run-the-terminal-menu) lets the student or lecturer list existing mock accounts and supply values for history, deposits, withdrawals, and transfers. It reuses the existing SQL payment implementation and provides a simple way to try it. A graphical interface and a complete banking application are outside the assignment scope.
+The [terminal menu](Oladipo_Afolabi_301919753_README.md#run-the-terminal-menu) lets the student or lecturer list existing mock accounts and supply values for history, deposits, withdrawals, and transfers. It reuses the existing SQL payment implementation and provides a simple way to try it.
 
 ## How the portfolio is marked
 

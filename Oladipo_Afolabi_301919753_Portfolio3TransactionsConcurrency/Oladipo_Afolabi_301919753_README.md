@@ -71,7 +71,7 @@ The checks directly support the four demonstrations. Basic payment validation an
 
 The payment helper supports the three operations used here: a deposit sets up starting funds, a transfer demonstrates commit/rollback/isolation, and withdrawals demonstrate locking. The terminal menu reuses these functions with values supplied by the user.
 
-This is a focused local demonstration. Every cooperating payment writer must follow the same lock-then-check order; arbitrary direct SQL can bypass it. Locking clearing too means some otherwise unrelated payments can wait for each other. Crash recovery, every isolation level, reversal workflows, and a full banking application are outside this activity.
+This is a focused local demonstration. Every cooperating payment writer must follow the same lock-then-check order; arbitrary direct SQL can bypass it. Locking clearing too means some otherwise unrelated payments can wait for each other.
 
 [Oladipo_Afolabi_301919753_server_log.txt](evidence/Oladipo_Afolabi_301919753_server_log.txt) records startup, the deliberate division-by-zero error, and shutdown. Rerunning replaces the generated results and changes timestamps and process IDs.
 

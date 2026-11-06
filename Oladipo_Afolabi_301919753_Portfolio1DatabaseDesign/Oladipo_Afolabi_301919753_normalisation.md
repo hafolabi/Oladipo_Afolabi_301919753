@@ -60,6 +60,6 @@ A **functional dependency** means one value, or group of values, determines anot
 
 Under this project's assumptions, the tables follow 3NF: each field holds one value, facts depend on the whole key, and customer or payment details are not copied into other tables through another non-key field. Foreign keys link the tables so queries can retrieve those details when needed.
 
-All accounts use NGN, and statuses are short allowed values with no extra descriptions to store. Separate lookup tables would make sense if currency details or other facts about those codes were added.
+All accounts use NGN, and statuses are short allowed values with no extra descriptions to store. `CHECK` constraints enforce the fixed currency and allowed statuses.
 
 Normalisation does not check that a payment balances or that a customer has enough money. The [saved checks](evidence/Oladipo_Afolabi_301919753_schema_validation.txt) test the sample data. Payment checks and locking are separate topics for Portfolio 3.

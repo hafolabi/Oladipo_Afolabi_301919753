@@ -14,7 +14,7 @@ UNION ALL
 
 -- Then check the account types and direction of ordinary payments.
 -- UNION ALL combines the results of these two checks.
--- Reversal workflows are outside this query.
+-- The direction checks below cover completed deposits, withdrawals, and transfers.
 SELECT DISTINCT
     payment.transaction_reference,
     'Wrong account types or money direction' AS problem
