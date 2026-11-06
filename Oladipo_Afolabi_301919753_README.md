@@ -35,7 +35,7 @@ Portfolio 3 uses a project-local native PostgreSQL server with separate connecti
 
 Portfolio 4 has two MongoDB collections, three checked queries, saved outputs, and a short explanation of embedding and references. Its [README](Oladipo_Afolabi_301919753_Portfolio4NoSQL/Oladipo_Afolabi_301919753_README.md) explains the implementation and provides the run command. The checks passed on MongoDB 8.0.16 on 30 October 2026.
 
-Portfolio 5 has a sourced [distributed/cloud discussion](Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/Oladipo_Afolabi_301919753_distributed_discussion.md) covering replication, availability, consistency, and sharding, with a proposed architecture diagram. No distributed cluster or cloud deployment was performed. The [Word report](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx) brings the five activities and their results together.
+Portfolio 5 has a sourced [distributed/cloud discussion](Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/Oladipo_Afolabi_301919753_distributed_discussion.md) covering replication, availability, consistency, and sharding, with a proposed architecture diagram. No distributed cluster or cloud deployment was performed. The [PDF report](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.pdf) brings the five activities and their results together.
 
 The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/Oladipo_Afolabi_301919753_case_study.md) explains the organisation, its users, and the database requirements.
 
@@ -118,6 +118,6 @@ The menu checks passed on 30 October 2026: a custom transfer, deposit and withdr
 
 ## Documentation
 
-Each activity’s README explains its implementation and testing. The [final documentation guide](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_README.md) links to the Word and Markdown reports. The [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_reflection_notes.md) discuss design decisions and lessons supported by the results.
+Each activity’s README explains its implementation and testing. The [final documentation guide](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_README.md) links to the PDF report. The [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_reflection_notes.md) discuss design decisions and lessons supported by the results.
 
 The [AI-use declaration](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_ai_use_declaration.md) records the assistance used. The [reference list](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_references.md) records the documentation, libraries, versions, datasets, and tools.
