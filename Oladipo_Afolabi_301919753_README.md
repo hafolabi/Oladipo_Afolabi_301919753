@@ -7,9 +7,9 @@
 
 AfolabiPay is a fictional fintech platform for deposits, withdrawals, and transfers between customers. Alongside moving money, the system keeps a payment history that staff can follow when checking balances or investigating a problem.
 
-The same case study connects all five activities: **PostgreSQL for Portfolios 1–3**, **MongoDB for Portfolio 4**, and a discussion of distributed and cloud databases in Portfolio 5. This covers the SQL and NoSQL work in the brief.
+The same case study connects all five activities: **PostgreSQL for Portfolios 1–3**, **MongoDB for Portfolio 4**, and a discussion of distributed and cloud databases in Portfolio 5.
 
-The portfolio follows Section 4 of the brief: database design, SQL queries and an optimisation example, transaction and concurrency examples, one NoSQL model, and a distributed/cloud discussion. The [scope notes](Oladipo_Afolabi_301919753_assignment_requirements.md) map the implemented work to the assignment requirements.
+The portfolio covers database design, SQL queries and an optimisation example, transaction and concurrency examples, one NoSQL model, and a distributed/cloud discussion.
 
 ## Finding the work
 
@@ -25,7 +25,7 @@ Project files follow `Surname_Firstname_StudentID_DocumentType.extension`, for e
 | Final documentation | [Summary and technical reflection](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_README.md) | 6 |
 | **Total** | | **40** |
 
-## Where the project stands
+## Implemented work
 
 Portfolio 1 has the case study, ER diagram, relational schema, normalisation explanation, executable SQL tables, and fictional sample data. The schema and data checks passed in embedded PostgreSQL (PGlite); [the activity README](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/Oladipo_Afolabi_301919753_README.md) links to the actual output.
 
@@ -33,11 +33,11 @@ Portfolio 2 has four checked queries and one before-and-after index comparison. 
 
 Portfolio 3 uses a project-local native PostgreSQL server with separate connections. Commit, rollback after an error, Read Committed visibility, and competing withdrawals with account locks passed on 30 October 2026. The [activity README](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/Oladipo_Afolabi_301919753_README.md) links to the saved outputs and run command. The native server stops after the checks; Portfolio 2's saved performance comparison remains a PGlite run.
 
-Portfolio 4 has two MongoDB collections, three checked queries, saved outputs, and a short explanation of embedding and references. Its [README](Oladipo_Afolabi_301919753_Portfolio4NoSQL/Oladipo_Afolabi_301919753_README.md) maps the work to the brief and provides the run command. The checks passed on MongoDB 8.0.16 on 30 October 2026.
+Portfolio 4 has two MongoDB collections, three checked queries, saved outputs, and a short explanation of embedding and references. Its [README](Oladipo_Afolabi_301919753_Portfolio4NoSQL/Oladipo_Afolabi_301919753_README.md) explains the implementation and provides the run command. The checks passed on MongoDB 8.0.16 on 30 October 2026.
 
-Portfolio 5 has a sourced [distributed/cloud discussion](Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/Oladipo_Afolabi_301919753_distributed_discussion.md) covering replication, availability, consistency, and sharding. It includes a proposed architecture diagram and uses the discussion route allowed by the brief. No distributed cluster or cloud deployment was performed. All five activity deliverables and the terminal menu are present. An editable [Word report draft](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx) brings the work together; personal review, reflection details, and the repository access check remain.
+Portfolio 5 has a sourced [distributed/cloud discussion](Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/Oladipo_Afolabi_301919753_distributed_discussion.md) covering replication, availability, consistency, and sharding, with a proposed architecture diagram. No distributed cluster or cloud deployment was performed. The [Word report](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx) brings the five activities and their results together.
 
-The [assignment checklist](Oladipo_Afolabi_301919753_assignment_requirements.md) keeps the requirements and marking rubric in one place. The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/Oladipo_Afolabi_301919753_case_study.md) explains the organisation, its users, and the database requirements.
+The [case study](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/Oladipo_Afolabi_301919753_case_study.md) explains the organisation, its users, and the database requirements.
 
 For a first look at the SQL, use the [Portfolio 1 reading guide](Oladipo_Afolabi_301919753_Portfolio1DatabaseDesign/Oladipo_Afolabi_301919753_start_here.md). It explains the keys using JavaScript objects and walks through the sample transfer.
 
@@ -114,18 +114,10 @@ The check commands regenerate their activity's saved evidence. Portfolio 2 repea
 
 The menu code is in [Oladipo_Afolabi_301919753_interactive.mjs](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/tools/Oladipo_Afolabi_301919753_interactive.mjs). [Oladipo_Afolabi_301919753_demo_database.mjs](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/tools/Oladipo_Afolabi_301919753_demo_database.mjs) opens and closes the temporary database. The menu calls the existing [payment functions](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/tools/Oladipo_Afolabi_301919753_payments.mjs) and a [parameterised history query](Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/sql/Oladipo_Afolabi_301919753_menu_history.sql); the fixed Portfolio 2 benchmark query stays the same.
 
-The menu checks passed on 30 October 2026: a custom transfer, deposit and withdrawal with decimal amounts, refused payments, supplied and default history dates, session reset, and Ctrl+C cleanup. The existing activity evidence was reviewed against the brief; the Portfolio 2 benchmark was kept as recorded rather than timed again during this audit.
+The menu checks passed on 30 October 2026: a custom transfer, deposit and withdrawal with decimal amounts, refused payments, supplied and default history dates, session reset, and Ctrl+C cleanup.
 
-## Before submission
+## Documentation
 
-1. Review and repeat the Portfolio 1–4 checks, then use the results and Portfolio 5's proposed design to support the final reflection.
-2. Open the [Word report](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_FinalReport.docx), finish the highlighted personal reflection and review notes, and record the checks performed in the declaration.
-3. Fine-tune the report in Word, check the 2–3 page limit, confirm lecturer access to the committed and pushed repository, and prepare the LMS submission. The [final documentation guide](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_README.md) explains the remaining edits.
+Each activity’s README explains its implementation and testing. The [final documentation guide](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_README.md) links to the Word and Markdown reports. The [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_reflection_notes.md) discuss design decisions and lessons supported by the results.
 
-Git is initialised with an `origin` remote. Before submission, confirm that the GitHub repository is private and the assessor has access. Keep meaningful commits and save the commands, software versions, and results with each activity so the experiments can be repeated.
-
-## Notes for the final submission
-
-Each activity’s README explains its implementation and testing. The [reflection notes](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_reflection_notes.md) collect design decisions, challenges, and lessons for the final report.
-
-The [AI-use declaration](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_ai_use_declaration.md) records the assistance used and the current review status. Check that it and the [reference list](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_references.md) reflect the final submission. Confirm that the assessor can open the private GitHub repository before uploading the required files to the LMS.
+The [AI-use declaration](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_ai_use_declaration.md) records the assistance used. The [reference list](Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_references.md) records the documentation, libraries, versions, datasets, and tools.

@@ -62,4 +62,4 @@ Splitting financial accounts across independent PostgreSQL servers would make so
 
 ## What was actually demonstrated
 
-Portfolios 3 and 4 tested local transactions and document queries. This activity provides the sourced discussion and proposed diagram allowed by the brief. Replication, failover, sharding, and cloud availability have not been deployed or measured here.
+Portfolios 3 and 4 tested local transactions and document queries. This activity contains a sourced discussion and proposed architecture diagram. Replication, failover, sharding, and cloud availability have not been deployed or measured here.

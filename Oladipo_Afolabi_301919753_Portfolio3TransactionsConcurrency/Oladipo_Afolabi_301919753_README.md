@@ -2,13 +2,13 @@
 
 **Marks:** 7
 
-**Progress:** The four required demonstrations passed on 30 October 2026. Run the checks below to reproduce their output.
+**Results:** The four demonstrations passed on 30 October 2026. The commands below reproduce their output.
 
-This activity follows the brief: transaction examples showing **commit, rollback, isolation, a concurrency issue or control mechanism, and screenshots/output evidence**. Saved terminal output and JSON provide the evidence.
+This activity demonstrates **commit, rollback, Read Committed isolation, and account locking during competing withdrawals**. Saved terminal output and JSON record the results.
 
 ## Run the four demonstrations
 
-To try your own amounts and account numbers, use the [terminal menu guide in the root README](../Oladipo_Afolabi_301919753_README.md#run-the-terminal-menu). The checks below demonstrate the required transaction and concurrency behaviour automatically.
+To try your own amounts and account numbers, use the [terminal menu guide in the root README](../Oladipo_Afolabi_301919753_README.md#run-the-terminal-menu). The checks below demonstrate transaction and concurrency behaviour automatically.
 
 From the repository root, with Node.js 20 or later and npm:
 
@@ -24,9 +24,9 @@ The runner starts a temporary native PostgreSQL server on `127.0.0.1:55329`, loa
 
 If the port is occupied, use `P3_PORT=55330 npm run verify` in a macOS/Linux shell. The recorded environment is PostgreSQL 18.4, embedded-postgres 18.4.0-beta.17, pg 8.16.3, and Node.js 26.0.0 on macOS x64. Package versions are pinned in the lockfile; [Oladipo_Afolabi_301919753_environment.json](evidence/Oladipo_Afolabi_301919753_environment.json) records the actual run. Only macOS x64 has been tested here.
 
-## How the work meets the brief
+## Demonstrations and results
 
-| Required evidence | Demonstration and checked result | Output |
+| Demonstration | Checked result | Output |
 | --- | --- | --- |
 | Commit | Ada sends NGN 2,000 from NGN 10,000. `COMMIT` saves both entries: Ada has NGN 8,000 and Bello has NGN 2,000. | [Oladipo_Afolabi_301919753_01_commit.json](evidence/Oladipo_Afolabi_301919753_01_commit.json) |
 | Rollback | A transfer is staged, then division by zero causes an error before commit. `ROLLBACK` removes its payment, entries, and audit event. All balances remain unchanged. | [Oladipo_Afolabi_301919753_02_rollback.json](evidence/Oladipo_Afolabi_301919753_02_rollback.json) |
@@ -34,7 +34,7 @@ If the port is occupied, use `P3_PORT=55330 npm run verify` in a macOS/Linux she
 | Concurrency control | Two requests each want NGN 800 from NGN 1,000. The second waits for an account lock, then reads NGN 200 and rejects its withdrawal. Only the first is saved. | [Oladipo_Afolabi_301919753_04_concurrency.json](evidence/Oladipo_Afolabi_301919753_04_concurrency.json) |
 | Output evidence | The log records session order and passing checks. JSON records before/after balances, saved-row counts, and the observed lock wait. | [Oladipo_Afolabi_301919753_transaction_validation.txt](evidence/Oladipo_Afolabi_301919753_transaction_validation.txt) |
 
-The isolation example demonstrates **no dirty read**: B does not see unfinished changes. Its later changed result is a **nonrepeatable read**, which Read Committed allows. One isolation level and one locking mechanism cover the selected examples; the brief does not require demonstrating every level or an additional unsafe implementation.
+The isolation example demonstrates **no dirty read**: B does not see unfinished changes. Its later changed result is a **nonrepeatable read**, which Read Committed allows. Account locking and the subsequent balance check prevent both competing withdrawals from spending the same funds.
 
 ## Reading the code
 

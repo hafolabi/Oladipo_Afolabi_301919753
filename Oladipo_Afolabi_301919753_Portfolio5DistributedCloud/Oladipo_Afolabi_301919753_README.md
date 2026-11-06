@@ -6,9 +6,9 @@
 
 **Progress:** The sourced discussion was completed on 31 October 2026. The architecture is proposed; no cluster or cloud service was deployed.
 
-The brief permits a distributed/cloud database **discussion or setup**. This activity takes the discussion route. Read [Oladipo_Afolabi_301919753_distributed_discussion.md](Oladipo_Afolabi_301919753_distributed_discussion.md) for the completed work and its source links.
+This activity analyses a proposed distributed/cloud database arrangement. [Oladipo_Afolabi_301919753_distributed_discussion.md](Oladipo_Afolabi_301919753_distributed_discussion.md) contains the analysis and its source links.
 
-## How the work meets the brief
+## Topics covered
 
 | Topic | Coverage in the discussion |
 | --- | --- |
@@ -19,6 +19,6 @@ The brief permits a distributed/cloud database **discussion or setup**. This act
 | Sharding | [Why the sample stays unsharded](Oladipo_Afolabi_301919753_distributed_discussion.md#sharding-assessment), with possible keys and their tradeoffs |
 | Cloud context | A small [proposed architecture diagram](Oladipo_Afolabi_301919753_distributed_discussion.md#proposed-cloud-arrangement) and placement across availability zones |
 
-The written analysis is the evidence for this route. It distinguishes the proposed arrangement from the local database checks already performed. There are no deployment commands or runtime results for Portfolio 5.
+The written analysis and architecture diagram describe the proposed arrangement. Portfolios 3 and 4 contain the local database checks; Portfolio 5 has no deployment commands or runtime results.
 
-For review, be able to explain why a delayed copy must not authorise a withdrawal, why a replica set can pause writes during failure, and why adding shards would complicate this small example. The [project references](../Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_references.md) record the official documentation used.
+The [project references](../Oladipo_Afolabi_301919753_FinalDocumentation/Oladipo_Afolabi_301919753_references.md) record the official documentation used.

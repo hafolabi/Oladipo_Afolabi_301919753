@@ -1,6 +1,6 @@
 # Start here: four transaction examples
 
-Portfolio 2 read data. Portfolio 3 shows how database writes behave when they succeed, fail, or overlap with another request. Read the [requirements and results table](Oladipo_Afolabi_301919753_README.md#how-the-work-meets-the-brief) first.
+Portfolio 2 read data. Portfolio 3 shows how database writes behave when they succeed, fail, or overlap with another request. The [demonstrations and results table](Oladipo_Afolabi_301919753_README.md#demonstrations-and-results) summarises the checks.
 
 ## What is a database transaction?
 

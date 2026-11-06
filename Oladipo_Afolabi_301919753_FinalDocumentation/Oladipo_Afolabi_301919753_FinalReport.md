@@ -6,8 +6,6 @@
 
 **GitHub:** [github.com/hafolabi/Oladipo_Afolabi_301919753](https://github.com/hafolabi/Oladipo_Afolabi_301919753)
 
-*Editable draft: complete the highlighted personal notes and confirm lecturer access to the repository before submission.*
-
 ### Case study and scope
 
 AfolabiPay is a fictional fintech platform for deposits, withdrawals, transfers, balances, and payment history. The same case study connects all five activities. PostgreSQL holds the financial records, MongoDB demonstrates a document model, and the final activity discusses a possible cloud arrangement. All people and payments are fictional. Amounts are stored as whole kobo: 100 kobo equals NGN 1. Balances come from completed entries rather than an editable balance field.
@@ -64,29 +62,27 @@ The implementation uses BSON Long integers for exact whole kobo. It reuses Ada, 
 
 **Evidence 4 — MongoDB output:** [the saved checks](https://github.com/hafolabi/Oladipo_Afolabi_301919753/blob/main/Oladipo_Afolabi_301919753_Portfolio4NoSQL/evidence/Oladipo_Afolabi_301919753_validation.txt) passed on MongoDB 8.0.16: two profiles, three events, Ada's `DEP-001` and `TRF-001` history, and the NGN 2,000 transfer. Each sample event had two balanced BSON Long entries. Document references do not supply SQL foreign-key guarantees, and one atomic event does not prevent overdrafts across events. PostgreSQL remains the financial record; there is no automatic synchronisation.
 
-### Trying the implementation
+### Implementation and validation
 
-From the repository root, run `npm run setup` once, then `npm start`. The menu accepts existing mock accounts, amounts, and history dates. Restarting resets the data. The [root README](https://github.com/hafolabi/Oladipo_Afolabi_301919753/blob/main/Oladipo_Afolabi_301919753_README.md#run-the-terminal-menu) explains usage and `npm run check:p1` through `npm run check:p4` for repeatable checks. Rerunning the optimisation check replaces its timings.
+The root npm scripts install dependencies (`npm run setup`) and open the terminal menu (`npm start`). The menu accepts existing mock accounts, amounts, and history dates. Restarting resets the data. The [root README](https://github.com/hafolabi/Oladipo_Afolabi_301919753/blob/main/Oladipo_Afolabi_301919753_README.md#run-the-terminal-menu) explains usage and `npm run check:p1` through `npm run check:p4` for repeatable checks. Rerunning the optimisation check replaces its timings.
 
 <!-- PAGE BREAK -->
 
 ### Portfolio 5: Distributed and cloud databases
 
-The brief permits discussion or setup. This activity provides a sourced proposal, with no cloud deployment or measured failover. It considers a PostgreSQL primary and standby in separate availability zones, plus a three-member MongoDB replica set across three zones.
+This activity provides a sourced proposal, with no cloud deployment or measured failover. It considers a PostgreSQL primary and standby in separate availability zones, plus a three-member MongoDB replica set across three zones.
 
 For financial payments, synchronous PostgreSQL replication could wait for the standby to save the commit record, reducing the risk of losing an acknowledged change but adding delay and possible waits. Failover also needs coordination to promote a standby and stop the old primary accepting writes [5]. MongoDB majority acknowledgement and elections improve resilience, but secondary reads can lag and writes can pause when a majority is unavailable [6].
 
 Payment decisions must use the PostgreSQL primary and the Portfolio 3 lock-then-check sequence. A delayed replica could approve a withdrawal using an old balance. The small dataset stays unsharded: splitting the ledger would complicate transfers, and a proposed event shard key would need workload testing. The [full discussion and architecture diagram](https://github.com/hafolabi/Oladipo_Afolabi_301919753/blob/main/Oladipo_Afolabi_301919753_Portfolio5DistributedCloud/Oladipo_Afolabi_301919753_distributed_discussion.md) explain these tradeoffs.
 
-### Individual reflection — draft for personal review
+### Technical reflection
 
 The payment examples show the difference between finding a negative balance afterwards and refusing an unaffordable payment before it is saved. Locking before checking funds protects that decision when requests overlap. The index comparison also shows why an optimisation must preserve the answers and be assessed against its measurement conditions and storage cost.
 
-**Personal challenge and check:** [Describe a challenge encountered, the steps taken, what changed, and a check repeated with its result.]
-
 ### AI use and verification
 
-The student selected the case study and directed the project scope and requested changes. OpenAI Codex provided minimal technical assistance during development and verification. The [AI-use declaration](Oladipo_Afolabi_301919753_ai_use_declaration.md) records the tasks supported and the review status.
+OpenAI Codex assisted with design suggestions, code and documentation revisions, diagrams, and automated checks. The [AI-use declaration](Oladipo_Afolabi_301919753_ai_use_declaration.md) records the work supported.
 
 ### Selected references
 

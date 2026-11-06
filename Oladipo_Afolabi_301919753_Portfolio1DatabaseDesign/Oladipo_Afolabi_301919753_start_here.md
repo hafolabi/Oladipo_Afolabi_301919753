@@ -80,8 +80,4 @@ Deposits and withdrawals use a **clearing account** for the other entry. In this
 
 An account's balance comes from adding its completed entries. `posted` means completed. `pending` and `failed` requests do not contribute to the balance. A reversal adds new entries with the opposite amounts, keeping the original payment in the history.
 
-## What to be able to explain for Portfolio 1
-
-Focus on why each table exists, how the keys link them, and why the customer's email is stored in one place. Be able to explain the two entries in the transfer above and why some rules need to check several rows together.
-
 The [activity README](Oladipo_Afolabi_301919753_README.md) has the commands for running the examples and the saved results to compare them with.

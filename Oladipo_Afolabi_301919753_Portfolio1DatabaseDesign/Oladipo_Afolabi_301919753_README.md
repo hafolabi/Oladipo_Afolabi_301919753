@@ -6,11 +6,11 @@
 
 **Progress:** Design complete; schema, sample-data, customer-status, and update-timestamp checks passed on 4 November 2026.
 
-This activity covers the case study, ER diagram, relational schema, keys, constraints, and normalisation required by the brief. Start with [the reading guide](Oladipo_Afolabi_301919753_start_here.md).
+This activity contains the case study, ER diagram, relational schema, keys, constraints, and normalisation explanation. The [reading guide](Oladipo_Afolabi_301919753_start_here.md) walks through the design.
 
-## Required work and evidence
+## Implementation and evidence
 
-| Requirement | Files |
+| Component | Files |
 | --- | --- |
 | Case study description | [Oladipo_Afolabi_301919753_case_study.md](Oladipo_Afolabi_301919753_case_study.md) |
 | ER diagram | [Oladipo_Afolabi_301919753_er_diagram.svg](Oladipo_Afolabi_301919753_er_diagram.svg), with [editable Mermaid source](Oladipo_Afolabi_301919753_er_diagram.mmd) |
@@ -60,4 +60,4 @@ Ada deposits NGN 10,000 and sends Bello NGN 2,000. Bello also deposits NGN 5,000
 
 This activity designs and checks the tables. Some rules, such as checking available funds across payments, need more than a row-level constraint. [Portfolio 3](../Oladipo_Afolabi_301919753_Portfolio3TransactionsConcurrency/Oladipo_Afolabi_301919753_README.md) demonstrates payment checks and account locking.
 
-The diagram helper supports the required ER diagram. From this activity's folder, `python3 tools/Oladipo_Afolabi_301919753_export_diagram.py` regenerates the SVG from the Mermaid attributes. It does not change the database.
+From this activity's folder, `python3 tools/Oladipo_Afolabi_301919753_export_diagram.py` regenerates the ER diagram SVG from the Mermaid attributes. It does not change the database.

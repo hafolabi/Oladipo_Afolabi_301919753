@@ -6,9 +6,9 @@
 
 This activity uses Portfolio 1's tables and mock data. It answers four questions, checks the results, and improves the account-history lookup with one extra index. Start with [the reading guide](Oladipo_Afolabi_301919753_start_here.md).
 
-## Required work and evidence
+## Implementation and evidence
 
-| Requirement | Evidence |
+| Component | Evidence |
 | --- | --- |
 | SQL queries | The four linked query files below |
 | Query results | The four linked result files below |

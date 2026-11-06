@@ -6,11 +6,11 @@
 
 **Progress:** The document example and three query checks passed on 30 October 2026 using MongoDB 8.0.16.
 
-This activity uses the document option in the brief. It stores two customer profiles and three completed payment events from the SQL case study. Start with [the document model](Oladipo_Afolabi_301919753_document_model.md), then [the queries](tools/Oladipo_Afolabi_301919753_queries.mjs).
+This activity stores two customer profiles and three completed payment events from the SQL case study as MongoDB documents. The [document model](Oladipo_Afolabi_301919753_document_model.md) explains the structure, and [the queries](tools/Oladipo_Afolabi_301919753_queries.mjs) retrieve the sample records.
 
-## Required work and evidence
+## Implementation and evidence
 
-| Requirement | Implementation or evidence |
+| Component | Implementation or evidence |
 | --- | --- |
 | NoSQL model based on the same case study | [Oladipo_Afolabi_301919753_document_model.md](Oladipo_Afolabi_301919753_document_model.md) explains the two collections and how IDs match the SQL data |
 | Document example | [Oladipo_Afolabi_301919753_sample_data.mjs](tools/Oladipo_Afolabi_301919753_sample_data.mjs) inserts Ada, Bello, two deposits, and their transfer |
